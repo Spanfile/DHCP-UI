@@ -2,23 +2,35 @@ import * as React from "react";
 import Button from "./form-controls/Button";
 import Card from "./form-controls/Card";
 import TextInput from "./form-controls/TextInput";
+import ToggledTextInput from "./form-controls/ToggledTextInput";
 
 export interface IDHCPUISettingsProps {
-  dhcp: {
-    serviceName: string,
-    configDir: string,
-    logFile: string,
-    leaseFile: string,
-  }
+  serviceName: string,
+  configDir: string,
+  logFile: string,
+  logInJournal: boolean,
+  leaseFile: string
 }
 
 export interface IDHCPUISettingsState {
-  [dhcp: string]: string,
+  serviceName: string,
+  configDir: string,
+  logFile: string,
+  logInJournal: boolean,
+  leaseFile: string
 }
 
 export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps, IDHCPUISettingsState> {
   constructor(props: IDHCPUISettingsProps) {
     super(props);
+
+    this.state = {
+      configDir: this.props.configDir,
+      leaseFile: this.props.leaseFile,
+      logFile: this.props.logFile,
+      logInJournal: this.props.logInJournal,
+      serviceName: this.props.serviceName,
+    }
   }
 
   public render() {
@@ -30,10 +42,33 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
         <form>
           <Card title="DHCP service">
             <Button label="Detect automatically" style="success" onClick={this.detectDhcpServer} />
-            <TextInput label="DHCP service name" name="dhcp.serviceName" onChange={inputChanged} />
-            <TextInput label="Configuration directory" name="dhcp.configDir" onChange={inputChanged} />
-            <TextInput label="Log file" name="dhcp.logFile" onChange={inputChanged} />
-            <TextInput label="Lease file" name="dhcp.leaseFile" onChange={inputChanged} />
+            <TextInput
+              label="DHCP service name"
+              name="serviceName"
+              onChange={inputChanged}
+              value={this.props.serviceName}
+            />
+            <TextInput
+              label="Configuration directory"
+              name="configDir"
+              onChange={inputChanged}
+              value={this.props.configDir}
+            />
+            <ToggledTextInput
+              label="Log file"
+              name="logFile"
+              value={this.props.logFile}
+              checkLabel="In journal"
+              checkName="logInJournal"
+              checkValue={this.props.logInJournal}
+              onChange={inputChanged}
+            />
+            <TextInput
+              label="Lease file"
+              name="leaseFile"
+              onChange={inputChanged}
+              value={this.props.leaseFile}
+            />
           </Card>
           <Button label="Save" style="primary" onClick={save} />
         </form>
@@ -42,7 +77,7 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
   }
 
   private save(event: any) {
-    console.log(event);
+    console.log(this.state);
   }
 
   private inputChanged(event: any) {
@@ -52,7 +87,6 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
 
     const state = {};
     state[name] = value;
-    console.log(state);
 
     this.setState(state);
   }
