@@ -9,7 +9,7 @@ export default class Navbar extends React.Component<INavbarProps, object> {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     const isLoggedIn = this.props.loggedInAs !== '';
 
     let buttonText = "Log in"

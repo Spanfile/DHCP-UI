@@ -1,7 +1,4 @@
-import { AxiosResponse } from "axios";
 import * as React from "react";
-import API from "../../../API";
-import Button from "./form-controls/Button";
 import Card from "./form-controls/Card";
 import TextInput from "./form-controls/TextInput";
 import ToggledTextInput from "./form-controls/ToggledTextInput";
@@ -27,19 +24,18 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
     super(props);
 
     this.state = {
-      configDir: this.props.configDir,
-      leaseFile: this.props.leaseFile,
-      logFile: this.props.logFile,
-      logInJournal: this.props.logInJournal,
-      serviceName: this.props.serviceName,
+      configDir: this.props.configDir || "",
+      leaseFile: this.props.leaseFile || "",
+      logFile: this.props.logFile || "",
+      logInJournal: this.props.logInJournal || false,
+      serviceName: this.props.serviceName || "",
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="DHCP service">
-          <Button label="Detect automatically" style="success" onClick={this.detectDhcpServer} />
           <TextInput
             label="DHCP service name"
             name="serviceName"
@@ -81,13 +77,5 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
     state[name] = value;
 
     this.setState(state);
-  }
-
-  private detectDhcpServer = (event: any) => {
-    API.get("/detectdhcpserver")
-      .then((response: AxiosResponse) => {
-        const data = response.data;
-        this.setState(data);
-      });
   }
 }

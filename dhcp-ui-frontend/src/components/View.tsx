@@ -7,7 +7,7 @@ import Log from './views/Log';
 import Settings from './views/Settings';
 
 export default class View extends React.Component {
-  public render() {
+  public render(): JSX.Element {
     return (
       <Switch>
         <Route exact={true} path='/' component={Home} />

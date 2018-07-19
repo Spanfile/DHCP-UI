@@ -11,7 +11,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     const label = this.props.label;
     const style = this.props.style;
     const onClick = this.props.onClick;

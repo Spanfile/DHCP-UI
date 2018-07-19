@@ -11,23 +11,31 @@ export interface IToggledTextInputProps {
   onChange: (event: any) => void
 }
 
-export default class ToggledTextInput extends React.Component<IToggledTextInputProps, {}> {
+export interface IToggledTextInputState {
+  textEnabled: boolean
+}
+
+export default class ToggledTextInput extends React.Component<IToggledTextInputProps, IToggledTextInputState> {
   constructor(props: IToggledTextInputProps) {
     super(props);
+
+    this.state = {
+      textEnabled: props.checkValue ? !props.checkValue : true
+    };
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
-      <div className="form-group row" >
+      <div className="form-group row align-items-center" >
         <label className="col-sm-4 col-form-label">{this.props.label}</label>
         <div className="col-sm-2">
-          <div className="form-check">
+          <div className="form-check form-check-inline toggled-text-input-check">
             <input
               className="form-check-input"
               type="checkbox"
               name={this.props.checkName}
               defaultChecked={this.props.checkValue}
-              onChange={this.props.onChange}
+              onChange={this.onCheckChange}
             />
             <label className="form-check-label">
               {this.props.checkLabel}
@@ -41,9 +49,16 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
             name={this.props.name}
             onChange={this.props.onChange}
             value={this.props.value}
+            disabled={!this.state.textEnabled}
           />
         </div>
       </div>
     );
+  }
+
+  private onCheckChange = (event: any) => {
+    this.setState({
+      textEnabled: !event.target.checked
+    });
   }
 }

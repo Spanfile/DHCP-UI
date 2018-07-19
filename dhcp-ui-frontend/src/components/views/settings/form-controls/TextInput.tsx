@@ -3,7 +3,7 @@ import * as React from "react";
 export interface ITextInputProps {
   label: string,
   name: string,
-  value: string,
+  value?: string,
   onChange: (event: any) => void
 }
 
@@ -12,7 +12,7 @@ export default class TextInput extends React.Component<ITextInputProps, {}> {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="form-group row" >
         <label className="col-sm-4 col-form-label">{this.props.label}</label>

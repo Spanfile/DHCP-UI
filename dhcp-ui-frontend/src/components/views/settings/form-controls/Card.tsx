@@ -9,17 +9,17 @@ export default class Card extends React.Component<ICardProps, {}> {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     const title = this.props.title;
     const children = this.props.children;
 
     return (
       <div className="card rounded-0">
         <div className="card-body">
-          <h5 className="card-title border-bottom">{title}</h5>
+          <h5 className="card-title border-bottom" style={{ marginBottom: "1.5em" }}>{title}</h5>
           {children}
         </div>
-      </div>
+      </div >
     );
   }
 }

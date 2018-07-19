@@ -4,7 +4,7 @@ import "./Settings.css";
 import DHCPUISettings from "./settings/DHCPUISettings";
 
 export default class Settings extends React.Component {
-  public render() {
+  public render(): JSX.Element {
     return (
       <form onSubmit={this.save}>
         <ul className="nav nav-tabs" role="tablist">

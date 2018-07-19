@@ -6,7 +6,7 @@ export default class Sidebar extends React.Component {
     super(props);
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="col-sm-2">
         <nav className="nav flex-column">
