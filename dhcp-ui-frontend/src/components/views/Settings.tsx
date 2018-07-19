@@ -6,7 +6,7 @@ import DHCPUISettings from "./settings/DHCPUISettings";
 export default class Settings extends React.Component {
   public render() {
     return (
-      <div>
+      <form onSubmit={this.save}>
         <ul className="nav nav-tabs" role="tablist">
           <li className="nav-item">
             <NavLink to="/settings/dhcp-ui" className="nav-link rounded-0" activeClassName="active">DHCP UI</NavLink>
@@ -18,7 +18,13 @@ export default class Settings extends React.Component {
             <Route path="/settings/dhcp-ui" component={DHCPUISettings} />
           </Switch>
         </div>
-      </div>
+        <button type="submit" className="btn btn-primary rounded-0">Save</button>
+      </form>
     );
+  }
+
+  private save(event: any) {
+    console.log("gonna save");
+    event.preventDefault();
   }
 }
