@@ -14,3 +14,8 @@ def hello_world():
         'logInJournal': False,
         'leaseFile': '/var/lib/dhcp.leases'
     })
+
+
+@app.route('/leases')
+def leases():
+    pass
