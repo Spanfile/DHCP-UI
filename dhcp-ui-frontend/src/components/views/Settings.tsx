@@ -1,7 +1,7 @@
+import DHCPUISettings from "containers/DHCPUISettings";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import "./Settings.css";
-import DHCPUISettings from "./settings/DHCPUISettings";
 
 export default class Settings extends React.Component {
   public render(): JSX.Element {

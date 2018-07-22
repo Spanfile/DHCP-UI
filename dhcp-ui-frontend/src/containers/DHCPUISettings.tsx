@@ -1,7 +1,7 @@
+import Card from "components/form-controls/Card";
+import TextInput from "components/form-controls/TextInput";
+import ToggledTextInput from "components/form-controls/ToggledTextInput";
 import * as React from "react";
-import Card from "./form-controls/Card";
-import TextInput from "./form-controls/TextInput";
-import ToggledTextInput from "./form-controls/ToggledTextInput";
 
 export interface IDHCPUISettingsProps {
   serviceName: string,

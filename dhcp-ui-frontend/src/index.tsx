@@ -1,12 +1,12 @@
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import App from 'containers/App';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './components/App';
+import registerServiceWorker from 'registerServiceWorker';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 
 axios.defaults.baseURL = "http://localhost:3000";
 
