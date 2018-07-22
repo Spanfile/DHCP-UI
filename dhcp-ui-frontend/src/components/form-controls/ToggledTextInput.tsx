@@ -27,7 +27,7 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
   public render(): JSX.Element {
     return (
       <div className="form-group row align-items-center" >
-        <label className="col-sm-4 col-form-label">{this.props.label}</label>
+        <label className="col-sm-3 col-form-label text-right">{this.props.label}</label>
         <div className="col-sm-2">
           <div className="form-check form-check-inline toggled-text-input-check">
             <input
@@ -42,7 +42,7 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
             </label>
           </div>
         </div>
-        <div className="col-sm-6">
+        <div className="col-sm-7">
           <input
             type="text"
             className="form-control rounded-0"
