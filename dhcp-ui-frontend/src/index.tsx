@@ -1,7 +1,7 @@
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import App from 'containers/App';
+import App from 'components/App';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';

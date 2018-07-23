@@ -2,17 +2,17 @@ import * as React from "react";
 import "./ToggledTextInput.css";
 
 export interface IToggledTextInputProps {
-  label: string,
-  checkLabel: string,
-  name: string,
-  checkName: string,
-  value?: string,
-  checkValue?: boolean,
-  onChange: (event: any) => void
+  label: string;
+  checkLabel: string;
+  name: string;
+  checkName: string;
+  value?: string;
+  checkValue?: boolean;
+  onChange: (event: any) => void;
 }
 
 export interface IToggledTextInputState {
-  textEnabled: boolean
+  textEnabled: boolean;
 }
 
 export default class ToggledTextInput extends React.Component<IToggledTextInputProps, IToggledTextInputState> {

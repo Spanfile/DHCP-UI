@@ -1,8 +1,8 @@
-import Navbar from 'components/Navbar';
-import Sidebar from 'components/Sidebar';
-import View from 'components/View';
 import * as React from 'react';
 import './App.css';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import View from './View';
 
 export default class App extends React.Component {
   public render(): JSX.Element {

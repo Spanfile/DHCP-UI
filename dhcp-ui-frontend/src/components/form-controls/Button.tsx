@@ -1,9 +1,9 @@
 import * as React from "react";
 
 export interface IButtonProps {
-  label: string,
-  style: string,
-  onClick: (event: any) => void,
+  label: string;
+  style: string;
+  onClick: (event: any) => void;
 }
 
 export default class Button extends React.Component<IButtonProps, {}> {

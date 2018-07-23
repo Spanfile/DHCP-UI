@@ -1,10 +1,10 @@
 import * as React from "react";
 
 export interface ITextInputProps {
-  label: string,
-  name: string,
-  value?: string,
-  onChange: (event: any) => void
+  label: string;
+  name: string;
+  value?: string;
+  onChange: (event: any) => void;
 }
 
 export default class TextInput extends React.Component<ITextInputProps, {}> {

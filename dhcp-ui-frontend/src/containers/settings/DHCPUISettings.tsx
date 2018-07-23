@@ -4,19 +4,19 @@ import ToggledTextInput from "components/form-controls/ToggledTextInput";
 import * as React from "react";
 
 export interface IDHCPUISettingsProps {
-  serviceName: string,
-  configDir: string,
-  logFile: string,
-  logInJournal: boolean,
-  leaseFile: string
+  serviceName: string;
+  configDir: string;
+  logFile: string;
+  logInJournal: boolean;
+  leaseFile: string;
 }
 
 export interface IDHCPUISettingsState {
-  serviceName: string,
-  configDir: string,
-  logFile: string,
-  logInJournal: boolean,
-  leaseFile: string
+  serviceName: string;
+  configDir: string;
+  logFile: string;
+  logInJournal: boolean;
+  leaseFile: string;
 }
 
 export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps, IDHCPUISettingsState> {
@@ -29,7 +29,7 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
       logFile: this.props.logFile || "",
       logInJournal: this.props.logInJournal || false,
       serviceName: this.props.serviceName || "",
-    }
+    };
   }
 
   public render(): JSX.Element {

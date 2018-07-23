@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface INavbarProps {
-  loggedInAs: string
+  loggedInAs: string;
 }
 
 export default class Navbar extends React.Component<INavbarProps, object> {
@@ -12,7 +12,7 @@ export default class Navbar extends React.Component<INavbarProps, object> {
   public render(): JSX.Element {
     const isLoggedIn = this.props.loggedInAs !== '';
 
-    let buttonText = "Log in"
+    let buttonText = "Log in";
     if (isLoggedIn) {
       buttonText = "Log out";
     }

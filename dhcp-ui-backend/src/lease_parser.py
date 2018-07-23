@@ -38,7 +38,8 @@ class Parser:
             'next binding state': _binding_state_parser('next binding state', self._set_lease_value),
             'rewind binding state': _binding_state_parser('rewind binding state', self._set_lease_value),
             'set': _set_parser(self._set_lease_value),
-            'option': _option_parser(self._set_lease_value)
+            'option': _option_parser(self._set_lease_value),
+            'client-hostname': self._lease_client_hostname
         }
 
     def _set_lease_value(self, name: str, value: Any) -> None:

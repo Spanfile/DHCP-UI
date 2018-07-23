@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export interface ICardProps {
-  title: string
+  title: string;
 }
 
 export default class Card extends React.Component<ICardProps, {}> {
