@@ -2,14 +2,23 @@ import ILease from "common/ILease";
 import Lease from "components/Lease";
 import * as moment from "moment";
 import * as React from "react";
+import * as SocketIOClient from "socket.io-client";
 
 export interface ILeasesState {
   leases: ILease[];
 }
 
 export default class Leases extends React.Component<{}, ILeasesState> {
+  private socket: SocketIOClient.Socket;
+
   constructor(props: any) {
     super(props);
+
+    this.socket = SocketIOClient("http://localhost:5000/leases");
+    this.socket.on("connect", () => {
+      console.log("connected");
+      this.socket.emit('hello');
+    });
 
     this.state = {
       leases: [
@@ -33,6 +42,10 @@ export default class Leases extends React.Component<{}, ILeasesState> {
         }
       ]
     };
+  }
+
+  public componentWillUnmount() {
+    this.socket.disconnect();
   }
 
   public render() {

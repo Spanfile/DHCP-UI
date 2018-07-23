@@ -27,5 +27,10 @@ def leases():
     return jsonify(leases)
 
 
+@socketio.on('hello', namespace='/leases')
+def handle_message():
+    print('got message')
+
+
 if __name__ == '__main__':
     socketio.run(app)
