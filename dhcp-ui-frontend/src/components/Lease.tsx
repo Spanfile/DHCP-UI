@@ -13,6 +13,12 @@ export default class Lease extends React.Component<ILease, {}> {
 
     return (
       <tr>
+        <td scope="row">
+          <input
+            className="form-check-input"
+            type="checkbox"
+          />
+        </td>
         <td scope="row">{address}</td>
         <td className="text-monospace">{hardware}</td>
         <td>{this.props.hostname}</td>

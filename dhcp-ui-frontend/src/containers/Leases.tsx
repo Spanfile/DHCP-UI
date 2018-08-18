@@ -1,5 +1,6 @@
 import ILease from "common/ILease";
 import Lease from "components/Lease";
+import Table from "components/Table";
 import * as moment from "moment";
 import * as React from "react";
 
@@ -41,27 +42,21 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       rows.push(new Lease(lease));
     }
 
+    const columns = [
+      "", "IP", "MAC", "Hostname", "Ends"
+    ];
+
     return (
-      <table className="table table-sm table-striped">
-        <thead className="thead-light">
-          <tr>
-            <th scope="col">IP</th>
-            <th scope="col">MAC</th>
-            <th scope="col">Hostname</th>
-            <th scope="col">Ends</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.leases.map((lease: ILease) =>
-            <Lease
-              key={lease.address}
-              address={lease.address}
-              hardware={lease.hardware}
-              ends={lease.ends}
-              hostname={lease.hostname}
-            />)}
-        </tbody>
-      </table>
+      <Table columns={columns}>
+        {this.state.leases.map((lease: ILease) =>
+        <Lease
+          key={lease.address}
+          address={lease.address}
+          hardware={lease.hardware}
+          ends={lease.ends}
+          hostname={lease.hostname}
+        />)}
+      </Table>
     );
   }
 }
