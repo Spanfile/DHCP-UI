@@ -38,11 +38,9 @@ export default class Lease extends React.Component<ILease, {}> {
 
   private toMac(hex: string): string {
     hex = this.pad(hex, 12);
-    hex = hex.substr(0, 2) + ":" + hex.substr(2);
-    hex = hex.substr(0, 5) + ":" + hex.substr(5);
-    hex = hex.substr(0, 8) + ":" + hex.substr(8);
-    hex = hex.substr(0, 11) + ":" + hex.substr(11);
-    hex = hex.substr(0, 14) + ":" + hex.substr(14);
+    for (let i = 2; i <= 14; i += 3) {
+      hex = hex.substr(0, i) + ":" + hex.substr(i);
+    }
     return hex;
   }
 
