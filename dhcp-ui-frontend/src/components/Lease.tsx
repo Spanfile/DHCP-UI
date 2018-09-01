@@ -31,12 +31,7 @@ export default class Lease extends React.Component<ILease, {}> {
   }
 
   private toDotted(ipNum: number): string {
-    const oct1 = ipNum & 255;
-    const oct2 = (ipNum >> 8) & 255;
-    const oct3 = (ipNum >> 16) & 255;
-    const oct4 = (ipNum >> 24) & 255;
-
-    return oct4 + "." + oct3 + "." + oct2 + "." + oct1;
+    return [...Array(4).keys()].map(i => (ipNum >> (i * 8)) & 255).reverse().join(".");
   }
 
   private toMac(hex: string): string {
