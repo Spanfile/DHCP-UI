@@ -21,7 +21,7 @@ export default class Table extends React.Component<ITableProps, ITableState> {
   public render() {
     const columns = [];
     for (const header of this.props.columns) {
-      columns.push(<th scope="col">{header}</th>);
+      columns.push(<th key={header} scope="col">{header}</th>);
     }
 
     console.log(this.state.filter);

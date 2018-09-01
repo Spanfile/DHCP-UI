@@ -63,7 +63,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       <Table columns={columns}>
         {this.state.leases.map((lease: ILease) =>
         <Lease
-          key={lease.address}
+          key={lease.hardware}
           address={lease.address}
           hardware={lease.hardware}
           ends={lease.ends}
