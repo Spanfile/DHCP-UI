@@ -28,5 +28,10 @@
     "@types/react-dom": "^16.0.7",
     "@types/socket.io-client": "^1.4.32",
     "typescript": "^2.9.2"
+  },
+  "peerDependencies": {
+    "babel-core": "^6.0.0 || ^7.0.0-0",
+    "babel-runtime": "^6.23.0",
+    "popper.js": "^1.14.3"
   }
 }
