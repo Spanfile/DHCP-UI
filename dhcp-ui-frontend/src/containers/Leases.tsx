@@ -1,12 +1,10 @@
-import ILease from "common/ILease";
-import Lease from "components/Lease";
-import Table from "components/Table";
-import * as moment from "moment";
+import Lease, { ITransmittedLease } from "common/Lease";
+import Table from "components/table/Table";
 import * as React from "react";
 import * as SocketIOClient from "socket.io-client";
 
 export interface ILeasesState {
-  leases: ILease[];
+  leases: ITransmittedLease[];
 }
 
 export default class Leases extends React.Component<{}, ILeasesState> {
@@ -25,20 +23,56 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       leases: [
         {
           address: 167774727,
-          ends: moment("2018-07-22T13:15:36"),
+          ends: "2018-07-22T13:15:36",
           hardware: 212132660153088,
           hostname: "OnePlus_3"
         },
         {
           address: 167774855,
-          ends: moment("2018-07-23T12:32:20"),
+          ends: "2018-07-23T12:32:20",
           hardware: 48751574531902,
           hostname: "SanteriWin10"
         },
         {
           address: 167774856,
-          ends: moment("2018-07-23T04:51:05"),
+          ends: "2018-07-23T04:51:05",
           hardware: 345051650480,
+          hostname: "unifi"
+        },
+        {
+          address: 167774727,
+          ends: "2018-07-22T13:15:36",
+          hardware: 212132660153089,
+          hostname: "OnePlus_3"
+        },
+        {
+          address: 167774855,
+          ends: "2018-07-23T12:32:20",
+          hardware: 48751574531903,
+          hostname: "SanteriWin10"
+        },
+        {
+          address: 167774856,
+          ends: "2018-07-23T04:51:05",
+          hardware: 345051650481,
+          hostname: "unifi"
+        },
+        {
+          address: 167774727,
+          ends: "2018-07-22T13:15:36",
+          hardware: 212132660153090,
+          hostname: "OnePlus_3"
+        },
+        {
+          address: 167774855,
+          ends: "2018-07-23T12:32:20",
+          hardware: 48751574531904,
+          hostname: "SanteriWin10"
+        },
+        {
+          address: 167774856,
+          ends: "2018-07-23T04:51:05",
+          hardware: 345051650482,
           hostname: "unifi"
         }
       ]
@@ -50,26 +84,13 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   }
 
   public render() {
-    const rows = [];
+    const leases = [];
     for (const lease of this.state.leases) {
-      rows.push(new Lease(lease));
+      leases.push(new Lease(lease));
     }
 
-    const columns = [
-      "", "IP", "MAC", "Hostname", "Ends"
-    ];
-
     return (
-      <Table columns={columns}>
-        {this.state.leases.map((lease: ILease) =>
-        <Lease
-          key={lease.hardware}
-          address={lease.address}
-          hardware={lease.hardware}
-          ends={lease.ends}
-          hostname={lease.hostname}
-        />)}
-      </Table>
+      <Table dataSource={leases}/>
     );
   }
 }
