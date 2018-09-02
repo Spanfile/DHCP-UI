@@ -27,6 +27,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
   public render() {
     const columns: any[] = [<TableHeader key={"select"} header={""} />];
     const rowObjects: ITableRow[] = [];
+    const filter = this.state.filter;
 
     for (const column of this.props.columns) {
       columns.push(<TableHeader key={column.header} header={column.header} />);
@@ -34,14 +35,30 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
 
     for (const row of this.props.dataSource) {
       const values: any[] = [];
+      let filterMatches = !filter;
 
       for (const column of this.props.columns) {
         if (!row.hasOwnProperty(column.property)) {
           console.warn("row object has no property '" + column.property + "'");
-        } else {
-          const value = row[column.property];
-          values.push(value);
+          continue;
         }
+
+        const value = row[column.property];
+
+        if (typeof value !== "string") {
+          console.warn("row property '" + column.property + "' is not a string");
+          continue;
+        }
+
+        if (!filterMatches) {
+          filterMatches = value.includes(filter);
+        }
+
+        values.push(value);
+      }
+
+      if (!filterMatches) {
+        continue;
       }
 
       rowObjects.push({
@@ -51,24 +68,6 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
     }
 
     const rows = rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
-
-    // console.log(this.state.filter);
-
-    // const childComponents = React.Children.toArray(this.props.children);
-    // let children: TableRow[] = [];
-    // if (!this.state.filter) {
-    //   children = childComponents;
-    // } else {
-    //   for (const child of React.Children.toArray(this.props.children)) {
-    //     const props = (child as React.ReactElement<any>).props;
-    //     for (const key in props) {
-    //       if (props.hasOwnProperty(key)) {
-    //         console.log(key + " = ");
-    //         console.log(props[key] + "");
-    //       }
-    //     }
-    //   }
-    // }
 
     return (
       <div>
