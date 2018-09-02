@@ -1,5 +1,5 @@
 import * as moment from "moment";
-import { IData } from "./IData";
+import IData from "./IData";
 
 export interface ITransmittedLease {
   address: number;
@@ -10,19 +10,19 @@ export interface ITransmittedLease {
 
 export default class Lease implements IData {
   // tslint:disable-next-line:variable-name
-  public _key: string;
+  public key: string;
   public address: string;
   public hardware: string;
-  public ends: moment.Moment;
+  public ends: string;
   public hostname: string;
 
   constructor(source: ITransmittedLease) {
     this.address = this.toDotted(source.address);
     this.hardware = this.toMac(source.hardware.toString(16));
-    this.ends = moment(source.ends);
+    this.ends = moment(source.ends).format("DD/MM/YYYY HH:mm:ss");
     this.hostname = source.hostname;
 
-    this._key = this.hardware;
+    this.key = this.hardware;
   }
 
   private toDotted(ipNum: number): string {

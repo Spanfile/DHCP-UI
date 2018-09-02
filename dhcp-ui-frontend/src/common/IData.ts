@@ -1,3 +1,3 @@
-export interface IData {
-  _key: string;
+export default interface IData {
+  key: string;
 }

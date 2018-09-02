@@ -84,13 +84,23 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   }
 
   public render() {
-    const leases = [];
-    for (const lease of this.state.leases) {
-      leases.push(new Lease(lease));
-    }
+    const leases: Lease[] = this.state.leases.map(l => new Lease(l));
+    const columns = [{
+      header: "Address",
+      property: "address"
+    }, {
+      header: "MAC",
+      property: "hardware"
+    }, {
+      header: "Hostname",
+      property: "hostname"
+    }, {
+      header: "Ends",
+      property: "ends"
+    }];
 
     return (
-      <Table dataSource={leases}/>
+      <Table dataSource={leases} columns={columns}/>
     );
   }
 }

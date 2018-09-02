@@ -1,9 +1,14 @@
-import { IData } from "common/IData";
+import IData from "common/IData";
+import ITableColumn from "common/ITableColumn";
+import ITableRow from "common/ITableRow";
 import TextInput from "components/form-controls/TextInput";
 import * as React from "react";
+import TableHeader from "./TableHeader";
+import TableRow from "./TableRow";
 
 export interface ITableProps<T extends IData> {
   dataSource: T[];
+  columns: ITableColumn[];
 }
 
 export interface ITableState {
@@ -20,33 +25,32 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
   }
 
   public render() {
-    const columns: any = [];
-    const rowObjects: any = [];
+    const columns: any[] = [<TableHeader key={"select"} header={""} />];
+    const rowObjects: ITableRow[] = [];
 
-    console.log(typeof this.props.dataSource);
+    for (const column of this.props.columns) {
+      columns.push(<TableHeader key={column.header} header={column.header} />);
+    }
 
-    // for (const column of this.props.columns) {
-    //   columns.push(<TableHeader key={column.header} header={column.header}/>);
+    for (const row of this.props.dataSource) {
+      const values: any[] = [];
 
-    //   let rowIndex = 0;
-    //   for (const row of this.props.dataSource) {
-    //     if (!row.hasOwnProperty(column.property)) {
-    //       console.warn("row object has no property '" + column.property + "'");
-    //     } else {
-    //       const value = row[column.property];
+      for (const column of this.props.columns) {
+        if (!row.hasOwnProperty(column.property)) {
+          console.warn("row object has no property '" + column.property + "'");
+        } else {
+          const value = row[column.property];
+          values.push(value);
+        }
+      }
 
-    //       if (rowIndex <= rowObjects.length) {
-    //         rowObjects.push({
-    //           [column.property]: value
-    //         });
-    //       } else {
-    //         rowObjects[rowIndex][column.property] = value;
-    //       }
-    //     }
+      rowObjects.push({
+        key: row.key,
+        values
+      });
+    }
 
-    //     rowIndex += 1;
-    //   }
-    // }
+    const rows = rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
 
     // console.log(this.state.filter);
 
@@ -84,7 +88,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
             </tr>
           </thead>
           <tbody>
-            {rowObjects}
+            {rows}
           </tbody>
         </table>
       </div>
