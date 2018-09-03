@@ -3,6 +3,7 @@ import ITableColumn from "common/ITableColumn";
 import ITableRow from "common/ITableRow";
 import TextInput from "components/form-controls/TextInput";
 import * as React from "react";
+import EmptyTableRow from "./EmptyTableRow";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
@@ -61,6 +62,12 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
     const rowObjects: ITableRow[] = [];
     const filter = this.state.filter;
 
+    if (this.props.dataSource.length === 0) {
+      return [
+        <EmptyTableRow key={"empty"} width={this.props.columns.length + 1} message={"No leases"} />
+      ];
+    }
+
     for (const row of this.props.dataSource) {
       const values: any[] = [];
       let filterMatches = !filter;
@@ -93,6 +100,12 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
         key: row.key,
         values
       });
+    }
+
+    if (rowObjects.length === 0) {
+      return [
+        <EmptyTableRow key={"empty"} width={this.props.columns.length + 1} message={"No matching leases"} />
+      ];
     }
 
     return rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
