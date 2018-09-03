@@ -1,3 +1,4 @@
+import API from "API";
 import Lease, { ITransmittedLease } from "common/Lease";
 import Table from "components/table/Table";
 import * as React from "react";
@@ -28,6 +29,16 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     this.socket.disconnect();
   }
 
+  public componentDidMount() {
+    API.get("/leases").then(response => {
+      console.log(response);
+      const leases = this.buildLeasesFromResponse(response.data);
+      this.setState({
+        leases
+      });
+    });
+  }
+
   public render() {
     const leases: Lease[] = this.state.leases.map(l => new Lease(l));
     const columns = [{
@@ -47,5 +58,16 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     return (
       <Table<Lease> dataSource={leases} columns={columns} />
     );
+  }
+
+  private buildLeasesFromResponse(responseData: any[]): ITransmittedLease[] {
+    return responseData.map(data => {
+      return {
+        address: data.address,
+        hardware: data.hardware,
+        ends: data.ends,
+        hostname: data["client-hostname"]
+      };
+    });
   }
 }

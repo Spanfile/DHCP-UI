@@ -22,7 +22,7 @@ export default class Lease implements IData {
     this.ends = moment(source.ends).format("DD/MM/YYYY HH:mm:ss");
     this.hostname = source.hostname;
 
-    this.key = this.hardware;
+    this.key = this.address;
   }
 
   private toDotted(ipNum: number): string {

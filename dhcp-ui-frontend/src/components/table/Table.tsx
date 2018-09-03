@@ -75,13 +75,21 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
       for (const column of this.props.columns) {
         if (!row.hasOwnProperty(column.property)) {
           console.warn("row object has no property '" + column.property + "'");
+          values.push("");
           continue;
         }
 
         const value = row[column.property];
 
+        // silently fail on null and undefined
+        if (!value) {
+          values.push("");
+          continue;
+        }
+
         if (typeof value !== "string") {
-          console.warn("row property '" + column.property + "' is not a string");
+          console.warn("row property '" + column.property + "' is not a string: " + value);
+          values.push("");
           continue;
         }
 
