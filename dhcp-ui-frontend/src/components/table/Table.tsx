@@ -25,13 +25,41 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
   }
 
   public render() {
-    const columns: any[] = [<TableHeader key={"select"} header={""} />];
+    return (
+      <div>
+        <div className="row">
+          <div className="col-sm-5 offset-sm-7">
+            <TextInput
+              label="Filter"
+              name="filter"
+              onChange={this.inputChanged}
+            />
+          </div>
+        </div>
+        <table className="table table-sm table-striped">
+          <thead className="thead-light">
+            <tr>
+              {this.buildColumns()}
+            </tr>
+          </thead>
+          <tbody>
+            {this.buildRows()}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  private buildColumns() {
+    return [
+      <TableHeader key={"select"} header={""} />,
+      ...this.props.columns.map(column => <TableHeader key={column.header} header={column.header} />)
+    ];
+  }
+
+  private buildRows() {
     const rowObjects: ITableRow[] = [];
     const filter = this.state.filter;
-
-    for (const column of this.props.columns) {
-      columns.push(<TableHeader key={column.header} header={column.header} />);
-    }
 
     for (const row of this.props.dataSource) {
       const values: any[] = [];
@@ -67,31 +95,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
       });
     }
 
-    const rows = rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
-
-    return (
-      <div>
-        <div className="row">
-          <div className="col-sm-5 offset-sm-7">
-            <TextInput
-              label="Filter"
-              name="filter"
-              onChange={this.inputChanged}
-            />
-          </div>
-        </div>
-        <table className="table table-sm table-striped">
-          <thead className="thead-light">
-            <tr>
-              {columns}
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
-      </div>
-    );
+    return rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
   }
 
   private inputChanged = (event: any) => {

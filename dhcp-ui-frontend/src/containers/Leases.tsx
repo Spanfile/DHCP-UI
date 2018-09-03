@@ -20,62 +20,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     });
 
     this.state = {
-      leases: [
-        {
-          address: 167774727,
-          ends: "2018-07-22T13:15:36",
-          hardware: 212132660153088,
-          hostname: "OnePlus_3"
-        },
-        {
-          address: 167774855,
-          ends: "2018-07-23T12:32:20",
-          hardware: 48751574531902,
-          hostname: "SanteriWin10"
-        },
-        {
-          address: 167774856,
-          ends: "2018-07-23T04:51:05",
-          hardware: 345051650480,
-          hostname: "unifi"
-        },
-        {
-          address: 167774727,
-          ends: "2018-07-22T13:15:36",
-          hardware: 212132660153089,
-          hostname: "OnePlus_3"
-        },
-        {
-          address: 167774855,
-          ends: "2018-07-23T12:32:20",
-          hardware: 48751574531903,
-          hostname: "SanteriWin10"
-        },
-        {
-          address: 167774856,
-          ends: "2018-07-23T04:51:05",
-          hardware: 345051650481,
-          hostname: "unifi"
-        },
-        {
-          address: 167774727,
-          ends: "2018-07-22T13:15:36",
-          hardware: 212132660153090,
-          hostname: "OnePlus_3"
-        },
-        {
-          address: 167774855,
-          ends: "2018-07-23T12:32:20",
-          hardware: 48751574531904,
-          hostname: "SanteriWin10"
-        },
-        {
-          address: 167774856,
-          ends: "2018-07-23T04:51:05",
-          hardware: 345051650482,
-          hostname: "unifi"
-        }
-      ]
+      leases: []
     };
   }
 
@@ -100,7 +45,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     }];
 
     return (
-      <Table dataSource={leases} columns={columns}/>
+      <Table<Lease> dataSource={leases} columns={columns} />
     );
   }
 }
