@@ -14,12 +14,6 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   constructor(props: any) {
     super(props);
 
-    this.socket = SocketIOClient("http://localhost:5000/leases");
-    this.socket.on("connect", () => {
-      console.log("connected");
-      this.socket.emit('hello');
-    });
-
     this.state = {
       leases: []
     };
@@ -30,6 +24,20 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   }
 
   public componentDidMount() {
+    this.socket = SocketIOClient("http://localhost:5000/leases");
+    this.socket.on("connect", () => {
+      console.log("connected");
+    });
+
+    this.socket.on("disconnect", () => {
+      console.log("disconnected");
+    });
+
+    this.socket.on("leases", (data: object) => {
+      console.log(data);
+      console.log("leases changed");
+    });
+
     API.get("/leases").then(response => {
       console.log(response);
       const leases = this.buildLeasesFromResponse(response.data);
