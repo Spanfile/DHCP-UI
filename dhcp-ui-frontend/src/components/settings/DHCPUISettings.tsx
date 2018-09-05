@@ -1,26 +1,12 @@
-import Card from "components/form-controls/Card";
-import TextInput from "components/form-controls/TextInput";
-import ToggledTextInput from "components/form-controls/ToggledTextInput";
+import IDHCPUISettings from "common/settings/IDHCPUISettings";
+import Card from "components/form/Card";
+import TextInput from "components/form/TextInput";
+// import ToggledTextInput from "components/form/ToggledTextInput";
 import * as React from "react";
+import InputGroup from "../form/InputGroup";
 
-export interface IDHCPUISettingsProps {
-  serviceName: string;
-  configDir: string;
-  logFile: string;
-  logInJournal: boolean;
-  leaseFile: string;
-}
-
-export interface IDHCPUISettingsState {
-  serviceName: string;
-  configDir: string;
-  logFile: string;
-  logInJournal: boolean;
-  leaseFile: string;
-}
-
-export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps, IDHCPUISettingsState> {
-  constructor(props: IDHCPUISettingsProps) {
+export default class DHCPUISettings extends React.Component<IDHCPUISettings, IDHCPUISettings> {
+  constructor(props: IDHCPUISettings) {
     super(props);
 
     this.state = {
@@ -36,43 +22,32 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettingsProps
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="DHCP service">
-          <TextInput
-            label="DHCP service name"
-            name="serviceName"
-            onChange={this.inputChanged}
-            value={this.state.serviceName}
-          />
-          <TextInput
-            label="Configuration directory"
-            name="configDir"
-            onChange={this.inputChanged}
-            value={this.state.configDir}
-          />
-          <ToggledTextInput
-            label="Log file"
-            name="logFile"
-            value={this.state.logFile}
-            checkLabel="In journal"
-            checkName="logInJournal"
-            checkValue={this.state.logInJournal}
-            onChange={this.inputChanged}
-          />
-          <TextInput
-            label="Lease file"
-            name="leaseFile"
-            onChange={this.inputChanged}
-            value={this.state.leaseFile}
-          />
+          <InputGroup onChange={this.inputChanged}>
+            <TextInput
+              label="DHCP service name"
+              name="serviceName"
+            />
+            <TextInput
+              label="Configuration directory"
+              name="configDir"
+            />
+            {/* <ToggledTextInput
+              label="Log file"
+              name="logFile"
+              checkLabel="In journal"
+              checkName="logInJournal"
+            /> */}
+            <TextInput
+              label="Lease file"
+              name="leaseFile"
+            />
+          </InputGroup>
         </Card>
       </div>
     );
   }
 
-  private inputChanged = (event: any) => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
+  private inputChanged = (name: string, value: any) => {
     const state = {};
     state[name] = value;
 
