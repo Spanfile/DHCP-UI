@@ -19,6 +19,8 @@ socketio = SocketIO(app)
 leases_changed: NamedSignal = signals.signal('leases_changed')
 watcher = Watcher('sample/dhcpd.leases', leases_changed)
 
+parser = Parser('sample/dhcpd.leases')
+
 
 @app.route('/detectdhcpserver')
 def hello_world():
@@ -33,7 +35,6 @@ def hello_world():
 
 @app.route('/leases')
 def leases():
-    parser = Parser('sample/dhcpd.leases')
     leases = [lease.get_serializable() for lease in parser.get_leases()]
     return jsonify(leases)
 
@@ -41,7 +42,10 @@ def leases():
 @leases_changed.connect_via(watcher)
 def handle_leases_changed(sender):
     print('leases changed')
-    socketio.emit('leases', namespace='/leases')
+    socketio.emit(
+        'leases',
+        [lease.get_serializable() for lease in parser.get_leases()],
+        namespace='/leases')
 
 
 if __name__ == '__main__':

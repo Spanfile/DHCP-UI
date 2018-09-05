@@ -33,9 +33,13 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       console.log("disconnected");
     });
 
-    this.socket.on("leases", (data: object) => {
-      console.log(data);
+    this.socket.on("leases", (data: object[]) => {
       console.log("leases changed");
+      console.log(data);
+      const leases = this.buildLeasesFromResponse(data);
+      this.setState({
+        leases
+      });
     });
 
     API.get("/leases").then(response => {
