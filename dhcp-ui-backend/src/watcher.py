@@ -1,25 +1,28 @@
 from os import path
-from watchdog.observers import Observer
+from watchdog.observers.polling import PollingObserver
 from watchdog.events import FileSystemEventHandler
+from blinker import NamedSignal
+from threading import get_ident
 
 
 class Watcher():
-    def __init__(self, filename: str, signal) -> None:
+    def __init__(self, filename: str, signal: NamedSignal) -> None:
         self._filename = filename
-        self._changed_signal = signal
+        self._changed_signal: NamedSignal = signal
 
         handler = WatcherEventHandler(filename, self._changed)
 
-        obs = Observer()
+        obs = PollingObserver()
         obs.schedule(handler, path.dirname(filename))
         obs.start()
         self._observer = obs
 
-    def stop(self):
+    def stop(self) -> None:
         self._observer.stop()
         self._observer.join()
 
-    def _changed(self):
+    def _changed(self) -> None:
+        print('signaling on id ' + str(get_ident()))
         self._changed_signal.send(self)
 
 
