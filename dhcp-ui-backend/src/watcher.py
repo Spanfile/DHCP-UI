@@ -2,7 +2,6 @@ from os import path
 from watchdog.observers.polling import PollingObserver
 from watchdog.events import FileSystemEventHandler
 from blinker import NamedSignal
-from threading import get_ident
 
 
 class Watcher():
@@ -22,7 +21,6 @@ class Watcher():
         self._observer.join()
 
     def _changed(self) -> None:
-        print('signaling on id ' + str(get_ident()))
         self._changed_signal.send(self)
 
 
