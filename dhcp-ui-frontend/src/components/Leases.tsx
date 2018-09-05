@@ -24,17 +24,12 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   }
 
   public componentDidMount() {
-    this.socket = SocketIOClient("http://localhost:5000/leases");
-    this.socket.on("connect", () => {
-      console.log("connected");
-    });
-
-    this.socket.on("disconnect", () => {
-      console.log("disconnected");
+    this.socket = SocketIOClient("http://localhost:5000/leases", {
+      autoConnect: false
     });
 
     this.socket.on("leases", (data: object[]) => {
-      console.log("leases changed");
+      console.log("got leases");
       console.log(data);
       const leases = this.buildLeasesFromResponse(data);
       this.setState({
@@ -42,13 +37,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       });
     });
 
-    API.get("/leases").then(response => {
-      console.log(response);
-      const leases = this.buildLeasesFromResponse(response.data);
-      this.setState({
-        leases
-      });
-    });
+    this.initialFetchLeases();
   }
 
   public render() {
@@ -70,6 +59,22 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     return (
       <Table<Lease> dataSource={leases} columns={columns} />
     );
+  }
+
+  private initialFetchLeases() {
+    this.socket.on("connect", () => {
+      console.log("initial connection");
+      this.socket.send("get");
+      this.socket.off("connect");
+    });
+
+    API.get("/leases").then(response => {
+      console.log(response);
+      const leases = this.buildLeasesFromResponse(response.data);
+      this.setState({
+        leases
+      });
+    });
   }
 
   private buildLeasesFromResponse(responseData: any[]): ITransmittedLease[] {

@@ -9,7 +9,6 @@ export interface ITransmittedLease {
 }
 
 export default class Lease implements IData {
-  // tslint:disable-next-line:variable-name
   public key: string;
   public address: string;
   public hardware: string;

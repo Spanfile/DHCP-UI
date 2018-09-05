@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 export interface INavbarProps {
   loggedInAs: string;
@@ -10,7 +10,7 @@ export default class Navbar extends React.Component<INavbarProps, object> {
   }
 
   public render(): JSX.Element {
-    const isLoggedIn = this.props.loggedInAs !== '';
+    const isLoggedIn = this.props.loggedInAs !== "";
 
     let buttonText = "Log in";
     if (isLoggedIn) {
