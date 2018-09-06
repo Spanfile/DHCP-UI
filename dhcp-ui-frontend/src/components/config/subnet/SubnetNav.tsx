@@ -1,9 +1,11 @@
-import DHCPSubnet from "common/subnet/DHCPSubnet";
+import IDHCPSubnet from "common/subnet/IDHCPSubnet";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 export interface ISubnetNavProps {
-  subnets: DHCPSubnet[];
+  subnets: {
+    [id: number]: IDHCPSubnet
+  };
 }
 
 export default class SubnetNav extends React.Component<ISubnetNavProps, {}> {
@@ -12,12 +14,14 @@ export default class SubnetNav extends React.Component<ISubnetNavProps, {}> {
   }
 
   public render(): JSX.Element {
-    const subnetLinks = this.props.subnets.map(subnet =>
-      <NavLink
-        key={subnet.id} to={"/config/subnets/" + subnet.id}
+    const subnetLinks: JSX.Element[] = [];
+    Object.entries(this.props.subnets).forEach(([id, subnet]) => {
+      subnetLinks.push(<NavLink
+        key={id} to={"/config/subnets/" + id}
         activeClassName="bg-dark text-white"
         className="nav-link">{subnet.subnet.toString()}
       </NavLink>);
+    });
 
     return (
       <div>

@@ -1,18 +1,22 @@
 import * as React from "react";
 
-export interface IInputGroupProps {
+export interface IInputGroupProps<T> {
+  source: T;
   onChange: (name: string, value: any) => void;
 }
 
-export default class InputGroup extends React.Component<IInputGroupProps, {}> {
-  constructor(props: IInputGroupProps) {
+export default class InputGroup<T> extends React.Component<IInputGroupProps<T>, {}> {
+  constructor(props: IInputGroupProps<T>) {
     super(props);
   }
 
   public render(): JSX.Element {
     const transformedChildren = React.Children.map(
       this.props.children,
-      (child: any) => React.cloneElement(child, { onChange: this.inputOnChange }));
+      (child: any) => React.cloneElement(child, {
+        onChange: this.inputOnChange,
+        value: this.props.source[child.props.name]
+      }));
 
     return (
       <div>

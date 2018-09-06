@@ -15,7 +15,7 @@ export default class GlobalConfig extends React.Component<IGlobalConfig, IGlobal
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="Common">
-          <InputGroup onChange={this.inputChanged}>
+          <InputGroup onChange={this.inputChanged} source={this.props}>
             <ToggledInput label="Authoritative" name="authoritative" />
             <NumberInput label="Default lease time" name="defaultLeaseTime" />
             <NumberInput label="Max. lease time" name="maxLeaseTime" />
@@ -23,7 +23,7 @@ export default class GlobalConfig extends React.Component<IGlobalConfig, IGlobal
           </InputGroup>
         </Card>
         <Card title="DDNS">
-          <InputGroup onChange={this.inputChanged}>
+          <InputGroup onChange={this.inputChanged} source={this.props}>
             <ToggledInput label="DDNS updates" name="ddnsUpdates" />
             <TextInput label="Update style" name="ddnsUpdateStyle" />
             <TextInput label="Domain name" name="ddnsDomainName" />

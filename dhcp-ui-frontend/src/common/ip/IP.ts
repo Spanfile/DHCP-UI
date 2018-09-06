@@ -1,6 +1,11 @@
 export class IPAddress {
   public static parseString(addressString: string) {
     const octets = addressString.split(".").map(octet => Number(octet));
+
+    if (octets.length !== 4 || octets.some(octet => octet < 0 || octet > 255)) {
+      throw TypeError("not a valid IPv4 address");
+    }
+
     return new IPAddress(octets);
   }
 

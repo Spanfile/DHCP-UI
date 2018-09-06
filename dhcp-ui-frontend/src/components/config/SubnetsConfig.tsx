@@ -1,5 +1,5 @@
 import { Subnet } from "common/ip/IP";
-import DHCPSubnet from "common/subnet/DHCPSubnet";
+import IDHCPSubnet from "common/subnet/IDHCPSubnet";
 import ISubnetsConfig from "common/subnet/ISubnetsConfig";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
@@ -10,11 +10,20 @@ export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
     super(props);
 
     this.state = {
-      subnets: [
-        new DHCPSubnet(1, Subnet.parseCidr("10.0.10.0/24")),
-        new DHCPSubnet(2, Subnet.parseCidr("10.0.20.0/24")),
-        new DHCPSubnet(3, Subnet.parseCidr("10.0.30.0/24")),
-      ]
+      subnets: {
+        1: {
+          id: 1,
+          subnet: Subnet.parseCidr("10.0.10.0/24")
+        },
+        2: {
+          id: 2,
+          subnet: Subnet.parseCidr("10.0.20.0/24")
+        },
+        3: {
+          id: 3,
+          subnet: Subnet.parseCidr("10.0.30.0/24")
+        }
+      }
     };
   }
 
@@ -35,10 +44,16 @@ export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
             </div>
           </div>
           <div className="col-sm-10">
-            <SubnetView subnets={this.state.subnets} />
+            <SubnetView subnets={this.state.subnets} onChange={this.onSubnetChange} />
           </div>
         </div>
       </div>
     );
+  }
+
+  private onSubnetChange = (id: number, dhcpSubnet: IDHCPSubnet) => {
+    const state = this.state;
+    state.subnets[id] = dhcpSubnet;
+    this.setState(state);
   }
 }

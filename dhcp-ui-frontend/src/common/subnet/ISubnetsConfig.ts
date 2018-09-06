@@ -1,5 +1,7 @@
-import DHCPSubnet from "./DHCPSubnet";
+import IDHCPSubnet from "./IDHCPSubnet";
 
 export default interface ISubnetsConfig {
-  subnets: DHCPSubnet[];
+  subnets: {
+    [id: number]: IDHCPSubnet
+  };
 }

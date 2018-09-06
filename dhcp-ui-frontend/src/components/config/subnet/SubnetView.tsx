@@ -1,10 +1,13 @@
-import DHCPSubnet from "common/subnet/DHCPSubnet";
+import IDHCPSubnet from "common/subnet/IDHCPSubnet";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import SubnetConfig from "./SubnetConfig";
 
 export interface ISubnetViewProps {
-  subnets: DHCPSubnet[];
+  subnets: {
+    [id: number]: IDHCPSubnet
+  };
+  onChange: (id: number, dhcpSubnet: IDHCPSubnet) => void;
 }
 
 export default class SubnetView extends React.Component<ISubnetViewProps, {}> {
@@ -13,9 +16,17 @@ export default class SubnetView extends React.Component<ISubnetViewProps, {}> {
   }
 
   public render(): JSX.Element {
-    const firstSubnetId = this.props.subnets[0].id;
-    const subnetRoutes = this.props.subnets.map(subnet =>
-      <Route key={subnet.id} path={"/config/subnets/" + subnet.id} component={SubnetConfig} />);
+    let firstSubnetId: any = null;
+    const subnetRoutes: JSX.Element[] = [];
+    Object.entries(this.props.subnets).forEach(([id, subnet]) => {
+      if (!firstSubnetId) {
+        firstSubnetId = id;
+      }
+
+      subnetRoutes.push(<Route key={id} path={"/config/subnets/" + id} render={
+        // tslint:disable-next-line:jsx-no-lambda
+        () => <SubnetConfig {...subnet} onChange={this.props.onChange} />} />);
+    });
 
     return (
       <Switch>
