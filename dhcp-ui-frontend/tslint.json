@@ -21,6 +21,7 @@
     "quotemark": [
       true,
       "double"
-    ]
+    ],
+    "max-classes-per-file": false
   }
 }

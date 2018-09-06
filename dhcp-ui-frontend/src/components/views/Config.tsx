@@ -1,5 +1,5 @@
 import GlobalConfig from "components/config/GlobalConfig";
-import SubnetConfig from "components/config/SubnetConfig";
+import SubnetsConfig from "components/config/SubnetsConfig";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default class Config extends React.Component {
           <Switch>
             <Redirect exact={true} from="/config" to="/config/general" />
             <Route path="/config/general" component={GlobalConfig} />
-            <Route path="/config/subnets" component={SubnetConfig} />
+            <Route path="/config/subnets" component={SubnetsConfig} />
           </Switch>
         </div>
         <button type="submit" className="btn btn-primary rounded-0">Build configuration and save</button>
