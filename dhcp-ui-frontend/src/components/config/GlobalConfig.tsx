@@ -22,6 +22,17 @@ export default class GlobalConfig extends React.Component<IGlobalConfig, IGlobal
             <TextInput label="Domain name" name="domainName" />
           </InputGroup>
         </Card>
+        <Card title="DDNS">
+          <InputGroup onChange={this.inputChanged}>
+            <ToggledInput label="DDNS updates" name="ddnsUpdates" />
+            <TextInput label="Update style" name="ddnsUpdateStyle" />
+            <TextInput label="Domain name" name="ddnsDomainName" />
+            <TextInput label="Reverse domain name" name="ddnsReverseDomainName" />
+            <ToggledInput label="Ignore client updates" name="ignoreClientUpdates" />
+            <ToggledInput label="Update static leases" name="updateStaticLeases" />
+            <ToggledInput label="Use host declared names" name="useHostDeclNames" />
+          </InputGroup>
+        </Card>
       </div>
     );
   }

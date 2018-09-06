@@ -22,7 +22,6 @@ export default class InputGroup extends React.Component<IInputGroupProps, {}> {
   }
 
   private inputOnChange = (event: any) => {
-    console.log(event.target);
     const name = event.target.name;
 
     let value = event.target.value;
