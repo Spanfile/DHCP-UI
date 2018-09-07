@@ -1,4 +1,4 @@
-import { Subnet } from "common/ip/IP";
+import { AddressRange, Subnet } from "common/ip/IP";
 import IDHCPSubnet from "common/subnet/IDHCPSubnet";
 import ISubnetsConfig from "common/subnet/ISubnetsConfig";
 import * as React from "react";
@@ -13,15 +13,18 @@ export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
       subnets: {
         1: {
           id: 1,
-          subnet: Subnet.parseCidr("10.0.10.0/24")
+          subnet: Subnet.parseCidr("10.0.10.0/24"),
+          range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254")
         },
         2: {
           id: 2,
-          subnet: Subnet.parseCidr("10.0.20.0/24")
+          subnet: Subnet.parseCidr("10.0.20.0/24"),
+          range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254")
         },
         3: {
           id: 3,
-          subnet: Subnet.parseCidr("10.0.30.0/24")
+          subnet: Subnet.parseCidr("10.0.30.0/24"),
+          range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254")
         }
       }
     };

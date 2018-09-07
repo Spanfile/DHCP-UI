@@ -55,3 +55,21 @@ export class Subnet {
     return this.identifier.toString() + "/" + this.cidr;
   }
 }
+
+export class AddressRange {
+  public static fromAddressPair(from: IPAddress, to: IPAddress) {
+    return new AddressRange(from, to);
+  }
+
+  public static fromAddressStringPair(from: string, to: string) {
+    return new AddressRange(IPAddress.parseString(from), IPAddress.parseString(to));
+  }
+
+  public from: IPAddress;
+  public to: IPAddress;
+
+  private constructor(from: IPAddress, to: IPAddress) {
+    this.from = from;
+    this.to = to;
+  }
+}
