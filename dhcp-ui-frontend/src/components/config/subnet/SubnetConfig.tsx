@@ -1,4 +1,4 @@
-import IDHCPSubnet from "common/subnet/IDHCPSubnet";
+import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import SubnetInput from "components/form/SubnetInput";

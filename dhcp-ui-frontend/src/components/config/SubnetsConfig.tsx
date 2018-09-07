@@ -1,33 +1,17 @@
-import { AddressRange, Subnet } from "common/ip/IP";
-import IDHCPSubnet from "common/subnet/IDHCPSubnet";
-import ISubnetsConfig from "common/subnet/ISubnetsConfig";
+import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
+import ISubnetsConfig from "common/config/subnet/ISubnetsConfig";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
 import SubnetView from "./subnet/SubnetView";
 
-export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
-  constructor(props: ISubnetsConfig) {
-    super(props);
+export interface ISubnetsConfigProps {
+  subnets: ISubnetsConfig;
+  onChange: (id: number, dhcpSubnet: IDHCPSubnet) => void;
+}
 
-    this.state = {
-      subnets: {
-        1: {
-          id: 1,
-          subnet: Subnet.parseCidr("10.0.10.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254")
-        },
-        2: {
-          id: 2,
-          subnet: Subnet.parseCidr("10.0.20.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254")
-        },
-        3: {
-          id: 3,
-          subnet: Subnet.parseCidr("10.0.30.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254")
-        }
-      }
-    };
+export default class SubnetsConfig extends React.Component<ISubnetsConfigProps, {}> {
+  constructor(props: ISubnetsConfigProps) {
+    super(props);
   }
 
   public render(): JSX.Element {
@@ -42,12 +26,12 @@ export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
             </div>
             <div className="row mt-3">
               <div className="col-sm-12 sidebar">
-                <SubnetNav subnets={this.state.subnets} />
+                <SubnetNav subnets={this.props.subnets} />
               </div>
             </div>
           </div>
           <div className="col-sm-10">
-            <SubnetView subnets={this.state.subnets} onChange={this.onSubnetChange} />
+            <SubnetView subnets={this.props.subnets} onChange={this.onSubnetChange} />
           </div>
         </div>
       </div>
@@ -55,8 +39,6 @@ export default class SubnetsConfig extends React.Component<{}, ISubnetsConfig> {
   }
 
   private onSubnetChange = (id: number, dhcpSubnet: IDHCPSubnet) => {
-    const state = this.state;
-    state.subnets[id] = dhcpSubnet;
-    this.setState(state);
+    this.props.onChange(id, dhcpSubnet);
   }
 }

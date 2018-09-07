@@ -1,13 +1,8 @@
+import IInputProps from "common/IInputProps";
 import * as React from "react";
 
-export interface IToggledInputProps {
-  label: string;
-  name: string;
-  onChange?: (event: any) => void;
-}
-
-export default class ToggledInput extends React.Component<IToggledInputProps, {}> {
-  constructor(props: IToggledInputProps) {
+export default class ToggledInput extends React.Component<IInputProps<boolean>, {}> {
+  constructor(props: IInputProps<boolean>) {
     super(props);
   }
 
@@ -22,6 +17,7 @@ export default class ToggledInput extends React.Component<IToggledInputProps, {}
               type="checkbox"
               name={this.props.name}
               onChange={this.props.onChange}
+              checked={this.props.value!}
             />
           </div>
         </div>

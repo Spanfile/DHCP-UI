@@ -1,11 +1,11 @@
 import IInputProps from "common/IInputProps";
 import * as React from "react";
 
-export interface ICommonInputProps<T> extends IInputProps<T> {
+export interface ICommonInputProps<T extends string | number | string[]> extends IInputProps<T> {
   type: "text" | "number";
 }
 
-export default class CommonInput<T> extends React.Component<ICommonInputProps<T>, {}> {
+export default class CommonInput<T extends string | number | string[]> extends React.Component<ICommonInputProps<T>, {}> {
   constructor(props: ICommonInputProps<T>) {
     super(props);
   }
@@ -19,7 +19,8 @@ export default class CommonInput<T> extends React.Component<ICommonInputProps<T>
             type={this.props.type}
             className="form-control rounded-0"
             name={this.props.name}
-            onChange={this.props.onChange} />
+            onChange={this.props.onChange}
+            value={this.props.value!} />
         </div>
       </div>
     );

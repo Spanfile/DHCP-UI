@@ -1,4 +1,4 @@
-import IDHCPSubnet from "common/subnet/IDHCPSubnet";
+import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
 import SubnetConfig from "./SubnetConfig";
