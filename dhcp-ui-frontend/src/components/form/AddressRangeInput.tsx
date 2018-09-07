@@ -34,7 +34,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
           >-</label>
           <input
             type="text"
-            className="form-control rounded-0 float-left text-right"
+            className="form-control rounded-0 float-left"
             style={{ maxWidth: "12em" }}
             onChange={this.onToChange}
             value={this.state.to} />
