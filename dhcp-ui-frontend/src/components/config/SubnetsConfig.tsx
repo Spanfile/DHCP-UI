@@ -1,5 +1,6 @@
 import IConfigProps from "common/config/IConfigProps";
 import { ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
+import { AddressRange, Subnet } from "common/ip/IP";
 import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
@@ -17,7 +18,9 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
           <div className="col-sm-3">
             <div className="row">
               <div className="col-sm-12">
-                <Button label="Add subnet" style={ButtonStyle.Success} onClick={this.addSubnet} />
+                <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
+                  Add subnet
+                </Button>
               </div>
             </div>
             <div className="row mt-3">
@@ -39,10 +42,22 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
   }
 
   private addSubnet = () => {
-    return;
+    const ids = Object.keys(this.props.config);
+    const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
+    const newSubnet = {
+      subnet: Subnet.parseCidr("192.168.0.0/24"),
+      range: AddressRange.fromAddressStringPair("192.168.0.2", "192.168.0.254"),
+      options: {
+        1: {
+          name: "routers",
+          expression: "192.168.0.1"
+        },
+      }
+    };
+    this.props.onChange(newId.toString(), newSubnet);
   }
 
   private deleteSubnet = (id: number) => {
-    return;
+    this.props.onChange(id.toString(), null);
   }
 }

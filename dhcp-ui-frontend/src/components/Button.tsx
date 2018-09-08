@@ -13,7 +13,6 @@ export enum ButtonStyle {
 }
 
 export interface IButtonProps {
-  label: string;
   style: ButtonStyle;
   onClick: () => void;
 }
@@ -29,7 +28,7 @@ export default class Button extends React.Component<IButtonProps, {}> {
         type="button"
         className={"rounded-0 btn btn-" + this.props.style}
         onClick={this.props.onClick}>
-        {this.props.label}
+        {this.props.children}
       </button>
     );
   }

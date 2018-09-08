@@ -40,7 +40,9 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
       <div className="row">
         <div className="col-sm-3">
           <div className="float-right">
-            <Button label="Add zone" style={ButtonStyle.Success} onClick={this.addZone} />
+            <Button style={ButtonStyle.Success} onClick={this.addZone}>
+              Add zone
+            </Button>
           </div>
         </div>
         {keyConfigs}

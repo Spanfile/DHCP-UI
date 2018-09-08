@@ -27,7 +27,9 @@ export default class KeyConfig extends React.Component<IKeyConfigProps, {}> {
           <SelectInput<string> label="Algorithm" name="algorithm" options={Object.values(DNSSECAlgorithm)} />
           <TextInput label="Key" name="key" />
         </InputGroup>
-        <FormButton label="Delete key" style={ButtonStyle.Danger} onClick={this.props.onDelete} />
+        <FormButton style={ButtonStyle.Danger} onClick={this.props.onDelete}>
+          Delete key
+        </FormButton>
       </Card>
     );
   }

@@ -1,6 +1,7 @@
 import IConfigProps from "common/config/IConfigProps";
 import { IOptionsConfig } from "common/config/IOptionsConfig";
 import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
+import Button, { ButtonStyle } from "components/Button";
 import OptionsConfig from "components/config/options/OptionsConfig";
 import AddressRangeInput from "components/form/AddressRangeInput";
 import Card from "components/form/Card";
@@ -31,6 +32,9 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, {}
         <Card title="Options">
           <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
         </Card>
+        <Button style={ButtonStyle.Danger} onClick={this.props.onDelete}>
+          Delete subnet
+        </Button>
       </div>
     );
   }

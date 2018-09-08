@@ -35,7 +35,9 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
       <div className="row">
         <div className="col-sm-3">
           <div className="float-right">
-            <Button label="Add key" style={ButtonStyle.Success} onClick={this.addKey} />
+            <Button style={ButtonStyle.Success} onClick={this.addKey}>
+              Add key
+            </Button>
           </div>
         </div>
         {keyConfigs}

@@ -28,7 +28,9 @@ export default class ZoneConfig extends React.Component<IZoneConfigProps, {}> {
           <TextInput label="Primary nameserver" name="primary" />
           <SelectInput label="DNSSEC key" name="key" options={this.props.dnssecKeys} />
         </InputGroup>
-        <FormButton label="Delete zone" style={ButtonStyle.Danger} onClick={this.props.onDelete} />
+        <FormButton style={ButtonStyle.Danger} onClick={this.props.onDelete}>
+          Delete zone
+        </FormButton>
       </Card>
     );
   }

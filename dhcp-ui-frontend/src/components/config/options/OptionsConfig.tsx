@@ -22,7 +22,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
       }
 
       optionConfigs.push(
-        <div key={id} className={colClass + " border-bottom mb-2 pb-2"}>
+        <div key={id} className={colClass + " border-bottom pb-3"}>
           <OptionConfig
             config={key}
             onChange={(name, value) => this.onOptionChange(Number(id), name, value)}
@@ -36,7 +36,9 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
       <div className="row">
         <div className="col-sm-3">
           <div className="float-right">
-            <Button label="Add option" style={ButtonStyle.Success} onClick={this.addOption} />
+            <Button style={ButtonStyle.Success} onClick={this.addOption}>
+              Add option
+            </Button>
           </div>
         </div>
         {optionConfigs}
