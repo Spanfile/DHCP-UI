@@ -1,5 +1,5 @@
-import { IDNSSECKeys } from "common/config/ddns/IDDNSConfig";
-import IDNSSECKey, { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
+import { IDDNSZones } from "common/config/ddns/IDDNSConfig";
+import IDDNSZone from "common/config/ddns/IDDNSZone";
 import IConfigProps from "common/config/IConfigProps";
 import Button from "components/form/Button";
 import Card from "components/form/Card";
@@ -8,8 +8,12 @@ import SelectInput from "components/form/SelectInput";
 import TextInput from "components/form/TextInput";
 import * as React from "react";
 
-export default class KeyConfig extends React.Component<IConfigProps<IDNSSECKeys>, {}> {
-  constructor(props: IConfigProps<IDNSSECKeys>) {
+export interface IZoneConfigProps extends IConfigProps<IDDNSZones> {
+  dnssecKeys: string[];
+}
+
+export default class ZoneConfig extends React.Component<IZoneConfigProps, {}> {
+  constructor(props: IZoneConfigProps) {
     super(props);
   }
 
@@ -27,15 +31,15 @@ export default class KeyConfig extends React.Component<IConfigProps<IDNSSECKeys>
 
       keyConfigs.push(
         <div key={id} className={colClass}>
-          <Card title={key.name}>
-            <InputGroup<IDNSSECKey>
+          <Card title={key.domain}>
+            <InputGroup<IDDNSZone>
               onChange={(name, value) => this.onInputChange(Number(id), name, value)}
               source={key}>
-              <TextInput label="Name" name="name" />
-              <SelectInput<string> label="Algorithm" name="algorithm" options={Object.values(DNSSECAlgorithm)} />
-              <TextInput label="Key" name="key" />
+              <TextInput label="Domain" name="domain" />
+              <TextInput label="Primary nameserver" name="primary" />
+              <SelectInput label="DNSSEC key" name="key" options={this.props.dnssecKeys} />
             </InputGroup>
-            <Button label="Delete key" style="danger" onClick={e => { return; }} />
+            <Button label="Delete zone" style="danger" onClick={e => { return; }} />
           </Card>
         </div>);
     });
@@ -43,7 +47,7 @@ export default class KeyConfig extends React.Component<IConfigProps<IDNSSECKeys>
     return (
       <div className="row">
         <div className="col-sm-3">
-          <button type="button" className="rounded-0 btn btn-success float-right">Add key</button>
+          <button type="button" className="rounded-0 btn btn-success float-right">Add zone</button>
         </div>
         {keyConfigs}
       </div>

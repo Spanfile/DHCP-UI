@@ -1,6 +1,6 @@
 import IDDNSConfig, { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
-import IDNSSECKey from "common/config/ddns/IDNSSECKey";
 import IConfigProps from "common/config/IConfigProps";
+import ZoneConfig from "components/config/ddns/ZoneConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import SelectInput from "components/form/SelectInput";
@@ -29,15 +29,23 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
           </InputGroup>
         </Card>
         <Card title="DNSSEC keys">
-          <KeyConfig config={this.props.config.keys} onChange={this.onKeyChange} />
+          <KeyConfig
+            config={this.props.config.keys}
+            onChange={(name, value) => this.onConfigChange("keys", name, value)} />
+        </Card>
+        <Card title="DDNS zones">
+          <ZoneConfig
+            config={this.props.config.zones}
+            dnssecKeys={Object.values(this.props.config.keys).map(key => key.name)}
+            onChange={(name, value) => this.onConfigChange("zones", name, value)} />
         </Card>
       </div>
     );
   }
 
-  private onKeyChange = (name: string, key: IDNSSECKey) => {
-    const keys = this.props.config.keys;
-    keys[name] = key;
-    this.props.onChange("keys", keys);
+  private onConfigChange = (config: string, name: string, value: any) => {
+    const conf = this.props.config[config];
+    conf[name] = value;
+    this.props.onChange(config, conf);
   }
 }

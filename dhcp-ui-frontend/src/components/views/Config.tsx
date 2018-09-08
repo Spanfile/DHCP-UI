@@ -38,6 +38,11 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             domain: "domain.tld.",
             primary: "ns1.domain.tld",
             key: "dhcpupdate"
+          },
+          2: {
+            domain: "10.0.10.in-addr.arpa.",
+            primary: "ns1.domain.tld",
+            key: "dhcpupdate"
           }
         }
       },
