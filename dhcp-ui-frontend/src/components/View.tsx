@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
-import "./View.css";
 import Config from "./views/Config";
 import Home from "./views/Home";
 import Leases from "./views/Leases";
@@ -10,7 +9,7 @@ import Settings from "./views/Settings";
 export default class View extends React.Component {
   public render(): JSX.Element {
     return (
-      <div className="view-container">
+      <div className="view-container p-3" style={{ marginLeft: "10%" }}>
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route path="/leases" component={Leases} />

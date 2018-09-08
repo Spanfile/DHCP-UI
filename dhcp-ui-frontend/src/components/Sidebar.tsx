@@ -1,6 +1,5 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import "./Sidebar.css";
 
 export default class Sidebar extends React.Component {
   constructor(props: any) {
@@ -9,7 +8,7 @@ export default class Sidebar extends React.Component {
 
   public render(): JSX.Element {
     return (
-      <div className="sidebar">
+      <div className="sidebar float-left">
         <nav className="nav flex-column">
           <NavLink to="/" exact={true} activeClassName="bg-dark text-white" className="nav-link">Home</NavLink>
           <NavLink to="/leases" activeClassName="bg-dark text-white" className="nav-link">Leases</NavLink>

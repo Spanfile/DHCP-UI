@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./ToggledTextInput.css";
 
 export interface IToggledTextInputProps {
   label: string;
