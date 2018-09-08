@@ -1,5 +1,5 @@
 import IConfigProps from "common/config/IConfigProps";
-import ISubnetsConfig from "common/config/subnet/ISubnetsConfig";
+import { ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";

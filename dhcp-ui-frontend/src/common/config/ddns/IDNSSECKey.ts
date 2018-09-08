@@ -7,7 +7,11 @@ export enum DNSSECAlgorithm {
   HMAC_SHA512 = "HMAC-SHA512"
 }
 
-export default interface IDNSSECKey {
+export interface IDNSSECKeys {
+  [id: number]: IDNSSECKey;
+}
+
+export interface IDNSSECKey {
   name: string;
   algorithm: DNSSECAlgorithm;
   key: string;

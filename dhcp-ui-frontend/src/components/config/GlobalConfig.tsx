@@ -1,10 +1,12 @@
 import IConfigProps from "common/config/IConfigProps";
 import IGlobalConfig from "common/config/IGlobalConfig";
+import { IOptionsConfig } from "common/config/IOptionsConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import NumberInput from "components/form/NumberInput";
+import ToggledInput from "components/form/ToggledInput";
 import * as React from "react";
-import ToggledInput from "../form/ToggledInput";
+import OptionsConfig from "./options/OptionsConfig";
 
 export default class GlobalConfig extends React.Component<IConfigProps<IGlobalConfig>, {}> {
   constructor(props: IConfigProps<IGlobalConfig>) {
@@ -22,9 +24,19 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
           </InputGroup>
         </Card>
         <Card title="Options">
-          <div />
+          <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
         </Card>
       </div>
     );
+  }
+
+  private onOptionsChanged = (name: string, value: IOptionsConfig) => {
+    const options = this.props.config.options;
+    if (!value) {
+      delete options[name];
+    } else {
+      options[name] = value;
+    }
+    this.props.onChange("options", options);
   }
 }

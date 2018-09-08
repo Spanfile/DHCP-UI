@@ -1,6 +1,10 @@
 import { AddressRange, Subnet } from "common/ip/IP";
 
-export default interface IDHCPSubnet {
+export interface ISubnetsConfig {
+  [id: number]: IDHCPSubnet;
+}
+
+export interface IDHCPSubnet {
   subnet: Subnet;
   range: AddressRange;
 }

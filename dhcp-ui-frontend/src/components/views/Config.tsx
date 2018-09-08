@@ -2,7 +2,7 @@ import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
 import IDHCPConfig from "common/config/IDHCPConfig";
 import { AddressRange, Subnet } from "common/ip/IP";
-import DDNSConfig from "components/config/ddns/DDNSConfig";
+import DDNSConfig from "components/config/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
 import * as React from "react";
@@ -16,7 +16,17 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
       global: {
         authoritative: true,
         defaultLeaseTime: 86400,
-        maxLeaseTime: 86400
+        maxLeaseTime: 86400,
+        options: {
+          1: {
+            name: "domain-name",
+            expression: "ns1.domain.tld"
+          },
+          2: {
+            name: "domain-name-servers",
+            expression: "10.0.30.20, 10.0.30.21"
+          }
+        }
       },
       ddns: {
         updates: true,

@@ -1,4 +1,4 @@
-import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
+import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 

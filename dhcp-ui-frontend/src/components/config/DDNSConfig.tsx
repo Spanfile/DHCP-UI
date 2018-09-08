@@ -1,13 +1,13 @@
 import IDDNSConfig, { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import IConfigProps from "common/config/IConfigProps";
-import ZoneConfig from "components/config/ddns/ZoneConfig";
+import KeysConfig from "components/config/ddns/KeysConfig";
+import ZonesConfig from "components/config/ddns/ZonesConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import SelectInput from "components/form/SelectInput";
 import TextInput from "components/form/TextInput";
 import ToggledInput from "components/form/ToggledInput";
 import * as React from "react";
-import KeyConfig from "./KeyConfig";
 
 export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig>, {}> {
   constructor(props: IConfigProps<IDDNSConfig>) {
@@ -29,12 +29,12 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
           </InputGroup>
         </Card>
         <Card title="DNSSEC keys">
-          <KeyConfig
+          <KeysConfig
             config={this.props.config.keys}
             onChange={(name, value) => this.onConfigChange("keys", name, value)} />
         </Card>
         <Card title="DDNS zones">
-          <ZoneConfig
+          <ZonesConfig
             config={this.props.config.zones}
             dnssecKeys={Object.values(this.props.config.keys).map(key => key.name)}
             onChange={(name, value) => this.onConfigChange("zones", name, value)} />

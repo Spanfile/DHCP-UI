@@ -1,13 +1,11 @@
 import IConfigProps from "common/config/IConfigProps";
-import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
-import ISubnetsConfig from "common/config/subnet/ISubnetsConfig";
+import { IDHCPSubnet, ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import AddressRangeInput from "components/form/AddressRangeInput";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import SubnetInput from "components/form/SubnetInput";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
-
 
 export default class SubnetView extends React.Component<IConfigProps<ISubnetsConfig>, {}> {
   constructor(props: IConfigProps<ISubnetsConfig>) {

@@ -1,18 +1,10 @@
-import IDDNSZone from "./IDDNSZone";
-import IDNSSECKey from "./IDNSSECKey";
+import { IDDNSZones } from "common/config/ddns/IDDNSZone";
+import { IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
 
 export enum DDNSUpdateStyle {
   AdHoc = "ad-hoc",
   Interim = "interim",
   None = "none"
-}
-
-export interface IDNSSECKeys {
-  [id: number]: IDNSSECKey;
-}
-
-export interface IDDNSZones {
-  [id: number]: IDDNSZone;
 }
 
 export default interface IDDNSConfig {
