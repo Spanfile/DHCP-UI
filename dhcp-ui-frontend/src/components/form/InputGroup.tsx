@@ -14,7 +14,7 @@ export default class InputGroup<T> extends React.Component<IInputGroupProps<T>, 
     const transformedChildren = React.Children.map(
       this.props.children,
       (child: any) => React.cloneElement(child, {
-        onChange: this.inputOnChange,
+        onChange: this.onInputChange,
         value: this.props.source[child.props.name]
       }));
 
@@ -25,7 +25,7 @@ export default class InputGroup<T> extends React.Component<IInputGroupProps<T>, 
     );
   }
 
-  private inputOnChange = (event: any) => {
+  private onInputChange = (event: any) => {
     const name = event.target.name;
 
     let value = event.target.value;

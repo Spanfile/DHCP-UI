@@ -1,8 +1,9 @@
 import IConfigProps from "common/config/IConfigProps";
-import IDDNSConfig from "common/config/IDDNSConfig";
+import IDDNSConfig, { DDNSUpdateStyle } from "common/config/IDDNSConfig";
 import * as React from "react";
 import Card from "../form/Card";
 import InputGroup from "../form/InputGroup";
+import SelectInput from "../form/SelectInput";
 import TextInput from "../form/TextInput";
 import ToggledInput from "../form/ToggledInput";
 
@@ -17,7 +18,7 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
         <Card title="DDNS">
           <InputGroup<IDDNSConfig> onChange={this.props.onChange} source={this.props.config}>
             <ToggledInput label="DDNS updates" name="updates" />
-            <TextInput label="Update style" name="updateStyle" />
+            <SelectInput<string> label="Update style" name="updateStyle" options={Object.values(DDNSUpdateStyle)} />
             <TextInput label="Domain name" name="domainName" />
             <TextInput label="Reverse domain name" name="reverseDomainName" />
             <ToggledInput label="Ignore client updates" name="ignoreClientUpdates" />
