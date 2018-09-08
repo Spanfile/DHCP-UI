@@ -8,7 +8,7 @@ export default class Sidebar extends React.Component {
 
   public render(): JSX.Element {
     return (
-      <div className="sidebar float-left">
+      <div className="sidebar float-left" style={{ width: "12em" }}>
         <nav className="nav flex-column">
           <NavLink to="/" exact={true} activeClassName="bg-dark text-white" className="nav-link">Home</NavLink>
           <NavLink to="/leases" activeClassName="bg-dark text-white" className="nav-link">Leases</NavLink>
