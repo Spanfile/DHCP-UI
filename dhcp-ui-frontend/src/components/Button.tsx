@@ -25,7 +25,12 @@ export default class Button extends React.Component<IButtonProps, {}> {
 
   public render(): JSX.Element {
     return (
-      <button type="button" className={"rounded-0 btn btn-" + this.props.style}>{this.props.label}</button>
+      <button
+        type="button"
+        className={"rounded-0 btn btn-" + this.props.style}
+        onClick={this.props.onClick}>
+        {this.props.label}
+      </button>
     );
   }
 }

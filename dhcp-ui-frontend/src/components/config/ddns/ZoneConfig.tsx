@@ -64,10 +64,17 @@ export default class ZoneConfig extends React.Component<IZoneConfigProps, {}> {
   }
 
   private addZone = () => {
-    return;
+    const ids = Object.keys(this.props.config);
+    const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
+    const newZone = {
+      domain: "",
+      primary: "",
+      key: ""
+    };
+    this.props.onChange(newId.toString(), newZone);
   }
 
   private deleteZone = (id: number) => {
-    return;
+    this.props.onChange(id.toString(), null);
   }
 }

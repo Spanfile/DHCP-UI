@@ -60,10 +60,17 @@ export default class KeyConfig extends React.Component<IConfigProps<IDNSSECKeys>
   }
 
   private addKey = () => {
-    return;
+    const ids = Object.keys(this.props.config);
+    const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
+    const newKey = {
+      name: "Key " + newId,
+      algorithm: DNSSECAlgorithm.HMAC_MD5,
+      key: ""
+    };
+    this.props.onChange(newId.toString(), newKey);
   }
 
   private deleteKey = (id: number) => {
-    return;
+    this.props.onChange(id.toString(), null);
   }
 }
