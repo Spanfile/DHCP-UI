@@ -12,14 +12,15 @@ export default class Button extends React.Component<IButtonProps, {}> {
   }
 
   public render(): JSX.Element {
-    const label = this.props.label;
-    const style = this.props.style;
-    const onClick = this.props.onClick;
-
     return (
       <div className="form-group row" >
-        <div className="col-sm-8 offset-sm-4">
-          <button type="button" className={"rounded-0 btn btn-" + style} onClick={onClick}>{label}</button>
+        <div className="col-sm-9 offset-sm-3">
+          <button
+            type="button"
+            className={"rounded-0 btn btn-" + this.props.style}
+            onClick={this.props.onClick}>
+            {this.props.label}
+          </button>
         </div>
       </div>
     );

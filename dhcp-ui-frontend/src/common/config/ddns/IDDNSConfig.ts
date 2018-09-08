@@ -8,11 +8,11 @@ export enum DDNSUpdateStyle {
 }
 
 export interface IDNSSECKeys {
-  [name: string]: IDNSSECKey;
+  [id: number]: IDNSSECKey;
 }
 
 export interface IDDNSZones {
-  [domain: string]: IDDNSZone;
+  [id: number]: IDDNSZone;
 }
 
 export default interface IDDNSConfig {

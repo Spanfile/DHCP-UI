@@ -27,14 +27,14 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         updateStaticLeases: true,
         useHostDeclNames: true,
         keys: {
-          "dhcpupdate": {
+          1: {
             name: "dhcpupdate",
             algorithm: DNSSECAlgorithm.HMAC_MD5,
             key: "secret"
           }
         },
         zones: {
-          "domain.tld.": {
+          1: {
             domain: "domain.tld.",
             primary: "ns1.domain.tld",
             key: "dhcpupdate"
