@@ -1,9 +1,9 @@
 import IConfigProps from "common/config/IConfigProps";
 import { IOption } from "common/config/IOptionsConfig";
-import { IModalState } from "common/IModalState";
+import { IModalState } from "common/IModal";
 import Button, { ButtonStyle } from "components/Button";
+import ConfirmModal from "components/ConfirmModal";
 import * as React from "react";
-import * as Modal from "react-modal";
 
 export interface IOptionConfigProps extends IConfigProps<IOption> {
   onDelete: () => void;
@@ -21,32 +21,14 @@ export default class OptionConfig extends React.Component<IOptionConfigProps, IM
   public render(): JSX.Element {
     return (
       <div>
-        <Modal
-          className="Modal__Bootstrap modal-dialog"
-          closeTimeoutMS={150}
+        <ConfirmModal
           isOpen={this.state.isModalOpen}
-          onRequestClose={this.closeModal}>
-          <div className="modal-content rounded-0">
-            <div className="modal-header">
-              <h5 className="modal-title">Confirm removal</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.closeModal}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <p>Are you sure you want to delete the option? This action cannot be undone!</p>
-            </div>
-            <div className="modal-footer">
-              <Button style={ButtonStyle.Danger} onClick={this.props.onDelete}>
-                Yes, delete
-              </Button>
-              <Button style={ButtonStyle.Secondary} onClick={this.closeModal}>
-                Cancel
-              </Button>
-            </div>
-          </div>
-        </Modal>
-
+          body="Are you sure you want to delete the option? This action cannot be undone!"
+          header="Confirm option deletion"
+          confirm="Yes, delete"
+          onConfirm={this.props.onDelete}
+          onClose={this.closeModal}
+        />
         <div className="form-group">
           <label className="col-form-label float-left mr-3">
             Option
