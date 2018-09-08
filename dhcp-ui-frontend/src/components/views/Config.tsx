@@ -1,11 +1,12 @@
-import { DDNSUpdateStyle } from "common/config/IDDNSConfig";
+import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
+import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
 import IDHCPConfig from "common/config/IDHCPConfig";
 import { AddressRange, Subnet } from "common/ip/IP";
+import DDNSConfig from "components/config/ddns/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import DDNSConfig from "../config/DDNSConfig";
 
 export default class Config extends React.Component<{}, IDHCPConfig> {
   constructor(props: any) {
@@ -24,7 +25,21 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         reverseDomainName: "in-addr.arpa.",
         ignoreClientUpdates: true,
         updateStaticLeases: true,
-        useHostDeclNames: true
+        useHostDeclNames: true,
+        keys: {
+          "dhcpupdate": {
+            name: "dhcpupdate",
+            algorithm: DNSSECAlgorithm.HMAC_MD5,
+            key: "secret"
+          }
+        },
+        zones: {
+          "domain.tld.": {
+            domain: "domain.tld.",
+            primary: "ns1.domain.tld",
+            key: "dhcpupdate"
+          }
+        }
       },
       subnets: {
         1: {
