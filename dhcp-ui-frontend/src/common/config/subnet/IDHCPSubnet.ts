@@ -1,3 +1,4 @@
+import { IOptionsConfig } from "common/config/IOptionsConfig";
 import { AddressRange, Subnet } from "common/ip/IP";
 
 export interface ISubnetsConfig {
@@ -7,4 +8,5 @@ export interface ISubnetsConfig {
 export interface IDHCPSubnet {
   subnet: Subnet;
   range: AddressRange;
+  options: IOptionsConfig;
 }

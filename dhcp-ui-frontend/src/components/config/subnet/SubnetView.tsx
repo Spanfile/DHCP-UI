@@ -1,14 +1,15 @@
 import IConfigProps from "common/config/IConfigProps";
-import { IDHCPSubnet, ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
-import AddressRangeInput from "components/form/AddressRangeInput";
-import Card from "components/form/Card";
-import InputGroup from "components/form/InputGroup";
-import SubnetInput from "components/form/SubnetInput";
+import { ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
+import SubnetConfig from "components/config/subnet/SubnetConfig";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
 
-export default class SubnetView extends React.Component<IConfigProps<ISubnetsConfig>, {}> {
-  constructor(props: IConfigProps<ISubnetsConfig>) {
+export interface ISubnetViewProps extends IConfigProps<ISubnetsConfig> {
+  onSubnetDelete: (id: number) => void;
+}
+
+export default class SubnetView extends React.Component<ISubnetViewProps, {}> {
+  constructor(props: ISubnetViewProps) {
     super(props);
   }
 
@@ -21,16 +22,13 @@ export default class SubnetView extends React.Component<IConfigProps<ISubnetsCon
       }
 
       subnetRoutes.push(<Route key={id} path={"/config/subnets/" + id} render={
-        // tslint:disable-next-line:jsx-no-lambda
         () =>
-          <Card title="Common">
-            <InputGroup<IDHCPSubnet>
-              onChange={(name, value) => this.onSubnetChange(Number(id), name, value)}
-              source={subnet} >
-              <SubnetInput label="Subnet" name="subnet" />
-              <AddressRangeInput label="Range" name="range" />
-            </InputGroup>
-          </ Card>} />);
+          <SubnetConfig
+            config={subnet}
+            onChange={(name, value) => this.onSubnetChange(Number(id), name, value)}
+            onDelete={() => this.props.onSubnetDelete(Number(id))}
+          />
+      } />);
     });
 
     return (
