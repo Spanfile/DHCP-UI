@@ -1,5 +1,4 @@
 import IConfigProps from "common/config/IConfigProps";
-import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
 import ISubnetsConfig from "common/config/subnet/ISubnetsConfig";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
@@ -27,14 +26,10 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
             </div>
           </div>
           <div className="col-sm-10">
-            <SubnetView subnets={this.props.config} onChange={this.onSubnetChange} />
+            <SubnetView config={this.props.config} onChange={this.props.onChange} />
           </div>
         </div>
       </div>
     );
-  }
-
-  private onSubnetChange = (id: number, dhcpSubnet: IDHCPSubnet) => {
-    this.props.onChange(id.toString(), dhcpSubnet);
   }
 }

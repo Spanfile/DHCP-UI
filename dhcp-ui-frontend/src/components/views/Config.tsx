@@ -43,17 +43,14 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
       },
       subnets: {
         1: {
-          id: 1,
           subnet: Subnet.parseCidr("10.0.10.0/24"),
           range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254")
         },
         2: {
-          id: 2,
           subnet: Subnet.parseCidr("10.0.20.0/24"),
           range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254")
         },
         3: {
-          id: 3,
           subnet: Subnet.parseCidr("10.0.30.0/24"),
           range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254")
         }
