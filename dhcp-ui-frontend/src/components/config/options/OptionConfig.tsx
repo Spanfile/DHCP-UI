@@ -29,6 +29,7 @@ export default class OptionConfig extends React.Component<IOptionConfigProps, IM
           onConfirm={this.props.onDelete}
           onClose={this.closeModal}
         />
+
         <div className="form-group">
           <label className="col-form-label float-left mr-3">
             Option
