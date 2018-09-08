@@ -1,10 +1,11 @@
+import { DDNSUpdateStyle } from "common/config/IDDNSConfig";
 import IDHCPConfig from "common/config/IDHCPConfig";
-import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
 import { AddressRange, Subnet } from "common/ip/IP";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
+import DDNSConfig from "../config/DDNSConfig";
 
 export default class Config extends React.Component<{}, IDHCPConfig> {
   constructor(props: any) {
@@ -14,16 +15,16 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
       global: {
         authoritative: true,
         defaultLeaseTime: 86400,
-        maxLeaseTime: 86400,
-        ddnsSettings: {
-          updates: true,
-          updateStyle: "interim",
-          domainName: "domain.tld.",
-          reverseDomainName: "in-addr.arpa.",
-          ignoreClientUpdates: true,
-          updateStaticLeases: true,
-          useHostDeclNames: true
-        }
+        maxLeaseTime: 86400
+      },
+      ddns: {
+        updates: true,
+        updateStyle: DDNSUpdateStyle.Interim,
+        domainName: "domain.tld.",
+        reverseDomainName: "in-addr.arpa.",
+        ignoreClientUpdates: true,
+        updateStaticLeases: true,
+        useHostDeclNames: true
       },
       subnets: {
         1: {
@@ -53,6 +54,9 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             <NavLink to="/config/global" className="nav-link rounded-0" activeClassName="active">Global</NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/config/ddns" className="nav-link rounded-0" activeClassName="active">DDNS</NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/config/subnets" className="nav-link rounded-0" activeClassName="active">Subnets</NavLink>
           </li>
         </ul>
@@ -60,10 +64,22 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
           <Switch>
             <Redirect exact={true} from="/config" to="/config/global" />
             <Route path="/config/global" render={() =>
-              <GlobalConfig config={this.state.global} onChange={this.onGlobalConfigChange} />}
+              <GlobalConfig
+                config={this.state.global}
+                onChange={(name, value) => this.onConfigChange("global", name, value)}
+              />}
+            />
+            <Route path="/config/ddns" render={() =>
+              <DDNSConfig
+                config={this.state.ddns}
+                onChange={(name, value) => this.onConfigChange("ddns", name, value)}
+              />}
             />
             <Route path="/config/subnets" render={() =>
-              <SubnetsConfig subnets={this.state.subnets} onChange={this.onSubnetsConfigChange} />}
+              <SubnetsConfig
+                config={this.state.subnets}
+                onChange={(name, value) => this.onConfigChange("subnets", name, value)}
+              />}
             />
           </Switch>
         </div>
@@ -72,15 +88,9 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     );
   }
 
-  private onGlobalConfigChange = (name: string, value: any) => {
+  private onConfigChange = (config: string, property: string, value: any) => {
     const state = this.state;
-    state.global[name] = value;
-    this.setState(state);
-  }
-
-  private onSubnetsConfigChange = (id: number, dhcpSubnet: IDHCPSubnet) => {
-    const state = this.state;
-    state.subnets[id] = dhcpSubnet;
+    state[config][property] = value;
     this.setState(state);
   }
 
