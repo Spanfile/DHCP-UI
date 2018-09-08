@@ -20,7 +20,7 @@ export default class SelectInput<T extends string | number> extends React.Compon
         <label className="col-sm-3 col-form-label text-right">{this.props.label}</label>
         <div className="col-sm-9">
           <select
-            className="custom-select"
+            className="custom-select rounded-0"
             name={this.props.name}
             value={this.props.value!}
             onChange={this.props.onChange}>
