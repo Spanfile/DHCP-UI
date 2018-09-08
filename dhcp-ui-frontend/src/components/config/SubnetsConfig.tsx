@@ -1,5 +1,6 @@
 import IConfigProps from "common/config/IConfigProps";
 import ISubnetsConfig from "common/config/subnet/ISubnetsConfig";
+import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
 import SubnetView from "./subnet/SubnetView";
@@ -16,7 +17,7 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
           <div className="col-sm-2">
             <div className="row">
               <div className="col-sm-12">
-                <button type="button" className={"rounded-0 btn btn-success"}>Add subnet</button>
+                <Button label="Add subnet" style={ButtonStyle.Success} onClick={this.addSubnet} />
               </div>
             </div>
             <div className="row mt-3">
@@ -31,5 +32,9 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
         </div>
       </div>
     );
+  }
+
+  private addSubnet = () => {
+    return;
   }
 }
