@@ -11,18 +11,24 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
 
   public render(): JSX.Element {
     const optionConfigs: JSX.Element[] = [];
+    const keys = Object.keys(this.props.config);
+    const lastId = keys[keys.length - 1];
     let skippedFirst = false;
 
     Object.entries(this.props.config).forEach(([id, key]) => {
-      let colClass = "col-sm-10";
+      let wrapperClass = "col-sm-8";
       if (!skippedFirst) {
         skippedFirst = true;
       } else {
-        colClass += " offset-sm-2";
+        wrapperClass += " offset-sm-2";
+      }
+
+      if (id !== lastId) {
+        wrapperClass += " border-bottom";
       }
 
       optionConfigs.push(
-        <div key={id} className={colClass + " border-bottom pb-3 mb-3"}>
+        <div key={id} className={wrapperClass}>
           <OptionConfig
             config={key}
             onChange={(name, value) => this.onOptionChange(Number(id), name, value)}

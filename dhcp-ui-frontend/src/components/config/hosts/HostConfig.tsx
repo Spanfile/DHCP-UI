@@ -49,9 +49,11 @@ export default class HostConfig extends React.Component<IHostConfigProps, IModal
             config={this.props.config.options}
             onChange={this.onOptionChanged}
           />
-          <FormButton style={ButtonStyle.Danger} onClick={this.onDelete}>
-            Delete host
-          </FormButton>
+          <div className="mt-3">
+            <FormButton style={ButtonStyle.Danger} onClick={this.onDelete}>
+              Delete host
+            </FormButton>
+          </div>
         </Card>
       </div>
     );

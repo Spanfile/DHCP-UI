@@ -22,7 +22,7 @@ export default class HostsConfig extends React.Component<IConfigProps<IHostsConf
       }
 
       hostsConfig.push(
-        <div key={id} className={colClass + " border-bottom pb-3 mb-3"}>
+        <div key={id} className={colClass}>
           <HostConfig
             config={host}
             onChange={(name, value) => this.onHostChange(Number(id), name, value)}

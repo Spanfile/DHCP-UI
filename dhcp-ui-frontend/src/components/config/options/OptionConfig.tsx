@@ -30,31 +30,33 @@ export default class OptionConfig extends React.Component<IOptionConfigProps, IM
           onClose={this.closeModal}
         />
 
-        <div className="form-row p-0 m-0">
-          <div className="col-auto">
-            <label className="col-form-label float-left">
+        <div className="form-row pb-3 m-0">
+          <div className="col-sm-5">
+            <label className="col-form-label">
               Option
             </label>
             <input
               type="text"
-              className="form-control rounded-0 float-left"
+              className="form-control rounded-0"
               onChange={(event) => this.props.onChange("name", event.target.value)}
               value={this.props.config.name} />
           </div>
-          <div className="col-auto">
-            <label className="col-form-label float-left">
+          <div className="col-sm-5">
+            <label className="col-form-label">
               Expression
             </label>
             <input
               type="text"
-              className="form-control rounded-0 float-left"
+              className="form-control rounded-0"
               onChange={(event) => this.props.onChange("expression", event.target.value)}
               value={this.props.config.expression} />
           </div>
-          <div className="col-auto" style={{ paddingTop: "38px" }}>
-            <Button style={ButtonStyle.Danger} onClick={this.onDelete}>
-              Delete
-            </Button>
+          <div className="col-sm-2" style={{ paddingTop: "38px" }}>
+            <div className="float-right">
+              <Button style={ButtonStyle.Danger} onClick={this.onDelete}>
+                Delete
+              </Button>
+            </div>
           </div>
         </div>
       </div>

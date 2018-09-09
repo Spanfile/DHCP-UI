@@ -20,7 +20,7 @@ export default class Card extends React.Component<ICardProps, ICardState> {
   public render(): JSX.Element {
     return (
       <div className="card rounded-0 mb-3">
-        <div className="card-body">
+        <div className="card-body pb-0">
           <div className="border-bottom mb-3">
             <h5 className="card-title m-0">{this.props.title}</h5>
           </div>
