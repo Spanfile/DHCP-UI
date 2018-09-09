@@ -4,20 +4,27 @@ export interface ICardProps {
   title: string;
 }
 
-export default class Card extends React.Component<ICardProps, {}> {
+export interface ICardState {
+  open: boolean;
+}
+
+export default class Card extends React.Component<ICardProps, ICardState> {
   constructor(props: ICardProps) {
     super(props);
+
+    this.state = {
+      open: true
+    };
   }
 
   public render(): JSX.Element {
-    const title = this.props.title;
-    const children = this.props.children;
-
     return (
-      <div className="card rounded-0" style={{ marginBottom: "1em" }}>
+      <div className="card rounded-0 mb-3">
         <div className="card-body">
-          <h5 className="card-title border-bottom" style={{ marginBottom: "1.5em" }}>{title}</h5>
-          {children}
+          <div className="border-bottom mb-3">
+            <h5 className="card-title m-0">{this.props.title}</h5>
+          </div>
+          {this.state.open ? this.props.children : []}
         </div>
       </div >
     );
