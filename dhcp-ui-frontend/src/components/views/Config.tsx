@@ -69,6 +69,20 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
               name: "ntp-servers",
               expression: "10.0.10.1"
             }
+          },
+          hosts: {
+            1: {
+              hostname: "asd",
+              hardware: "11:22:33:44:55:66",
+              fixedAddress: "10.0.10.2",
+              ddnsHostname: "asd",
+              options: {
+                1: {
+                  name: "domain-name-servers",
+                  expression: "1.1.1.1"
+                }
+              }
+            }
           }
         },
         2: {
@@ -83,7 +97,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
               name: "ntp-servers",
               expression: "10.0.20.1"
             }
-          }
+          },
+          hosts: {}
         },
         3: {
           subnet: Subnet.parseCidr("10.0.30.0/24"),
@@ -97,7 +112,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
               name: "ntp-servers",
               expression: "10.0.30.1"
             }
-          }
+          },
+          hosts: {}
         }
       }
     };

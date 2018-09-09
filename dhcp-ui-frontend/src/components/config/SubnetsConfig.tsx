@@ -15,7 +15,7 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <div className="row">
-          <div className="col-sm-3">
+          <div className="col-sm-2">
             <div className="row">
               <div className="col-sm-12">
                 <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
@@ -29,7 +29,7 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
               </div>
             </div>
           </div>
-          <div className="col-sm-9">
+          <div className="col-sm-10">
             <SubnetView
               config={this.props.config}
               onChange={this.props.onChange}

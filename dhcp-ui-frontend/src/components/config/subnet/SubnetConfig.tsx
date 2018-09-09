@@ -1,8 +1,8 @@
 import IConfigProps from "common/config/IConfigProps";
-import { IOptionsConfig } from "common/config/IOptionsConfig";
 import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
 import { IModalState } from "common/IModal";
 import Button, { ButtonStyle } from "components/Button";
+import HostsConfig from "components/config/hosts/HostsConfig";
 import OptionsConfig from "components/config/options/OptionsConfig";
 import ConfirmModal from "components/ConfirmModal";
 import AddressRangeInput from "components/form/AddressRangeInput";
@@ -45,10 +45,16 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, IM
           </InputGroup>
         </Card>
         <Card title="Options">
-          <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
+          <OptionsConfig
+            config={this.props.config.options}
+            onChange={(name, value) => this.onConfigChanged("options", name, value)}
+          />
         </Card>
         <Card title="Hosts">
-          <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
+          <HostsConfig
+            config={this.props.config.hosts}
+            onChange={(name, value) => this.onConfigChanged("hosts", name, value)}
+          />
         </Card>
         <Button style={ButtonStyle.Danger} onClick={this.onDelete}>
           Delete subnet
@@ -57,14 +63,14 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, IM
     );
   }
 
-  private onOptionsChanged = (name: string, value: IOptionsConfig) => {
-    const options = this.props.config.options;
+  private onConfigChanged = (config: string, name: string, value: any) => {
+    const conf = this.props.config[config];
     if (value == null) {
-      delete options[name];
+      delete conf[name];
     } else {
-      options[name] = value;
+      conf[name] = value;
     }
-    this.props.onChange("options", options);
+    this.props.onChange(config, conf);
   }
 
   private onDelete = () => {
