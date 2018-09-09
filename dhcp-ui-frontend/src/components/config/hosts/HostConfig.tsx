@@ -4,6 +4,7 @@ import { IModalState } from "common/IModal";
 import { ButtonStyle } from "components/Button";
 import OptionsConfig from "components/config/options/OptionsConfig";
 import ConfirmModal from "components/ConfirmModal";
+import AddressInput from "components/form/AddressInput";
 import Card from "components/form/Card";
 import FormButton from "components/form/FormButton";
 import InputGroup from "components/form/InputGroup";
@@ -41,7 +42,7 @@ export default class HostConfig extends React.Component<IHostConfigProps, IModal
             source={this.props.config}>
             <TextInput label="Host name" name="hostname" />
             <TextInput label="Hardware" name="hardware" />
-            <TextInput label="Fixed address" name="fixedAddress" />
+            <AddressInput label="Fixed address" name="fixedAddress" />
             <TextInput label="DDNS hostname" name="ddnsHostname" />
           </InputGroup>
           <OptionsConfig

@@ -1,7 +1,7 @@
 import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
 import IDHCPConfig from "common/config/IDHCPConfig";
-import { AddressRange, Subnet } from "common/ip/IP";
+import { AddressRange, IPAddress, Subnet } from "common/ip/IP";
 import DDNSConfig from "components/config/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
@@ -74,7 +74,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             1: {
               hostname: "asd",
               hardware: "11:22:33:44:55:66",
-              fixedAddress: "10.0.10.2",
+              fixedAddress: IPAddress.parseString("10.0.10.2"),
               ddnsHostname: "asd",
               options: {
                 1: {
