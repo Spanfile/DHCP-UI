@@ -22,7 +22,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
       }
 
       optionConfigs.push(
-        <div key={id} className={colClass + " border-bottom pb-3"}>
+        <div key={id} className={colClass + " border-bottom pb-3 mb-3"}>
           <OptionConfig
             config={key}
             onChange={(name, value) => this.onOptionChange(Number(id), name, value)}
