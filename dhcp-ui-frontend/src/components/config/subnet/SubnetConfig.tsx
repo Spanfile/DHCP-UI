@@ -47,6 +47,9 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, IM
         <Card title="Options">
           <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
         </Card>
+        <Card title="Hosts">
+          <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
+        </Card>
         <Button style={ButtonStyle.Danger} onClick={this.onDelete}>
           Delete subnet
         </Button>
@@ -56,7 +59,7 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, IM
 
   private onOptionsChanged = (name: string, value: IOptionsConfig) => {
     const options = this.props.config.options;
-    if (!value) {
+    if (value == null) {
       delete options[name];
     } else {
       options[name] = value;

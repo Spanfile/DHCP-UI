@@ -32,7 +32,7 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
 
   private onOptionsChanged = (name: string, value: IOptionsConfig) => {
     const options = this.props.config.options;
-    if (!value) {
+    if (value == null) {
       delete options[name];
     } else {
       options[name] = value;

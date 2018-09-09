@@ -45,7 +45,7 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
 
   private onConfigChange = (config: string, name: string, value: any) => {
     const conf = this.props.config[config];
-    if (!value) {
+    if (value == null) {
       delete conf[name];
     } else {
       conf[name] = value;

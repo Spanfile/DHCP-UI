@@ -147,7 +147,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
 
   private onConfigChange = (config: string, property: string, value: any) => {
     const state = this.state;
-    if (!value) {
+    if (value == null) {
       delete state[config][property];
     } else {
       state[config][property] = value;
