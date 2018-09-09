@@ -41,7 +41,7 @@ export default class ZoneConfig extends React.Component<IZoneConfigProps, IModal
             onChange={this.props.onChange}
             source={this.props.config}>
             <TextInput label="Domain" name="domain" />
-            <TextInput label="Primary nameserver" name="primary" />
+            <TextInput label="Primary NS" name="primary" />
             <SelectInput label="DNSSEC key" name="key" options={this.props.dnssecKeys} />
           </InputGroup>
           <FormButton style={ButtonStyle.Danger} onClick={this.onDelete}>

@@ -20,27 +20,31 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
   public render(): JSX.Element {
     return (
       <div className="form-group row">
-        <label className="col-sm-3 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-9">
-          <input
-            type="text"
-            className="form-control rounded-0 float-left text-right"
-            style={{ maxWidth: "12em" }}
-            onChange={this.onIdentifierChange}
-            value={this.state.identifier.toString()} />
-          <label
-            className="col-sm-1 col-form-label float-left"
-            style={{ maxWidth: "1em" }}
-          >/</label>
-          <input
-            type="number"
-            className="form-control rounded-0"
-            style={{ maxWidth: "5em" }}
-            min="1"
-            max="31"
-            onChange={this.onCidrChange}
-            value={this.state.cidr}
-          />
+        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
+        <div className="col-sm-8 form-row">
+          <div className="col-auto">
+            <input
+              type="text"
+              className="form-control rounded-0 float-left text-right"
+              onChange={this.onIdentifierChange}
+              value={this.state.identifier.toString()} />
+          </div>
+          <div className="col-auto">
+            <label
+              className="col-sm-1 col-form-label float-left"
+              style={{ maxWidth: "1em" }}
+            >/</label>
+          </div>
+          <div className="col-sm-1">
+            <input
+              type="number"
+              className="form-control rounded-0"
+              min="1"
+              max="31"
+              onChange={this.onCidrChange}
+              value={this.state.cidr}
+            />
+          </div>
         </div>
       </div>
     );

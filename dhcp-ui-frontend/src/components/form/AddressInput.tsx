@@ -18,8 +18,8 @@ export default class AddressInput extends React.Component<IInputProps<IPAddress>
   public render(): JSX.Element {
     return (
       <div className="form-group row">
-        <label className="col-sm-3 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-9">
+        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
+        <div className="col-sm-8">
           <input
             type="text"
             className="form-control rounded-0"

@@ -2,6 +2,7 @@ import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
 import IDHCPConfig from "common/config/IDHCPConfig";
 import { AddressRange, IPAddress, Subnet } from "common/ip/IP";
+import Button, { ButtonStyle } from "components/Button";
 import DDNSConfig from "components/config/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
@@ -156,7 +157,11 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             />
           </Switch>
         </div>
-        <button type="submit" className="btn btn-primary rounded-0">Build configuration and save</button>
+        <Button
+          style={ButtonStyle.Primary}
+          onClick={this.onSave}>
+          Build configuration and save
+        </Button>
       </form>
     );
   }
@@ -171,8 +176,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     this.setState(state);
   }
 
-  private onSave(event: any) {
+  private onSave() {
     console.log("gonna save");
-    event.preventDefault();
   }
 }

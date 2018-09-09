@@ -9,7 +9,7 @@ import Settings from "./views/Settings";
 export default class View extends React.Component {
   public render(): JSX.Element {
     return (
-      <div className="view-container p-3" style={{ marginLeft: "12em" }}>
+      <div className="col-sm-11 p-3">
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route path="/leases" component={Leases} />

@@ -14,11 +14,11 @@ export default class HostsConfig extends React.Component<IConfigProps<IHostsConf
     let skippedFirst = false;
 
     Object.entries(this.props.config).forEach(([id, host]) => {
-      let colClass = "col-sm-9";
+      let colClass = "col-sm-10";
       if (!skippedFirst) {
         skippedFirst = true;
       } else {
-        colClass += " offset-sm-3";
+        colClass += " offset-sm-2";
       }
 
       hostsConfig.push(
@@ -34,7 +34,7 @@ export default class HostsConfig extends React.Component<IConfigProps<IHostsConf
 
     return (
       <div className="row">
-        <div className="col-sm-3">
+        <div className="col-sm-2">
           <div className="float-right">
             <Button style={ButtonStyle.Success} onClick={this.addHost}>
               Add host

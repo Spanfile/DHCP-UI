@@ -8,8 +8,10 @@ export default class App extends React.Component {
     return (
       <div className="container-fluid p-0">
         <Navbar loggedInAs="" />
-        <Sidebar />
-        <View />
+        <div className="row">
+          <Sidebar />
+          <View />
+        </div>
       </div>
     );
   }

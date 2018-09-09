@@ -30,26 +30,28 @@ export default class OptionConfig extends React.Component<IOptionConfigProps, IM
           onClose={this.closeModal}
         />
 
-        <div className="form-group p-0 m-0">
-          <label className="col-form-label float-left mr-3">
-            Option
-          </label>
-          <input
-            type="text"
-            className="form-control rounded-0 float-left"
-            style={{ maxWidth: "16em" }}
-            onChange={(event) => this.props.onChange("name", event.target.value)}
-            value={this.props.config.name} />
-          <label className="col-form-label float-left mr-3 ml-5">
-            Expression
-          </label>
-          <input
-            type="text"
-            className="form-control rounded-0 float-left"
-            style={{ maxWidth: "16em" }}
-            onChange={(event) => this.props.onChange("expression", event.target.value)}
-            value={this.props.config.expression} />
-          <div className="float-right">
+        <div className="form-row p-0 m-0">
+          <div className="col-auto">
+            <label className="col-form-label float-left">
+              Option
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0 float-left"
+              onChange={(event) => this.props.onChange("name", event.target.value)}
+              value={this.props.config.name} />
+          </div>
+          <div className="col-auto">
+            <label className="col-form-label float-left">
+              Expression
+            </label>
+            <input
+              type="text"
+              className="form-control rounded-0 float-left"
+              onChange={(event) => this.props.onChange("expression", event.target.value)}
+              value={this.props.config.expression} />
+          </div>
+          <div className="col-auto" style={{ paddingTop: "38px" }}>
             <Button style={ButtonStyle.Danger} onClick={this.onDelete}>
               Delete
             </Button>

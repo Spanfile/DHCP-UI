@@ -16,18 +16,12 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <div className="row">
           <div className="col-sm-2">
-            <div className="row">
-              <div className="col-sm-12">
-                <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
-                  Add subnet
-                </Button>
-              </div>
+            <div className="mb-3">
+              <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
+                Add subnet
+              </Button>
             </div>
-            <div className="row mt-3">
-              <div className="col-sm-12 sidebar">
-                <SubnetNav subnets={this.props.config} />
-              </div>
-            </div>
+            <SubnetNav subnets={this.props.config} />
           </div>
           <div className="col-sm-10">
             <SubnetView

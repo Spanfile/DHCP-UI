@@ -18,11 +18,11 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
     let skippedFirst = false;
 
     Object.entries(this.props.config).forEach(([id, key]) => {
-      let colClass = "col-sm-9";
+      let colClass = "col-sm-8";
       if (!skippedFirst) {
         skippedFirst = true;
       } else {
-        colClass += " offset-sm-3";
+        colClass += " offset-sm-2";
       }
 
       keyConfigs.push(
@@ -38,7 +38,7 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
 
     return (
       <div className="row">
-        <div className="col-sm-3">
+        <div className="col-sm-2">
           <div className="float-right">
             <Button style={ButtonStyle.Success} onClick={this.addZone}>
               Add zone

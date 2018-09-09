@@ -17,8 +17,8 @@ export default class SelectInput<T extends string | number> extends React.Compon
 
     return (
       <div className="form-group row">
-        <label className="col-sm-3 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-9">
+        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
+        <div className="col-sm-8">
           <select
             className="custom-select rounded-0"
             name={this.props.name}
