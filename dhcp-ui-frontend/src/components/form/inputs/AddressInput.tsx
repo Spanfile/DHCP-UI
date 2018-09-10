@@ -1,5 +1,6 @@
 import IInputProps from "common/IInputProps";
 import { IPAddress } from "common/ip/IP";
+import CommonInput from "components/form/CommonInput";
 import * as React from "react";
 
 export interface IAddressInputInputState {
@@ -17,21 +18,18 @@ export default class AddressInput extends React.Component<IInputProps<IPAddress>
 
   public render(): JSX.Element {
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-8">
-          <input
-            type="text"
-            className="form-control rounded-0"
-            onChange={this.onAddressChange}
-            value={this.state.address} />
-        </div>
-      </div>
+      <CommonInput<string>
+        type="text"
+        label={this.props.label}
+        name={this.props.name}
+        value={this.state.address}
+        onChange={this.onAddressChange}
+      />
     );
   }
 
   private onAddressChange = (event: any) => {
-    const value = event.target.value;
+    const value: string = event.target.value;
     this.setState({
       address: value
     });

@@ -1,5 +1,6 @@
 import IInputProps from "common/IInputProps";
 import { IPAddress, Subnet } from "common/ip/IP";
+import FormInputRow from "components/form/FormInputRow";
 import * as React from "react";
 
 export interface ISubnetInputState {
@@ -19,34 +20,31 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
 
   public render(): JSX.Element {
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-8 form-row">
-          <div className="col-auto">
-            <input
-              type="text"
-              className="form-control rounded-0 float-left text-right"
-              onChange={this.onIdentifierChange}
-              value={this.state.identifier.toString()} />
-          </div>
-          <div className="col-auto">
-            <label
-              className="col-sm-1 col-form-label float-left"
-              style={{ maxWidth: "1em" }}
-            >/</label>
-          </div>
-          <div className="col-sm-1">
-            <input
-              type="number"
-              className="form-control rounded-0"
-              min="1"
-              max="31"
-              onChange={this.onCidrChange}
-              value={this.state.cidr}
-            />
-          </div>
+      <FormInputRow {...this.props} innerRow={true}>
+        <div className="col-auto">
+          <input
+            type="text"
+            className="form-control rounded-0 float-left text-right"
+            onChange={this.onIdentifierChange}
+            value={this.state.identifier.toString()} />
         </div>
-      </div>
+        <div className="col-auto">
+          <label
+            className="col-sm-1 col-form-label float-left"
+            style={{ maxWidth: "1em" }}
+          >/</label>
+        </div>
+        <div className="col-sm-1">
+          <input
+            type="number"
+            className="form-control rounded-0"
+            min="1"
+            max="31"
+            onChange={this.onCidrChange}
+            value={this.state.cidr}
+          />
+        </div>
+      </FormInputRow>
     );
   }
 

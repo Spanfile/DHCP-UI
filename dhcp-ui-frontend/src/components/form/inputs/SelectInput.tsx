@@ -1,4 +1,5 @@
 import IInputProps from "common/IInputProps";
+import FormInputRow from "components/form/FormInputRow";
 import * as React from "react";
 
 export interface ISelectInputProps<T extends string | number> extends IInputProps<T> {
@@ -16,18 +17,15 @@ export default class SelectInput<T extends string | number> extends React.Compon
     );
 
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-8">
-          <select
-            className="custom-select rounded-0"
-            name={this.props.name}
-            value={this.props.value!}
-            onChange={this.props.onChange}>
-            {options}
-          </select>
-        </div>
-      </div>
+      <FormInputRow {...this.props}>
+        <select
+          className="custom-select rounded-0"
+          name={this.props.name}
+          value={this.props.value!}
+          onChange={this.props.onChange}>
+          {options}
+        </select>
+      </FormInputRow>
     );
   }
 }

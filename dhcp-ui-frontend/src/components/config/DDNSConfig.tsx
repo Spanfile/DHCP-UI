@@ -4,9 +4,9 @@ import KeysConfig from "components/config/ddns/KeysConfig";
 import ZonesConfig from "components/config/ddns/ZonesConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
-import SelectInput from "components/form/SelectInput";
-import TextInput from "components/form/TextInput";
-import ToggledInput from "components/form/ToggledInput";
+import SelectInput from "components/form/inputs/SelectInput";
+import TextInput from "components/form/inputs/TextInput";
+import ToggledInput from "components/form/inputs/ToggledInput";
 import * as React from "react";
 
 export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig>, {}> {

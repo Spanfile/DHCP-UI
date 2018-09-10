@@ -4,11 +4,11 @@ import { IModalState } from "common/IModal";
 import { ButtonStyle } from "components/Button";
 import OptionsConfig from "components/config/options/OptionsConfig";
 import ConfirmModal from "components/ConfirmModal";
-import AddressInput from "components/form/AddressInput";
 import Card from "components/form/Card";
 import FormButton from "components/form/FormButton";
 import InputGroup from "components/form/InputGroup";
-import TextInput from "components/form/TextInput";
+import AddressInput from "components/form/inputs/AddressInput";
+import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
 export interface IHostConfigProps extends IConfigProps<IHost> {

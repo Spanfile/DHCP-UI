@@ -1,7 +1,7 @@
 import IData from "common/IData";
 import ITableColumn from "common/ITableColumn";
 import ITableRow from "common/ITableRow";
-import TextInput from "components/form/TextInput";
+import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 import EmptyTableRow from "./EmptyTableRow";
 import TableHeader from "./TableHeader";

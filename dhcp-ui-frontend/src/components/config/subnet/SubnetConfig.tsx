@@ -5,10 +5,10 @@ import Button, { ButtonStyle } from "components/Button";
 import HostsConfig from "components/config/hosts/HostsConfig";
 import OptionsConfig from "components/config/options/OptionsConfig";
 import ConfirmModal from "components/ConfirmModal";
-import AddressRangeInput from "components/form/AddressRangeInput";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
-import SubnetInput from "components/form/SubnetInput";
+import AddressRangeInput from "components/form/inputs/AddressRangeInput";
+import SubnetInput from "components/form/inputs/SubnetInput";
 import * as React from "react";
 
 export interface ISubnetConfigProps extends IConfigProps<IDHCPSubnet> {

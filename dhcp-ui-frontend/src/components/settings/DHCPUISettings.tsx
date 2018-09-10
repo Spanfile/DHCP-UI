@@ -1,6 +1,6 @@
 import IDHCPUISettings from "common/settings/IDHCPUISettings";
 import Card from "components/form/Card";
-import TextInput from "components/form/TextInput";
+import TextInput from "components/form/inputs/TextInput";
 // import ToggledTextInput from "components/form/ToggledTextInput";
 import * as React from "react";
 import InputGroup from "../form/InputGroup";

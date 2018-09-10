@@ -1,4 +1,5 @@
 import IInputProps from "common/IInputProps";
+import FormInputRow from "components/form/FormInputRow";
 import * as React from "react";
 
 export interface ICommonInputProps<T extends string | number | string[]> extends IInputProps<T> {
@@ -12,17 +13,14 @@ export default class CommonInput<T extends string | number | string[]> extends R
 
   public render(): JSX.Element {
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-8">
-          <input
-            type={this.props.type}
-            className="form-control rounded-0"
-            name={this.props.name}
-            onChange={this.props.onChange}
-            value={this.props.value!} />
-        </div>
-      </div>
+      <FormInputRow {...this.props}>
+        <input
+          type={this.props.type}
+          className="form-control rounded-0"
+          name={this.props.name}
+          onChange={this.props.onChange}
+          value={this.props.value!} />
+      </FormInputRow>
     );
   }
 }

@@ -1,5 +1,6 @@
 import IInputProps from "common/IInputProps";
 import { AddressRange, IPAddress } from "common/ip/IP";
+import FormInputRow from "components/form/FormInputRow";
 import * as React from "react";
 
 export interface IAddressRangeInputState {
@@ -19,33 +20,30 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
 
   public render(): JSX.Element {
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right">{this.props.label}</label>
-        <div className="col-sm-8 form-row">
-          <div className="col-auto">
-            <input
-              type="text"
-              className="form-control rounded-0 float-left text-right"
-              style={{ maxWidth: "12em" }}
-              onChange={this.onFromChange}
-              value={this.state.from} />
-          </div>
-          <div className="col-auto">
-            <label
-              className="col-sm-1 col-form-label float-left"
-              style={{ maxWidth: "1em" }}
-            >-</label>
-          </div>
-          <div className="col-auto">
-            <input
-              type="text"
-              className="form-control rounded-0 float-left"
-              style={{ maxWidth: "12em" }}
-              onChange={this.onToChange}
-              value={this.state.to} />
-          </div>
+      <FormInputRow {...this.props} innerRow={true}>
+        <div className="col-auto">
+          <input
+            type="text"
+            className="form-control rounded-0 float-left text-right"
+            style={{ maxWidth: "12em" }}
+            onChange={this.onFromChange}
+            value={this.state.from} />
         </div>
-      </div>
+        <div className="col-auto">
+          <label
+            className="col-sm-1 col-form-label float-left"
+            style={{ maxWidth: "1em" }}
+          >-</label>
+        </div>
+        <div className="col-auto">
+          <input
+            type="text"
+            className="form-control rounded-0 float-left"
+            style={{ maxWidth: "12em" }}
+            onChange={this.onToChange}
+            value={this.state.to} />
+        </div>
+      </FormInputRow>
     );
   }
 

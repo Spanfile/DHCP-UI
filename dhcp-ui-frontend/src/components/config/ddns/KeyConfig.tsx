@@ -6,8 +6,8 @@ import ConfirmModal from "components/ConfirmModal";
 import Card from "components/form/Card";
 import FormButton from "components/form/FormButton";
 import InputGroup from "components/form/InputGroup";
-import SelectInput from "components/form/SelectInput";
-import TextInput from "components/form/TextInput";
+import SelectInput from "components/form/inputs/SelectInput";
+import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
 export interface IKeyConfigProps extends IConfigProps<IDNSSECKey> {

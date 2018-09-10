@@ -3,8 +3,8 @@ import IGlobalConfig from "common/config/IGlobalConfig";
 import { IOptionsConfig } from "common/config/IOptionsConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
-import TimeSpanInput from "components/form/TimeSpanInput";
-import ToggledInput from "components/form/ToggledInput";
+import TimeSpanInput from "components/form/inputs/TimeSpanInput";
+import ToggledInput from "components/form/inputs/ToggledInput";
 import * as React from "react";
 import OptionsConfig from "./options/OptionsConfig";
 
