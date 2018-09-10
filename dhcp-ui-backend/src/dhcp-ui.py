@@ -17,9 +17,9 @@ CORS(app)
 socketio = SocketIO(app)
 
 leases_changed: NamedSignal = signals.signal('leases_changed')
-watcher = Watcher('sample/dhcpd.leases', leases_changed)
+watcher = Watcher('/var/lib/dhcp/dhcpd.leases', leases_changed)
 
-parser = Parser('sample/dhcpd.leases')
+parser = Parser('/var/lib/dhcp/dhcpd.leases')
 
 
 @app.route('/detectdhcpserver')
@@ -49,4 +49,4 @@ def handle_leases_changed(sender):
 
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, host="0.0.0.0")
