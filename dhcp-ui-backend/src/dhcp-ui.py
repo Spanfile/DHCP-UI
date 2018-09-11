@@ -11,15 +11,15 @@ from blinker import Namespace, NamedSignal
 signals = Namespace()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hello!'
+app.config.from_envvar('DHCPUI_SETTINGS')
 CORS(app)
 # socketio = SocketIO(app, logger=True, engineio_logger=True)
 socketio = SocketIO(app)
 
 leases_changed: NamedSignal = signals.signal('leases_changed')
-watcher = Watcher('/var/lib/dhcp/dhcpd.leases', leases_changed)
+watcher = Watcher(app.config['DHCP_LEASES'], leases_changed)
 
-parser = Parser('/var/lib/dhcp/dhcpd.leases')
+parser = Parser(app.config['DHCP_LEASES'])
 
 
 @app.route('/detectdhcpserver')
