@@ -1,7 +1,7 @@
 import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
 import { IConfigProps } from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
-import KeyConfig from "components/config/ddns/KeyConfig";
+import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
 
 export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys>, {}> {
@@ -13,7 +13,7 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
     return (
       <ConfigCollectionView<IDNSSECKey>
         config={this.props.config}
-        addButtonText="Add host"
+        addButtonText="Add key"
         component={KeyConfig}
         onAdd={this.addKey}
         onChange={this.onKeyChange}

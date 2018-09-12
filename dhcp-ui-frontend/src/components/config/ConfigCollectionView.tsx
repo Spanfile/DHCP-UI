@@ -4,7 +4,7 @@ import * as React from "react";
 
 export interface IConfigCollectionViewProps<T> {
   config: {
-    [id: number]: any;
+    [id: number]: T;
   };
   component: React.ComponentClass<ICollectionConfigProps<T>> | React.StatelessComponent<ICollectionConfigProps<T>>;
   addButtonText: string;

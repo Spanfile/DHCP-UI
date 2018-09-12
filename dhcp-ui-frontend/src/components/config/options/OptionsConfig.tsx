@@ -2,7 +2,7 @@ import { IConfigProps } from "common/config/IConfigProps";
 import { IOption, IOptionsConfig } from "common/config/IOptionsConfig";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import * as React from "react";
-import OptionConfig from "./OptionConfig";
+import { OptionConfig } from "./OptionConfig";
 
 export default class OptionsConfig extends React.Component<IConfigProps<IOptionsConfig>, {}> {
   constructor(props: IConfigProps<IOptionsConfig>) {
@@ -13,7 +13,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
     return (
       <ConfigCollectionView<IOption>
         config={this.props.config}
-        addButtonText="Add host"
+        addButtonText="Add option"
         component={OptionConfig}
         onAdd={this.addOption}
         onChange={this.onOptionChange}

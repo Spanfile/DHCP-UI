@@ -1,7 +1,7 @@
 import { IConfigProps } from "common/config/IConfigProps";
 import { IHost, IHostsConfig } from "common/config/IHostsConfig";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
-import HostConfig from "components/config/hosts/HostConfig";
+import { HostConfig } from "components/config/hosts/HostConfig";
 import * as React from "react";
 
 export default class HostsConfig extends React.Component<IConfigProps<IHostsConfig>, {}> {
