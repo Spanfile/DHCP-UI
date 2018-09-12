@@ -18,7 +18,6 @@ socketio = SocketIO(app)
 
 leases_changed: NamedSignal = signals.signal('leases_changed')
 watcher = Watcher(app.config['DHCP_LEASES'], leases_changed)
-
 parser = Parser(app.config['DHCP_LEASES'])
 
 
