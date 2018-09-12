@@ -6,16 +6,21 @@ import * as SocketIOClient from "socket.io-client";
 
 export interface ILeasesState {
   leases: ITransmittedLease[];
+  emptyDisplay: string;
 }
 
 export default class Leases extends React.Component<{}, ILeasesState> {
+  private static NO_LEASES = "No leases";
+  private static NETWORK_ERROR = "Network error";
+
   private socket: SocketIOClient.Socket;
 
   constructor(props: any) {
     super(props);
 
     this.state = {
-      leases: []
+      leases: [],
+      emptyDisplay: Leases.NO_LEASES
     };
   }
 
@@ -57,7 +62,10 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     }];
 
     return (
-      <Table<Lease> dataSource={leases} columns={columns} />
+      <Table<Lease>
+        dataSource={leases}
+        columns={columns}
+        emptyDisplay={this.state.emptyDisplay} />
     );
   }
 
@@ -72,7 +80,13 @@ export default class Leases extends React.Component<{}, ILeasesState> {
       console.log(response);
       const leases = this.buildLeasesFromResponse(response.data);
       this.setState({
-        leases
+        leases,
+        emptyDisplay: Leases.NO_LEASES
+      });
+    }).catch(reason => {
+      console.log(reason);
+      this.setState({
+        emptyDisplay: Leases.NETWORK_ERROR
       });
     });
   }

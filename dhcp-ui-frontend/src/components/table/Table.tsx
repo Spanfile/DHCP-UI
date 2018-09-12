@@ -10,6 +10,7 @@ import TableRow from "./TableRow";
 export interface ITableProps<T extends IData> {
   dataSource: T[];
   columns: ITableColumn[];
+  emptyDisplay: string;
 }
 
 export interface ITableState {
@@ -64,7 +65,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
 
     if (this.props.dataSource.length === 0) {
       return [
-        <EmptyTableRow key={"empty"} width={this.props.columns.length + 1} message={"No leases"} />
+        <EmptyTableRow key={"empty"} width={this.props.columns.length + 1} message={this.props.emptyDisplay} />
       ];
     }
 
