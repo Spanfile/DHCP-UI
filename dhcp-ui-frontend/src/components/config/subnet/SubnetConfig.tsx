@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import { ICollectionConfigProps } from "common/config/IConfigProps";
 import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
 import { IModalState } from "common/IModal";
 import Button, { ButtonStyle } from "components/Button";
@@ -11,12 +11,8 @@ import AddressRangeInput from "components/form/inputs/AddressRangeInput";
 import SubnetInput from "components/form/inputs/SubnetInput";
 import * as React from "react";
 
-export interface ISubnetConfigProps extends IConfigProps<IDHCPSubnet> {
-  onDelete: () => void;
-}
-
-export default class SubnetConfig extends React.Component<ISubnetConfigProps, IModalState> {
-  constructor(props: ISubnetConfigProps) {
+export default class SubnetConfig extends React.Component<ICollectionConfigProps<IDHCPSubnet>, IModalState> {
+  constructor(props: ICollectionConfigProps<IDHCPSubnet>) {
     super(props);
 
     this.state = {
@@ -63,7 +59,7 @@ export default class SubnetConfig extends React.Component<ISubnetConfigProps, IM
     );
   }
 
-  private onConfigChanged = (config: string, name: string, value: any) => {
+  private onConfigChanged = (config: keyof IDHCPSubnet, name: number, value: any) => {
     const conf = this.props.config[config];
     if (value == null) {
       delete conf[name];

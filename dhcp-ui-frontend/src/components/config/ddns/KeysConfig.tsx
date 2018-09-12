@@ -1,6 +1,6 @@
-import { DNSSECAlgorithm, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
-import IConfigProps from "common/config/IConfigProps";
-import Button, { ButtonStyle } from "components/Button";
+import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
+import { IConfigProps } from "common/config/IConfigProps";
+import ConfigCollectionView from "components/config/ConfigCollectionView";
 import KeyConfig from "components/config/ddns/KeyConfig";
 import * as React from "react";
 
@@ -10,45 +10,21 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
   }
 
   public render(): JSX.Element {
-    const keyConfigs: JSX.Element[] = [];
-    let skippedFirst = false;
-
-    Object.entries(this.props.config).forEach(([id, key]) => {
-      let colClass = "col-sm-8";
-      if (!skippedFirst) {
-        skippedFirst = true;
-      } else {
-        colClass += " offset-sm-2";
-      }
-
-      keyConfigs.push(
-        <div key={id} className={colClass}>
-          <KeyConfig
-            config={key}
-            onChange={(name, value) => this.onInputChange(Number(id), name, value)}
-            onDelete={() => this.deleteKey(Number(id))}
-          />
-        </div>);
-    });
-
     return (
-      <div className="row">
-        <div className="col-sm-2">
-          <div className="float-right">
-            <Button style={ButtonStyle.Success} onClick={this.addKey}>
-              Add key
-            </Button>
-          </div>
-        </div>
-        {keyConfigs}
-      </div>
+      <ConfigCollectionView<IDNSSECKey>
+        config={this.props.config}
+        addButtonText="Add host"
+        component={KeyConfig}
+        onAdd={this.addKey}
+        onChange={this.onKeyChange}
+        onDelete={this.deleteKey} />
     );
   }
 
-  private onInputChange = (id: number, name: string, value: any) => {
+  private onKeyChange = (id: number, name: keyof IDNSSECKey, value: any) => {
     const key = this.props.config[id];
     key[name] = value;
-    this.props.onChange(id.toString(), key);
+    this.props.onChange(id, key);
   }
 
   private addKey = () => {
@@ -59,10 +35,10 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
       algorithm: DNSSECAlgorithm.HMAC_MD5,
       key: ""
     };
-    this.props.onChange(newId.toString(), newKey);
+    this.props.onChange(newId, newKey);
   }
 
   private deleteKey = (id: number) => {
-    this.props.onChange(id.toString(), null);
+    this.props.onChange(id, null);
   }
 }

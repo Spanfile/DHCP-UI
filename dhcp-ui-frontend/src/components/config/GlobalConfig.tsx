@@ -1,6 +1,5 @@
-import IConfigProps from "common/config/IConfigProps";
+import { IConfigProps } from "common/config/IConfigProps";
 import IGlobalConfig from "common/config/IGlobalConfig";
-import { IOptionsConfig } from "common/config/IOptionsConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import TimeSpanInput from "components/form/inputs/TimeSpanInput";
@@ -26,19 +25,21 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
           </div>
         </Card>
         <Card title="Options">
-          <OptionsConfig config={this.props.config.options} onChange={this.onOptionsChanged} />
+          <OptionsConfig
+            config={this.props.config.options}
+            onChange={(name, value) => this.onConfigChanged("options", name, value)} />
         </Card>
       </div>
     );
   }
 
-  private onOptionsChanged = (name: string, value: IOptionsConfig) => {
-    const options = this.props.config.options;
+  private onConfigChanged = (config: keyof IGlobalConfig, name: number, value: any) => {
+    const conf = this.props.config[config];
     if (value == null) {
-      delete options[name];
+      delete conf[name];
     } else {
-      options[name] = value;
+      conf[name] = value;
     }
-    this.props.onChange("options", options);
+    this.props.onChange(config, conf);
   }
 }

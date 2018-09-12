@@ -1,5 +1,5 @@
 import IDDNSConfig, { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
-import IConfigProps from "common/config/IConfigProps";
+import { IConfigProps } from "common/config/IConfigProps";
 import KeysConfig from "components/config/ddns/KeysConfig";
 import ZonesConfig from "components/config/ddns/ZonesConfig";
 import Card from "components/form/Card";
@@ -43,7 +43,7 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
     );
   }
 
-  private onConfigChange = (config: string, name: string, value: any) => {
+  private onConfigChange = (config: keyof IDDNSConfig, name: number, value: any) => {
     const conf = this.props.config[config];
     if (value == null) {
       delete conf[name];

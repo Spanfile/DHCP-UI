@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import { IConfigProps } from "common/config/IConfigProps";
 import { ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import { AddressRange, Subnet } from "common/ip/IP";
 import Button, { ButtonStyle } from "components/Button";
@@ -48,10 +48,10 @@ export default class SubnetsConfig extends React.Component<IConfigProps<ISubnets
         },
       }
     };
-    this.props.onChange(newId.toString(), newSubnet);
+    this.props.onChange(newId, newSubnet);
   }
 
   private deleteSubnet = (id: number) => {
-    this.props.onChange(id.toString(), null);
+    this.props.onChange(id, null);
   }
 }

@@ -1,6 +1,6 @@
-import { IDDNSZones } from "common/config/ddns/IDDNSZone";
-import IConfigProps from "common/config/IConfigProps";
-import Button, { ButtonStyle } from "components/Button";
+import { IDDNSZone, IDDNSZones } from "common/config/ddns/IDDNSZone";
+import { IConfigProps } from "common/config/IConfigProps";
+import ConfigCollectionView from "components/config/ConfigCollectionView";
 import ZoneConfig from "components/config/ddns/ZoneConfig";
 import * as React from "react";
 
@@ -14,46 +14,21 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
   }
 
   public render(): JSX.Element {
-    const keyConfigs: JSX.Element[] = [];
-    let skippedFirst = false;
-
-    Object.entries(this.props.config).forEach(([id, key]) => {
-      let colClass = "col-sm-8";
-      if (!skippedFirst) {
-        skippedFirst = true;
-      } else {
-        colClass += " offset-sm-2";
-      }
-
-      keyConfigs.push(
-        <div key={id} className={colClass}>
-          <ZoneConfig
-            config={key}
-            onChange={(name, value) => this.onInputChange(Number(id), name, value)}
-            onDelete={() => this.deleteZone(Number(id))}
-            dnssecKeys={this.props.dnssecKeys}
-          />
-        </div>);
-    });
-
     return (
-      <div className="row">
-        <div className="col-sm-2">
-          <div className="float-right">
-            <Button style={ButtonStyle.Success} onClick={this.addZone}>
-              Add zone
-            </Button>
-          </div>
-        </div>
-        {keyConfigs}
-      </div>
+      <ConfigCollectionView<IDDNSZone>
+        config={this.props.config}
+        addButtonText="Add host"
+        component={rest => <ZoneConfig {...rest} dnssecKeys={this.props.dnssecKeys} />}
+        onAdd={this.addZone}
+        onChange={this.onZoneChange}
+        onDelete={this.deleteZone} />
     );
   }
 
-  private onInputChange = (id: number, name: string, value: any) => {
+  private onZoneChange = (id: number, name: keyof IDDNSZone, value: any) => {
     const key = this.props.config[id];
     key[name] = value;
-    this.props.onChange(id.toString(), key);
+    this.props.onChange(id, key);
   }
 
   private addZone = () => {
@@ -64,10 +39,10 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
       primary: "",
       key: ""
     };
-    this.props.onChange(newId.toString(), newZone);
+    this.props.onChange(newId, newZone);
   }
 
   private deleteZone = (id: number) => {
-    this.props.onChange(id.toString(), null);
+    this.props.onChange(id, null);
   }
 }

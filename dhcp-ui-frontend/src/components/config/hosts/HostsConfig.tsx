@@ -1,55 +1,30 @@
-import IConfigProps from "common/config/IConfigProps";
-import { IHostsConfig } from "common/config/IHostsConfig";
-import Button, { ButtonStyle } from "components/Button";
+import { IConfigProps } from "common/config/IConfigProps";
+import { IHost, IHostsConfig } from "common/config/IHostsConfig";
+import ConfigCollectionView from "components/config/ConfigCollectionView";
 import HostConfig from "components/config/hosts/HostConfig";
 import * as React from "react";
 
 export default class HostsConfig extends React.Component<IConfigProps<IHostsConfig>, {}> {
-  constructor(props: any) {
+  constructor(props: IConfigProps<IHostsConfig>) {
     super(props);
   }
 
   public render(): JSX.Element {
-    const hostsConfig: JSX.Element[] = [];
-    let skippedFirst = false;
-
-    Object.entries(this.props.config).forEach(([id, host]) => {
-      let colClass = "col-sm-10";
-      if (!skippedFirst) {
-        skippedFirst = true;
-      } else {
-        colClass += " offset-sm-2";
-      }
-
-      hostsConfig.push(
-        <div key={id} className={colClass}>
-          <HostConfig
-            config={host}
-            onChange={(name, value) => this.onHostChange(Number(id), name, value)}
-            onDelete={() => this.deleteHost(Number(id))}
-          />
-        </div>
-      );
-    });
-
     return (
-      <div className="row">
-        <div className="col-sm-2">
-          <div className="float-right">
-            <Button style={ButtonStyle.Success} onClick={this.addHost}>
-              Add host
-            </Button>
-          </div>
-        </div>
-        {hostsConfig}
-      </div>
+      <ConfigCollectionView<IHost>
+        config={this.props.config}
+        addButtonText="Add host"
+        component={HostConfig}
+        onAdd={this.addHost}
+        onChange={this.onHostChange}
+        onDelete={this.deleteHost} />
     );
   }
 
-  private onHostChange = (id: number, name: string, value: any) => {
+  private onHostChange = (id: number, name: keyof IHost, value: any) => {
     const host = this.props.config[id];
     host[name] = value;
-    this.props.onChange(id.toString(), host);
+    this.props.onChange(id, host);
   }
 
   private addHost = () => {
@@ -62,10 +37,10 @@ export default class HostsConfig extends React.Component<IConfigProps<IHostsConf
       ddnsHostname: "",
       options: {},
     };
-    this.props.onChange(newId.toString(), newHost);
+    this.props.onChange(newId, newHost);
   }
 
   private deleteHost = (id: number) => {
-    this.props.onChange(id.toString(), null);
+    this.props.onChange(id, null);
   }
 }

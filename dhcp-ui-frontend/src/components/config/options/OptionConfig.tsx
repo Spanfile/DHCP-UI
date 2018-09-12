@@ -1,16 +1,12 @@
-import IConfigProps from "common/config/IConfigProps";
+import { ICollectionConfigProps } from "common/config/IConfigProps";
 import { IOption } from "common/config/IOptionsConfig";
 import { IModalState } from "common/IModal";
 import Button, { ButtonStyle } from "components/Button";
 import ConfirmModal from "components/ConfirmModal";
 import * as React from "react";
 
-export interface IOptionConfigProps extends IConfigProps<IOption> {
-  onDelete: () => void;
-}
-
-export default class OptionConfig extends React.Component<IOptionConfigProps, IModalState> {
-  constructor(props: IOptionConfigProps) {
+export default class OptionConfig extends React.Component<ICollectionConfigProps<IOption>, IModalState> {
+  constructor(props: ICollectionConfigProps<IOption>) {
     super(props);
 
     this.state = {

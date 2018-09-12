@@ -1,4 +1,8 @@
-export default interface IConfigProps<T> {
+export interface IConfigProps<T> {
   config: T;
-  onChange: (name: string, value: any) => void;
+  onChange: (name: keyof T, value: any) => void;
+}
+
+export interface ICollectionConfigProps<T> extends IConfigProps<T> {
+  onDelete: () => void;
 }

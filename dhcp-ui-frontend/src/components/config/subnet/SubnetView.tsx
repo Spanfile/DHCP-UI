@@ -1,5 +1,5 @@
-import IConfigProps from "common/config/IConfigProps";
-import { ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
+import { IConfigProps } from "common/config/IConfigProps";
+import { IDHCPSubnet, ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import SubnetConfig from "components/config/subnet/SubnetConfig";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
@@ -39,9 +39,9 @@ export default class SubnetView extends React.Component<ISubnetViewProps, {}> {
     );
   }
 
-  private onSubnetChange = (id: number, name: string, value: any) => {
+  private onSubnetChange = (id: number, name: keyof IDHCPSubnet, value: any) => {
     const subnet = this.props.config[id];
     subnet[name] = value;
-    this.props.onChange(id.toString(), subnet);
+    this.props.onChange(id, subnet);
   }
 }

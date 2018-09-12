@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import { ICollectionConfigProps } from "common/config/IConfigProps";
 import { IHost } from "common/config/IHostsConfig";
 import { IModalState } from "common/IModal";
 import { ButtonStyle } from "components/Button";
@@ -11,12 +11,8 @@ import AddressInput from "components/form/inputs/AddressInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-export interface IHostConfigProps extends IConfigProps<IHost> {
-  onDelete: () => void;
-}
-
-export default class HostConfig extends React.Component<IHostConfigProps, IModalState> {
-  constructor(props: IHostConfigProps) {
+export default class HostConfig extends React.Component<ICollectionConfigProps<IHost>, IModalState> {
+  constructor(props: ICollectionConfigProps<IHost>) {
     super(props);
 
     this.state = {
@@ -47,8 +43,7 @@ export default class HostConfig extends React.Component<IHostConfigProps, IModal
           </InputGroup>
           <OptionsConfig
             config={this.props.config.options}
-            onChange={this.onOptionChanged}
-          />
+            onChange={this.onOptionChanged} />
           <div className="mt-3">
             <FormButton style={ButtonStyle.Danger} onClick={this.onDelete}>
               Delete host
@@ -59,7 +54,7 @@ export default class HostConfig extends React.Component<IHostConfigProps, IModal
     );
   }
 
-  private onOptionChanged = (name: string, value: any) => {
+  private onOptionChanged = (name: number, value: any) => {
     const options = this.props.config.options;
     if (value == null) {
       delete options[name];

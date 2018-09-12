@@ -1,5 +1,5 @@
 import { IDDNSZone } from "common/config/ddns/IDDNSZone";
-import IConfigProps from "common/config/IConfigProps";
+import { ICollectionConfigProps } from "common/config/IConfigProps";
 import { IModalState } from "common/IModal";
 import { ButtonStyle } from "components/Button";
 import ConfirmModal from "components/ConfirmModal";
@@ -10,9 +10,8 @@ import SelectInput from "components/form/inputs/SelectInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-export interface IZoneConfigProps extends IConfigProps<IDDNSZone> {
+export interface IZoneConfigProps extends ICollectionConfigProps<IDDNSZone> {
   dnssecKeys: string[];
-  onDelete: () => void;
 }
 
 export default class ZoneConfig extends React.Component<IZoneConfigProps, IModalState> {
@@ -42,7 +41,7 @@ export default class ZoneConfig extends React.Component<IZoneConfigProps, IModal
             source={this.props.config}>
             <TextInput label="Domain" name="domain" />
             <TextInput label="Primary NS" name="primary" />
-            <SelectInput label="DNSSEC key" name="key" options={this.props.dnssecKeys} />
+            <SelectInput<string> label="DNSSEC key" name="key" options={this.props.dnssecKeys} />
           </InputGroup>
           <FormButton style={ButtonStyle.Danger} onClick={this.onDelete}>
             Delete zone

@@ -1,5 +1,5 @@
 import { DNSSECAlgorithm, IDNSSECKey } from "common/config/ddns/IDNSSECKey";
-import IConfigProps from "common/config/IConfigProps";
+import { ICollectionConfigProps } from "common/config/IConfigProps";
 import { IModalState } from "common/IModal";
 import { ButtonStyle } from "components/Button";
 import ConfirmModal from "components/ConfirmModal";
@@ -10,12 +10,8 @@ import SelectInput from "components/form/inputs/SelectInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-export interface IKeyConfigProps extends IConfigProps<IDNSSECKey> {
-  onDelete: () => void;
-}
-
-export default class KeyConfig extends React.Component<IKeyConfigProps, IModalState> {
-  constructor(props: IKeyConfigProps) {
+export default class KeyConfig extends React.Component<ICollectionConfigProps<IDNSSECKey>, IModalState> {
+  constructor(props: ICollectionConfigProps<IDNSSECKey>) {
     super(props);
 
     this.state = {

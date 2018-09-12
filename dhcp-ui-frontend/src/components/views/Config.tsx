@@ -152,7 +152,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             <Route path="/config/subnets" render={() =>
               <SubnetsConfig
                 config={this.state.subnets}
-                onChange={(name, value) => this.onConfigChange("subnets", name, value)}
+                onChange={(name, value) => this.onConfigChange("subnets", name.toString(), value)}
               />}
             />
           </Switch>
@@ -166,7 +166,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     );
   }
 
-  private onConfigChange = (config: string, property: string, value: any) => {
+  private onConfigChange = (config: keyof IDHCPConfig, property: string, value: any) => {
     const state = this.state;
     if (value == null) {
       delete state[config][property];
