@@ -13,8 +13,8 @@ signals = Namespace()
 app = Flask(__name__)
 app.config.from_envvar('DHCPUI_SETTINGS')
 CORS(app)
-# socketio = SocketIO(app, logger=True, engineio_logger=True)
-socketio = SocketIO(app)
+socketio_logs = app.config['SOCKETIO_DEBUG_LOGS']
+socketio = SocketIO(app, logger=socketio_logs, engineio_logger=socketio_logs)
 
 leases_changed: NamedSignal = signals.signal('leases_changed')
 watcher = Watcher(app.config['DHCP_LEASES'], leases_changed)
