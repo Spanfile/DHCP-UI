@@ -1,5 +1,6 @@
 import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
+import { handleConfigChange } from "common/config/IConfigProps";
 import IDHCPConfig from "common/config/IDHCPConfig";
 import { AddressRange, IPAddress, Subnet } from "common/ip/IP";
 import Button, { ButtonStyle } from "components/Button";
@@ -152,19 +153,28 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
             <Route path="/config/global" render={() =>
               <GlobalConfig
                 config={this.state.global}
-                onChange={(name, value) => this.onConfigChange("global", name, value)}
+                onChange={handleConfigChange("global", {
+                  config: this.state,
+                  onChange: this.onConfigChange
+                })}
               />}
             />
             <Route path="/config/ddns" render={() =>
               <DDNSConfig
                 config={this.state.ddns}
-                onChange={(name, value) => this.onConfigChange("ddns", name, value)}
+                onChange={handleConfigChange("ddns", {
+                  config: this.state,
+                  onChange: this.onConfigChange
+                })}
               />}
             />
             <Route path="/config/subnets" render={() =>
               <SubnetsConfig
                 config={this.state.subnets}
-                onChange={(name, value) => this.onConfigChange("subnets", name.toString(), value)}
+                onChange={handleConfigChange("subnets", {
+                  config: this.state,
+                  onChange: this.onConfigChange
+                })}
               />}
             />
           </Switch>
@@ -178,16 +188,11 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     );
   }
 
-  private onConfigChange = (config: keyof IDHCPConfig, property: string, value: any) => {
-    const state = this.state;
-    if (value == null) {
-      delete state[config][property];
-    } else {
-      state[config][property] = value;
-    }
-    console.log(config + " -> " + property + ":");
-    console.log(value);
-    this.setState(state);
+  private onConfigChange = (name: string, value: any) => {
+    this.setState({
+      ...this.state,
+      [name]: value
+    });
   }
 
   private onSave() {
