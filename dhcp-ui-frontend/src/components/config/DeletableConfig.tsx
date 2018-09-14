@@ -1,6 +1,6 @@
 import { ICollectionConfigProps } from "common/config/IConfigProps";
-import { IModalState } from "common/IModal";
-import ConfirmModal from "components/ConfirmModal";
+import IModalState from "common/IModalState";
+import ConfirmModal from "components/modal/ConfirmModal";
 import * as React from "react";
 
 export interface IDeletableConfigProps<T> extends ICollectionConfigProps<T> {
@@ -26,11 +26,12 @@ export function DeletableConfig<T>(
         <div>
           <ConfirmModal
             isOpen={this.state.isModalOpen}
-            body={"Are you sure you want to delete the " + name + "? This action cannot be undone!"}
             header="Confirm deletion"
             confirm="Yes, delete"
             onConfirm={this.props.onDelete}
-            onClose={this.closeModal} />
+            onClose={this.closeModal}>
+            <p>{"Are you sure you want to delete the " + name + "? This action cannot be undone!"}</p>
+          </ConfirmModal>
           <Inner {...this.props} openDeleteModal={this.openModal} />
         </div>
       );

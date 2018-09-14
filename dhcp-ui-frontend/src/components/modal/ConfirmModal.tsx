@@ -1,17 +1,24 @@
-import { IModalProps } from "common/IModal";
 import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 import * as Modal from "react-modal";
 
-export default class ConfirmModal extends React.Component<IModalProps> {
-  constructor(props: IModalProps) {
+export interface IConfirmModalProps {
+  isOpen: boolean;
+  header: string;
+  confirm: string;
+  onConfirm: () => void;
+  onClose: () => void;
+}
+
+export default class ConfirmModal extends React.Component<IConfirmModalProps> {
+  constructor(props: IConfirmModalProps) {
     super(props);
   }
 
   public render(): JSX.Element {
     return (
       <Modal
-        className="Modal__Bootstrap modal-dialog"
+        className="modal-dialog"
         closeTimeoutMS={150}
         isOpen={this.props.isOpen}
         onRequestClose={this.props.onClose}>
@@ -23,7 +30,7 @@ export default class ConfirmModal extends React.Component<IModalProps> {
             </button>
           </div>
           <div className="modal-body">
-            <p>{this.props.body}</p>
+            {this.props.children}
           </div>
           <div className="modal-footer">
             <Button style={ButtonStyle.Danger} onClick={this.props.onConfirm}>
