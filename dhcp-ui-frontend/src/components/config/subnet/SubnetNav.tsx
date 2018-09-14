@@ -8,7 +8,7 @@ export interface ISubnetNavProps {
   };
 }
 
-export default class SubnetNav extends React.Component<ISubnetNavProps, {}> {
+export default class SubnetNav extends React.Component<ISubnetNavProps> {
   constructor(props: ISubnetNavProps) {
     super(props);
   }

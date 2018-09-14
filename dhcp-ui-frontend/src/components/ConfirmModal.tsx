@@ -3,7 +3,7 @@ import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 import * as Modal from "react-modal";
 
-export default class ConfirmModal extends React.Component<IModalProps, {}> {
+export default class ConfirmModal extends React.Component<IModalProps> {
   constructor(props: IModalProps) {
     super(props);
   }

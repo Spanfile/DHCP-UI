@@ -8,7 +8,7 @@ export interface ISubnetViewProps extends IConfigProps<IDHCPSubnetsConfig> {
   onSubnetDelete: (id: number) => void;
 }
 
-export default class SubnetView extends React.Component<ISubnetViewProps, {}> {
+export default class SubnetView extends React.Component<ISubnetViewProps> {
   constructor(props: ISubnetViewProps) {
     super(props);
   }

@@ -4,7 +4,7 @@ import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
 
-export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys>, {}> {
+export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys>> {
   constructor(props: IConfigProps<IDNSSECKeys>) {
     super(props);
   }

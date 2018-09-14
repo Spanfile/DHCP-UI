@@ -12,7 +12,7 @@ export interface IConfigCollectionViewProps<T> {
   onDelete: (id: number) => void;
 }
 
-export default class ConfigCollectionView<T> extends React.Component<IConfigCollectionViewProps<T>, {}> {
+export default class ConfigCollectionView<T> extends React.Component<IConfigCollectionViewProps<T>> {
   constructor(props: IConfigCollectionViewProps<T>) {
     super(props);
   }

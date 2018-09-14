@@ -6,7 +6,7 @@ import * as React from "react";
 import SubnetNav from "./subnet/SubnetNav";
 import SubnetView from "./subnet/SubnetView";
 
-export default class SubnetsConfig extends React.Component<IConfigProps<IDHCPSubnetsConfig>, {}> {
+export default class SubnetsConfig extends React.Component<IConfigProps<IDHCPSubnetsConfig>> {
   constructor(props: IConfigProps<IDHCPSubnetsConfig>) {
     super(props);
   }

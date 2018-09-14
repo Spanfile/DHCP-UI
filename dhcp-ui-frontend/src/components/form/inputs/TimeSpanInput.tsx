@@ -8,7 +8,7 @@ export interface ITimeSpan {
   seconds: number;
 }
 
-export default class TimeSpanInput extends React.Component<IInputProps<number>, {}> {
+export default class TimeSpanInput extends React.Component<IInputProps<number>> {
   constructor(props: IInputProps<number>) {
     super(props);
   }

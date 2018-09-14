@@ -6,7 +6,7 @@ export interface ISelectInputProps<T extends string | number> extends IInputProp
   options: T[];
 }
 
-export default class SelectInput<T extends string | number> extends React.Component<ISelectInputProps<T>, {}> {
+export default class SelectInput<T extends string | number> extends React.Component<ISelectInputProps<T>> {
   constructor(props: ISelectInputProps<T>) {
     super(props);
   }

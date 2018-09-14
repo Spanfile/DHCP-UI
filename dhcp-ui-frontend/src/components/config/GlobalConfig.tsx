@@ -7,7 +7,7 @@ import ToggledInput from "components/form/inputs/ToggledInput";
 import * as React from "react";
 import OptionsConfig from "./options/OptionsConfig";
 
-export default class GlobalConfig extends React.Component<IConfigProps<IGlobalConfig>, {}> {
+export default class GlobalConfig extends React.Component<IConfigProps<IGlobalConfig>> {
   constructor(props: IConfigProps<IGlobalConfig>) {
     super(props);
   }

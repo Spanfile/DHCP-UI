@@ -5,7 +5,7 @@ export interface IFormInputRowProps {
   innerRow?: boolean;
 }
 
-export default class FormInputRow extends React.Component<IFormInputRowProps, {}> {
+export default class FormInputRow extends React.Component<IFormInputRowProps> {
   constructor(props: IFormInputRowProps) {
     super(props);
   }

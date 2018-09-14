@@ -1,7 +1,7 @@
 import Button, { IButtonProps } from "components/Button";
 import * as React from "react";
 
-export default class FormButton extends React.Component<IButtonProps, {}> {
+export default class FormButton extends React.Component<IButtonProps> {
   constructor(props: IButtonProps) {
     super(props);
   }

@@ -9,7 +9,7 @@ import TextInput from "components/form/inputs/TextInput";
 import ToggledInput from "components/form/inputs/ToggledInput";
 import * as React from "react";
 
-export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig>, {}> {
+export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig>> {
   constructor(props: IConfigProps<IDDNSConfig>) {
     super(props);
   }

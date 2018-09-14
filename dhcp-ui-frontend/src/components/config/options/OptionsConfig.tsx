@@ -4,7 +4,7 @@ import ConfigCollectionView from "components/config/ConfigCollectionView";
 import * as React from "react";
 import { OptionConfig } from "./OptionConfig";
 
-export default class OptionsConfig extends React.Component<IConfigProps<IOptionsConfig>, {}> {
+export default class OptionsConfig extends React.Component<IConfigProps<IOptionsConfig>> {
   constructor(props: IConfigProps<IOptionsConfig>) {
     super(props);
   }

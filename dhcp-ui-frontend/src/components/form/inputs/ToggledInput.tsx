@@ -1,7 +1,7 @@
 import IInputProps from "common/IInputProps";
 import * as React from "react";
 
-export default class ToggledInput extends React.Component<IInputProps<boolean>, {}> {
+export default class ToggledInput extends React.Component<IInputProps<boolean>> {
   constructor(props: IInputProps<boolean>) {
     super(props);
   }

@@ -5,7 +5,7 @@ export interface IEmptyTableRowProps {
   message: string;
 }
 
-export default class EmptyTableRow extends React.Component<IEmptyTableRowProps, {}> {
+export default class EmptyTableRow extends React.Component<IEmptyTableRowProps> {
   constructor(props: IEmptyTableRowProps) {
     super(props);
   }

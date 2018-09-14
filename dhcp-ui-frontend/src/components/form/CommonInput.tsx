@@ -6,7 +6,7 @@ export interface ICommonInputProps<T extends string | number | string[]> extends
   type: "text" | "number";
 }
 
-export default class CommonInput<T extends string | number | string[]> extends React.Component<ICommonInputProps<T>, {}> {
+export default class CommonInput<T extends string | number | string[]> extends React.Component<ICommonInputProps<T>> {
   constructor(props: ICommonInputProps<T>) {
     super(props);
   }

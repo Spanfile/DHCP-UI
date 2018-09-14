@@ -8,7 +8,7 @@ export interface IZonesConfigProps extends IConfigProps<IDDNSZones> {
   dnssecKeys: string[];
 }
 
-export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> {
+export default class ZonesConfig extends React.Component<IZonesConfigProps> {
   private zoneConfig: any;
 
   constructor(props: IZonesConfigProps) {

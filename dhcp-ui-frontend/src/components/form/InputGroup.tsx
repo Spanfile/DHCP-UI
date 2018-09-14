@@ -1,7 +1,7 @@
 import IConfigProps from "common/config/IConfigProps";
 import * as React from "react";
 
-export default class InputGroup<T> extends React.Component<IConfigProps<T>, {}> {
+export default class InputGroup<T> extends React.Component<IConfigProps<T>> {
   constructor(props: IConfigProps<T>) {
     super(props);
   }
