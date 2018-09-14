@@ -5,13 +5,12 @@ FROM alpine:latest
 RUN apk add \
     python3 \
     python3-dev \
-    bind-tools \
+    bind \
     dhcp \
     build-base \
     yaml-dev
 
 WORKDIR /dhcp-ui
-# COPY src/ src/
 
 COPY requirements.txt ./
 ENV PYTHONUNBUFFERED 1
@@ -27,6 +26,8 @@ ENV DHCPUI_SETTINGS ../DHCPUI_SETTINGS.dockerdev.cfg
 COPY sample/dhcpd.conf /etc/dhcpd.conf
 RUN touch /var/lib/dhcp/dhcpd.leases
 # COPY sample/dhcpd.leases /var/lib/dhcp/
+
+# COPY src/ src/
 
 EXPOSE 5000
 ENTRYPOINT ["/dhcp-ui/entrypoint.sh"]

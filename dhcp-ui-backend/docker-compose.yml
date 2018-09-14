@@ -6,7 +6,9 @@ services:
     ports:
     - "5000:5000"
     volumes:
-    - src:/dhcp-ui/src
+    - type: bind
+      source: ./src
+      target: /dhcp-ui/src
 
 volumes:
   src:

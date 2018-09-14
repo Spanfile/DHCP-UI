@@ -14,12 +14,15 @@ export default class CommonInput<T extends string | number | string[]> extends R
   public render(): JSX.Element {
     return (
       <FormInputRow {...this.props}>
-        <input
-          type={this.props.type}
-          className="form-control rounded-0"
-          name={this.props.name}
-          onChange={this.props.onChange}
-          value={this.props.value!} />
+        <div className="d-flex flex-row">
+          <input
+            type={this.props.type}
+            className="form-control rounded-0"
+            name={this.props.name}
+            onChange={this.props.onChange}
+            value={this.props.value!} />
+          {this.props.children}
+        </div>
       </FormInputRow>
     );
   }

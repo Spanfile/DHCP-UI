@@ -47,7 +47,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         keys: {
           1: {
             name: "dhcpupdate",
-            algorithm: DNSSECAlgorithm.HMAC_MD5,
+            algorithm: DNSSECAlgorithm.HMAC_SHA512,
             key: "secret"
           }
         },

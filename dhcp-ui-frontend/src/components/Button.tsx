@@ -15,6 +15,7 @@ export enum ButtonStyle {
 export interface IButtonProps {
   style: ButtonStyle;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export default class Button extends React.Component<IButtonProps> {
@@ -27,7 +28,8 @@ export default class Button extends React.Component<IButtonProps> {
       <button
         type="button"
         className={"rounded-0 btn btn-" + this.props.style}
-        onClick={this.props.onClick}>
+        onClick={this.props.onClick}
+        disabled={this.props.disabled}>
         {this.props.children}
       </button>
     );

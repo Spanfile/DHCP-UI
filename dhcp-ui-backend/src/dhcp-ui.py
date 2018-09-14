@@ -1,7 +1,8 @@
 import eventlet
 eventlet.monkey_patch(select=False)
 
-from flask import Flask, jsonify
+from subprocess import Popen, PIPE
+from flask import Flask, jsonify, request, abort
 from flask_cors import CORS
 from lease_parser import Parser
 from flask_socketio import SocketIO, send, emit
@@ -36,6 +37,41 @@ def hello_world():
 def leases():
     leases = [lease.get_serializable() for lease in parser.get_leases()]
     return jsonify(leases)
+
+
+@app.route('/generatednssec', methods=['GET', 'POST'])
+def generate_dnssec():
+    if request.method == 'GET':
+        available = False
+        reason = ''
+
+        p = Popen(['which', 'tsig-keygen'],
+                  stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        output, _ = p.communicate()
+        if p.returncode != 0:
+            reason = 'tsig-keygen executable not found'
+        else:
+            available = True
+
+        return jsonify({
+            'available': available,
+            'reason': reason
+        })
+    elif request.method == 'POST':
+        algorithm = request.get_json()['algorithm']
+
+        p = Popen(['tsig-keygen', '-a', algorithm, 'generated'],
+                  stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        output, err = p.communicate()
+        if p.returncode != 0:
+            abort(400)
+        else:
+            output = output.decode('utf-8')
+            args = output.split()
+            secret = args[args.index('secret') + 1].strip('";')
+            return jsonify({
+                'secret': secret
+            })
 
 
 @leases_changed.connect_via(watcher)
