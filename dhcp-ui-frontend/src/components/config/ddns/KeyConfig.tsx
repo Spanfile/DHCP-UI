@@ -38,7 +38,7 @@ export function KeyConfig(keygenAvailable: boolean) {
             isOpen={this.state.isModalOpen}
             filename={this.state.exportFilename}
             contents={this.state.exportContents}
-            onConfirm={this.saveExportedKey}
+            onConfirm={this.closeExportModal}
             onClose={this.closeExportModal} />
 
           <Card title={this.props.config.name}>
@@ -64,7 +64,7 @@ export function KeyConfig(keygenAvailable: boolean) {
                   <div className="mr-3">
                     <Button style={ButtonStyle.Danger} onClick={this.props.openDeleteModal}>
                       Delete key
-                </Button>
+                    </Button>
                   </div>
                   <Button style={ButtonStyle.Primary} onClick={this.openExportModal}>
                     Export key
@@ -103,10 +103,6 @@ export function KeyConfig(keygenAvailable: boolean) {
       this.setState({
         isModalOpen: false
       });
-    }
-
-    private saveExportedKey = () => {
-      console.log("saving key");
     }
   });
 }
