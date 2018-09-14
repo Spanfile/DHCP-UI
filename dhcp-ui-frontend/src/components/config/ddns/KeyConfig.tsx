@@ -9,59 +9,41 @@ import SelectInput from "components/form/inputs/SelectInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-interface IDeletableKeyConfigState {
+export interface IDeletableKeyConfigProps extends IDeletableConfigProps<IDNSSECKey> {
   keygenAvailable: boolean;
 }
 
-class DeletableKeyConfig extends React.Component<IDeletableConfigProps<IDNSSECKey>, IDeletableKeyConfigState> {
-  constructor(props: IDeletableConfigProps<IDNSSECKey>) {
-    super(props);
-
-    this.state = {
-      keygenAvailable: false
-    };
-  }
-
-  public componentDidMount() {
-    API.get("/generatednssec").then(response => {
-      this.setState({
-        keygenAvailable: response.data.available
+export function KeyConfig(keygenAvailable: boolean) {
+  return DeletableConfig<IDNSSECKey>("key", props => {
+    const generateKey = () => {
+      API.post("/generatednssec", {
+        algorithm: props.config.algorithm
+      }).then(response => {
+        const secret = response.data.secret;
+        props.onChange("key", secret);
       });
-    });
-  }
+    };
 
-  public render() {
-    return (<Card title={this.props.config.name}>
+    return (<Card title={props.config.name}>
       <InputGroup<IDNSSECKey>
-        onChange={this.props.onChange}
-        config={this.props.config}>
+        onChange={props.onChange}
+        config={props.config}>
         <TextInput label="Name" name="name" />
         <SelectInput<string> label="Algorithm" name="algorithm" options={DNSSECAlgorithm} />
         <TextInput label="Key" name="key">
           <div className="ml-3">
             <Button
               style={ButtonStyle.Info}
-              onClick={this.generateKey}
-              disabled={!this.state.keygenAvailable}>
+              onClick={generateKey}
+              disabled={!keygenAvailable}>
               Generate
             </Button>
           </div>
         </TextInput>
       </InputGroup>
-      <FormButton style={ButtonStyle.Danger} onClick={this.props.openDeleteModal}>
+      <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
         Delete key
     </FormButton>
     </Card>);
-  }
-
-  private generateKey = () => {
-    API.post("/generatednssec", {
-      algorithm: this.props.config.algorithm
-    }).then(response => {
-      const secret = response.data.secret;
-      this.props.onChange("key", secret);
-    });
-  }
+  });
 }
-
-export const KeyConfig = DeletableConfig<IDNSSECKey>("key", DeletableKeyConfig);

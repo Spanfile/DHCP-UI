@@ -12,7 +12,7 @@ import * as React from "react";
 
 export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
   return (
-    <div>
+    <>
       <Card title="Common">
         <InputGroup<ICommonDHCPSubnetConfig>
           config={props.config.common}
@@ -33,9 +33,11 @@ export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
           onChange={handleConfigChange("hosts", props)}
         />
       </Card>
-      <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
-        Delete subnet
-      </Button>
-    </div>
+      <div className="mb-3">
+        <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
+          Delete subnet
+        </Button>
+      </div>
+    </>
   );
 });

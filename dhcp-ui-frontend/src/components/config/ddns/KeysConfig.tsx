@@ -1,3 +1,4 @@
+import API from "API";
 import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
 import IConfigProps from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
@@ -5,8 +6,21 @@ import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
 
 export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys>> {
+  private keyConfig: any;
+
   constructor(props: IConfigProps<IDNSSECKeys>) {
     super(props);
+
+    this.keyConfig = KeyConfig(false);
+  }
+
+  public componentDidMount() {
+    API.get("/generatednssec").then(response => {
+      this.keyConfig = KeyConfig(response.data.available);
+      this.forceUpdate();
+    }).catch(reason => {
+      console.log(reason);
+    });
   }
 
   public render(): JSX.Element {
@@ -14,7 +28,7 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
       <ConfigCollectionView<IDNSSECKey>
         config={this.props.config}
         addButtonText="Add key"
-        component={KeyConfig}
+        component={this.keyConfig}
         onAdd={this.addKey}
         onChange={this.onKeyChange}
         onDelete={this.deleteKey} />
