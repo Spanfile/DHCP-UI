@@ -57,6 +57,9 @@
       "check-space"
     ],
     "encoding": true,
-    "no-unnecessary-callback-wrapper": true
+    "no-unnecessary-callback-wrapper": true,
+    "no-any": {
+      "severity": "warning"
+    }
   }
 }
