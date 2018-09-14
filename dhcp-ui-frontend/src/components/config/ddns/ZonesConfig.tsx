@@ -1,5 +1,5 @@
 import { IDDNSZone, IDDNSZones } from "common/config/ddns/IDDNSZone";
-import { IConfigProps } from "common/config/IConfigProps";
+import IConfigProps from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { ZoneConfig } from "components/config/ddns/ZoneConfig";
 import * as React from "react";
@@ -47,6 +47,6 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps, {}> 
   }
 
   private deleteZone = (id: number) => {
-    this.props.onChange(id, null);
+    this.props.onChange(id, undefined);
   }
 }

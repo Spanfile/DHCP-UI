@@ -22,7 +22,7 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettings, IDH
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="DHCP service">
-          <InputGroup onChange={this.inputChanged} source={this.props} >
+          <InputGroup onChange={this.inputChanged} config={this.props} >
             <TextInput
               label="DHCP service name"
               name="serviceName"

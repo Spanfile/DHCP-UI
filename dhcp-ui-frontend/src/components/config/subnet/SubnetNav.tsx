@@ -1,4 +1,4 @@
-import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
+import IDHCPSubnet from "common/config/subnet/IDHCPSubnet";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -19,7 +19,7 @@ export default class SubnetNav extends React.Component<ISubnetNavProps, {}> {
       subnetLinks.push(<NavLink
         key={id} to={"/config/subnets/" + id}
         activeClassName="bg-dark text-white"
-        className="nav-link">{subnet.subnet.toString()}
+        className="nav-link">{subnet.common.subnet.toString()}
       </NavLink>);
     });
 

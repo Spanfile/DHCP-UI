@@ -1,4 +1,5 @@
-import { IDHCPSubnet } from "common/config/subnet/IDHCPSubnet";
+import { handleConfigChange } from "common/config/IConfigProps";
+import IDHCPSubnet, { ICommonDHCPSubnetConfig } from "common/config/subnet/IDHCPSubnet";
 import Button, { ButtonStyle } from "components/Button";
 import { DeletableConfig } from "components/config/DeletableConfig";
 import HostsConfig from "components/config/hosts/HostsConfig";
@@ -10,22 +11,12 @@ import SubnetInput from "components/form/inputs/SubnetInput";
 import * as React from "react";
 
 export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
-  const onConfigChanged = (conf: keyof IDHCPSubnet, id: number, value: any) => {
-    const config = props.config[conf];
-    if (value == null) {
-      delete config[id];
-    } else {
-      config[id] = value;
-    }
-    props.onChange(conf, config);
-  };
-
   return (
     <div>
       <Card title="Common">
-        <InputGroup<IDHCPSubnet>
-          onChange={props.onChange}
-          source={props.config} >
+        <InputGroup<ICommonDHCPSubnetConfig>
+          config={props.config.common}
+          onChange={handleConfigChange("common", props)}>
           <SubnetInput label="Subnet" name="subnet" />
           <AddressRangeInput label="Range" name="range" />
         </InputGroup>
@@ -33,13 +24,13 @@ export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
       <Card title="Options">
         <OptionsConfig
           config={props.config.options}
-          onChange={(name, value) => onConfigChanged("options", name, value)}
+          onChange={handleConfigChange("options", props)}
         />
       </Card>
       <Card title="Hosts">
         <HostsConfig
           config={props.config.hosts}
-          onChange={(name, value) => onConfigChanged("hosts", name, value)}
+          onChange={handleConfigChange("hosts", props)}
         />
       </Card>
       <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>

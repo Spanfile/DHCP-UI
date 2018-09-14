@@ -1,12 +1,8 @@
+import IConfigProps from "common/config/IConfigProps";
 import * as React from "react";
 
-export interface IInputGroupProps<T> {
-  source: T;
-  onChange: (name: string, value: any) => void;
-}
-
-export default class InputGroup<T> extends React.Component<IInputGroupProps<T>, {}> {
-  constructor(props: IInputGroupProps<T>) {
+export default class InputGroup<T> extends React.Component<IConfigProps<T>, {}> {
+  constructor(props: IConfigProps<T>) {
     super(props);
   }
 
@@ -15,7 +11,7 @@ export default class InputGroup<T> extends React.Component<IInputGroupProps<T>, 
       this.props.children,
       (child: any) => React.cloneElement(child, {
         onChange: this.onInputChange,
-        value: this.props.source[child.props.name]
+        value: this.props.config[child.props.name]
       }));
 
     return (

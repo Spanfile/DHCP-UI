@@ -1,4 +1,5 @@
-import { IHost } from "common/config/IHostsConfig";
+import { handleConfigChange } from "common/config/IConfigProps";
+import IHostConfig, { ICommonHostConfig } from "common/config/IHostsConfig";
 import { ButtonStyle } from "components/Button";
 import { DeletableConfig } from "components/config/DeletableConfig";
 import OptionsConfig from "components/config/options/OptionsConfig";
@@ -9,22 +10,12 @@ import AddressInput from "components/form/inputs/AddressInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-export const HostConfig = DeletableConfig<IHost>("host", props => {
-  const onOptionChanged = (id: number, value: any) => {
-    const options = props.config.options;
-    if (value == null) {
-      delete options[id];
-    } else {
-      options[id] = value;
-    }
-    props.onChange("options", options);
-  };
-
+export const HostConfig = DeletableConfig<IHostConfig>("host", props => {
   return (
-    <Card title={props.config.hostname}>
-      <InputGroup<IHost>
-        onChange={props.onChange}
-        source={props.config}>
+    <Card title={props.config.common.hostname}>
+      <InputGroup<ICommonHostConfig>
+        config={props.config.common}
+        onChange={handleConfigChange("common", props)}>
         <TextInput label="Host name" name="hostname" />
         <TextInput label="Hardware" name="hardware" />
         <AddressInput label="Fixed address" name="fixedAddress" />
@@ -32,7 +23,7 @@ export const HostConfig = DeletableConfig<IHost>("host", props => {
       </InputGroup>
       <OptionsConfig
         config={props.config.options}
-        onChange={onOptionChanged} />
+        onChange={handleConfigChange("options", props)} />
       <div className="mt-3">
         <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
           Delete host

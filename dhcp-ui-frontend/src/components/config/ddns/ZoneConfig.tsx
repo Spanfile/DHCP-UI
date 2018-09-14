@@ -13,7 +13,7 @@ export function ZoneConfig(dnssecKeys: string[]) {
     <Card title={props.config.domain}>
       <InputGroup<IDDNSZone>
         onChange={props.onChange}
-        source={props.config}>
+        config={props.config}>
         <TextInput label="Domain" name="domain" />
         <TextInput label="Primary NS" name="primary" />
         <SelectInput<string> label="DNSSEC key" name="key" options={dnssecKeys} />

@@ -1,5 +1,5 @@
-import { IConfigProps } from "common/config/IConfigProps";
-import { IOption, IOptionsConfig } from "common/config/IOptionsConfig";
+import IConfigProps from "common/config/IConfigProps";
+import { IOptionConfig, IOptionsConfig } from "common/config/IOptionsConfig";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import * as React from "react";
 import { OptionConfig } from "./OptionConfig";
@@ -11,7 +11,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
 
   public render(): JSX.Element {
     return (
-      <ConfigCollectionView<IOption>
+      <ConfigCollectionView<IOptionConfig>
         config={this.props.config}
         addButtonText="Add option"
         component={OptionConfig}
@@ -21,7 +21,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
     );
   }
 
-  private onOptionChange = (id: number, name: keyof IOption, value: any) => {
+  private onOptionChange = (id: number, name: keyof IOptionConfig, value: any) => {
     const option = this.props.config[id];
     option[name] = value;
     this.props.onChange(id, option);
@@ -38,6 +38,6 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
   }
 
   private deleteOption = (id: number) => {
-    this.props.onChange(id, null);
+    this.props.onChange(id, undefined);
   }
 }

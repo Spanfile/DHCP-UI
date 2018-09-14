@@ -1,15 +1,14 @@
-import { ICollectionConfigProps } from "common/config/IConfigProps";
+import { IConfigCollection } from "common/config/ICommonConfig";
+import { ICollectionConfigProps, ValueOf } from "common/config/IConfigProps";
 import Button, { ButtonStyle } from "components/Button";
 import * as React from "react";
 
 export interface IConfigCollectionViewProps<T> {
-  config: {
-    [id: number]: T;
-  };
+  config: IConfigCollection<T>;
   component: React.ComponentClass<ICollectionConfigProps<T>> | React.StatelessComponent<ICollectionConfigProps<T>>;
   addButtonText: string;
   onAdd: () => void;
-  onChange: (id: number, name: keyof T, value: any) => void;
+  onChange: (id: number, name: keyof T, value?: ValueOf<T>) => void;
   onDelete: (id: number) => void;
 }
 
@@ -35,7 +34,7 @@ export default class ConfigCollectionView<T> extends React.Component<IConfigColl
         <div key={id} className={colClass}>
           <Component
             config={key}
-            onChange={(name: keyof T, value: any) => this.props.onChange(Number(id), name, value)}
+            onChange={(name, value) => this.props.onChange(Number(id), name, value)}
             onDelete={() => this.props.onDelete(Number(id))} />
         </div>
       );

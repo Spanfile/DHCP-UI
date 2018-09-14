@@ -1,5 +1,5 @@
-import IDDNSConfig, { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
-import { IConfigProps } from "common/config/IConfigProps";
+import IDDNSConfig, { DDNSUpdateStyle, ICommonDDNSConfig } from "common/config/ddns/IDDNSConfig";
+import IConfigProps, { handleConfigChange } from "common/config/IConfigProps";
 import KeysConfig from "components/config/ddns/KeysConfig";
 import ZonesConfig from "components/config/ddns/ZonesConfig";
 import Card from "components/form/Card";
@@ -18,7 +18,9 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
     return (
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="Common">
-          <InputGroup<IDDNSConfig> onChange={this.props.onChange} source={this.props.config}>
+          <InputGroup<ICommonDDNSConfig>
+            config={this.props.config.common}
+            onChange={handleConfigChange("common", this.props)}>
             <ToggledInput label="DDNS updates" name="updates" />
             <SelectInput<string> label="Update style" name="updateStyle" options={Object.values(DDNSUpdateStyle)} />
             <TextInput label="Domain name" name="domainName" />
@@ -31,25 +33,15 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
         <Card title="DNSSEC keys">
           <KeysConfig
             config={this.props.config.keys}
-            onChange={(name, value) => this.onConfigChange("keys", name, value)} />
+            onChange={handleConfigChange("keys", this.props)} />
         </Card>
         <Card title="DDNS zones">
           <ZonesConfig
             config={this.props.config.zones}
             dnssecKeys={Object.values(this.props.config.keys).map(key => key.name)}
-            onChange={(name, value) => this.onConfigChange("zones", name, value)} />
+            onChange={handleConfigChange("zones", this.props)} />
         </Card>
       </div>
     );
-  }
-
-  private onConfigChange = (config: keyof IDDNSConfig, name: number, value: any) => {
-    const conf = this.props.config[config];
-    if (value == null) {
-      delete conf[name];
-    } else {
-      conf[name] = value;
-    }
-    this.props.onChange(config, conf);
   }
 }

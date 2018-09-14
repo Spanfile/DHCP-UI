@@ -1,10 +1,10 @@
-import { IConfigProps } from "common/config/IConfigProps";
-import { IDHCPSubnet, ISubnetsConfig } from "common/config/subnet/IDHCPSubnet";
+import IConfigProps from "common/config/IConfigProps";
+import IDHCPSubnet, { IDHCPSubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import { SubnetConfig } from "components/config/subnet/SubnetConfig";
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router";
 
-export interface ISubnetViewProps extends IConfigProps<ISubnetsConfig> {
+export interface ISubnetViewProps extends IConfigProps<IDHCPSubnetsConfig> {
   onSubnetDelete: (id: number) => void;
 }
 

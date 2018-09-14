@@ -1,3 +1,5 @@
+import { IConfigCollection } from "common/config/ICommonConfig";
+
 export enum DNSSECAlgorithm {
   HMAC_MD5 = "HMAC-MD5",
   HMAC_SHA1 = "HMAC-SHA1",
@@ -7,9 +9,7 @@ export enum DNSSECAlgorithm {
   HMAC_SHA512 = "HMAC-SHA512"
 }
 
-export interface IDNSSECKeys {
-  [id: number]: IDNSSECKey;
-}
+export type IDNSSECKeys = IConfigCollection<IDNSSECKey>;
 
 export interface IDNSSECKey {
   name: string;

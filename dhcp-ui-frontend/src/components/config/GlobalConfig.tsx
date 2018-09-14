@@ -1,5 +1,5 @@
-import { IConfigProps } from "common/config/IConfigProps";
-import IGlobalConfig from "common/config/IGlobalConfig";
+import IConfigProps, { handleConfigChange } from "common/config/IConfigProps";
+import IGlobalConfig, { ICommonGlobalConfig } from "common/config/IGlobalConfig";
 import Card from "components/form/Card";
 import InputGroup from "components/form/InputGroup";
 import TimeSpanInput from "components/form/inputs/TimeSpanInput";
@@ -17,7 +17,9 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
       <div className="tab-pane fade show active settings-tab" role="tabpanel">
         <Card title="Common">
           <div className="pb-3">
-            <InputGroup<IGlobalConfig> onChange={this.props.onChange} source={this.props.config}>
+            <InputGroup<ICommonGlobalConfig>
+              config={this.props.config.common}
+              onChange={handleConfigChange("common", this.props)}>
               <ToggledInput label="Authoritative" name="authoritative" />
               <TimeSpanInput label="Default lease time" name="defaultLeaseTime" />
               <TimeSpanInput label="Max. lease time" name="maxLeaseTime" />
@@ -27,19 +29,9 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
         <Card title="Options">
           <OptionsConfig
             config={this.props.config.options}
-            onChange={(name, value) => this.onConfigChanged("options", name, value)} />
+            onChange={handleConfigChange("options", this.props)} />
         </Card>
       </div>
     );
-  }
-
-  private onConfigChanged = (config: keyof IGlobalConfig, name: number, value: any) => {
-    const conf = this.props.config[config];
-    if (value == null) {
-      delete conf[name];
-    } else {
-      conf[name] = value;
-    }
-    this.props.onChange(config, conf);
   }
 }

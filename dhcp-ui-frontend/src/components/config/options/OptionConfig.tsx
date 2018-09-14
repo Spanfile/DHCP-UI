@@ -1,9 +1,9 @@
-import { IOption } from "common/config/IOptionsConfig";
+import { IOptionConfig } from "common/config/IOptionsConfig";
 import Button, { ButtonStyle } from "components/Button";
 import { DeletableConfig } from "components/config/DeletableConfig";
 import * as React from "react";
 
-export const OptionConfig = DeletableConfig<IOption>("option", props =>
+export const OptionConfig = DeletableConfig<IOptionConfig>("option", props =>
   <div className="form-row pb-3 m-0">
     <div className="col-sm-5">
       <label className="col-form-label">

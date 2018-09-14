@@ -1,6 +1,6 @@
-export interface IDDNSZones {
-  [id: number]: IDDNSZone;
-}
+import { IConfigCollection } from "common/config/ICommonConfig";
+
+export type IDDNSZones = IConfigCollection<IDDNSZone>;
 
 export interface IDDNSZone {
   domain: string;

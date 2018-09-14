@@ -1,5 +1,5 @@
 import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
-import { IConfigProps } from "common/config/IConfigProps";
+import IConfigProps from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
@@ -39,6 +39,6 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
   }
 
   private deleteKey = (id: number) => {
-    this.props.onChange(id, null);
+    this.props.onChange(id, undefined);
   }
 }

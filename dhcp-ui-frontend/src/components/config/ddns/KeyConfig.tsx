@@ -12,7 +12,7 @@ export const KeyConfig = DeletableConfig<IDNSSECKey>("key", props =>
   <Card title={props.config.name}>
     <InputGroup<IDNSSECKey>
       onChange={props.onChange}
-      source={props.config}>
+      config={props.config}>
       <TextInput label="Name" name="name" />
       <SelectInput<string> label="Algorithm" name="algorithm" options={Object.values(DNSSECAlgorithm)} />
       <TextInput label="Key" name="key" />

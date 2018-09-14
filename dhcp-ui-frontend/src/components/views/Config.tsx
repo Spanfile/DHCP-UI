@@ -15,9 +15,11 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
 
     this.state = {
       global: {
-        authoritative: true,
-        defaultLeaseTime: 86400,
-        maxLeaseTime: 86400,
+        common: {
+          authoritative: true,
+          defaultLeaseTime: 86400,
+          maxLeaseTime: 86400
+        },
         options: {
           1: {
             name: "domain-name",
@@ -30,13 +32,15 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         }
       },
       ddns: {
-        updates: true,
-        updateStyle: DDNSUpdateStyle.Interim,
-        domainName: "domain.tld.",
-        reverseDomainName: "in-addr.arpa.",
-        ignoreClientUpdates: true,
-        updateStaticLeases: true,
-        useHostDeclNames: true,
+        common: {
+          updates: true,
+          updateStyle: DDNSUpdateStyle.Interim,
+          domainName: "domain.tld.",
+          reverseDomainName: "in-addr.arpa.",
+          ignoreClientUpdates: true,
+          updateStaticLeases: true,
+          useHostDeclNames: true
+        },
         keys: {
           1: {
             name: "dhcpupdate",
@@ -59,8 +63,10 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
       },
       subnets: {
         1: {
-          subnet: Subnet.parseCidr("10.0.10.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254"),
+          common: {
+            subnet: Subnet.parseCidr("10.0.10.0/24"),
+            range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254")
+          },
           options: {
             1: {
               name: "routers",
@@ -73,10 +79,12 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
           },
           hosts: {
             1: {
-              hostname: "asd",
-              hardware: "11:22:33:44:55:66",
-              fixedAddress: IPAddress.parseString("10.0.10.2"),
-              ddnsHostname: "asd",
+              common: {
+                hostname: "asd",
+                hardware: "11:22:33:44:55:66",
+                fixedAddress: IPAddress.parseString("10.0.10.2"),
+                ddnsHostname: "asd",
+              },
               options: {
                 1: {
                   name: "domain-name-servers",
@@ -87,8 +95,10 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
           }
         },
         2: {
-          subnet: Subnet.parseCidr("10.0.20.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254"),
+          common: {
+            subnet: Subnet.parseCidr("10.0.20.0/24"),
+            range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254")
+          },
           options: {
             1: {
               name: "routers",
@@ -102,8 +112,10 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
           hosts: {}
         },
         3: {
-          subnet: Subnet.parseCidr("10.0.30.0/24"),
-          range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254"),
+          common: {
+            subnet: Subnet.parseCidr("10.0.30.0/24"),
+            range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254")
+          },
           options: {
             1: {
               name: "routers",
@@ -173,6 +185,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     } else {
       state[config][property] = value;
     }
+    console.log(config + " -> " + property + ":");
+    console.log(value);
     this.setState(state);
   }
 

@@ -1,14 +1,16 @@
+import { ICommonConfig, IConfigCollection } from "common/config/ICommonConfig";
 import { IOptionsConfig } from "common/config/IOptionsConfig";
 import { IPAddress } from "common/ip/IP";
 
-export interface IHostsConfig {
-  [id: number]: IHost;
+export type IHostsConfig = IConfigCollection<IHostConfig>;
+
+export default interface IHostConfig extends ICommonConfig<ICommonHostConfig> {
+  options: IOptionsConfig;
 }
 
-export interface IHost {
+export interface ICommonHostConfig {
   hostname: string;
   hardware: string;
   fixedAddress: IPAddress;
   ddnsHostname: string;
-  options: IOptionsConfig;
 }
