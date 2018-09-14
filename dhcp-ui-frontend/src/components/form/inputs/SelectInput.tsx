@@ -1,9 +1,10 @@
+import { IConfigCollection } from "common/config/ICommonConfig";
 import IInputProps from "common/IInputProps";
 import FormInputRow from "components/form/FormInputRow";
 import * as React from "react";
 
 export interface ISelectInputProps<T extends string | number> extends IInputProps<T> {
-  options: T[];
+  options: IConfigCollection<T>;
 }
 
 export default class SelectInput<T extends string | number> extends React.Component<ISelectInputProps<T>> {
@@ -12,9 +13,12 @@ export default class SelectInput<T extends string | number> extends React.Compon
   }
 
   public render(): JSX.Element {
-    const options = this.props.options.map(option =>
-      <option key={option}>{option}</option>
-    );
+    const options: JSX.Element[] = [];
+    Object.entries(this.props.options).forEach(([key, value]) => {
+      options.push(
+        <option key={key}>{value}</option>
+      );
+    });
 
     return (
       <FormInputRow {...this.props}>

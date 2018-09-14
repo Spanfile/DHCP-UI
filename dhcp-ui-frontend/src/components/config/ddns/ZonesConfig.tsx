@@ -1,11 +1,12 @@
 import { IDDNSZone, IDDNSZones } from "common/config/ddns/IDDNSZone";
+import { IConfigCollection } from "common/config/ICommonConfig";
 import IConfigProps from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { ZoneConfig } from "components/config/ddns/ZoneConfig";
 import * as React from "react";
 
 export interface IZonesConfigProps extends IConfigProps<IDDNSZones> {
-  dnssecKeys: string[];
+  dnssecKeys: IConfigCollection<string>;
 }
 
 export default class ZonesConfig extends React.Component<IZonesConfigProps> {
