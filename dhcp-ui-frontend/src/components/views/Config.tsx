@@ -7,6 +7,8 @@ import Button, { ButtonStyle } from "components/Button";
 import DDNSConfig from "components/config/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
 import SubnetsConfig from "components/config/SubnetsConfig";
+import TabNav from "components/tab/TabNav";
+import TabPanel from "components/tab/TabPanel";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 
@@ -136,46 +138,46 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
   public render(): JSX.Element {
     return (
       <form onSubmit={this.onSave}>
-        <ul className="nav nav-tabs" role="tablist">
-          <li className="nav-item">
-            <NavLink to="/config/global" className="nav-link rounded-0" activeClassName="active">Global</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/config/ddns" className="nav-link rounded-0" activeClassName="active">DDNS</NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink to="/config/subnets" className="nav-link rounded-0" activeClassName="active">Subnets</NavLink>
-          </li>
-        </ul>
+        <TabNav>
+          <NavLink to="/config/global" className="nav-link rounded-0" activeClassName="active">Global</NavLink>
+          <NavLink to="/config/ddns" className="nav-link rounded-0" activeClassName="active">DDNS</NavLink>
+          <NavLink to="/config/subnets" className="nav-link rounded-0" activeClassName="active">Subnets</NavLink>
+        </TabNav>
         <div className="tab-content">
           <Switch>
             <Redirect exact={true} from="/config" to="/config/global" />
             <Route path="/config/global" render={() =>
-              <GlobalConfig
-                config={this.state.global}
-                onChange={handleConfigChange("global", {
-                  config: this.state,
-                  onChange: this.onConfigChange
-                })}
-              />}
+              <TabPanel>
+                <GlobalConfig
+                  config={this.state.global}
+                  onChange={handleConfigChange("global", {
+                    config: this.state,
+                    onChange: this.onConfigChange
+                  })}
+                />
+              </TabPanel>}
             />
             <Route path="/config/ddns" render={() =>
-              <DDNSConfig
-                config={this.state.ddns}
-                onChange={handleConfigChange("ddns", {
-                  config: this.state,
-                  onChange: this.onConfigChange
-                })}
-              />}
+              <TabPanel>
+                <DDNSConfig
+                  config={this.state.ddns}
+                  onChange={handleConfigChange("ddns", {
+                    config: this.state,
+                    onChange: this.onConfigChange
+                  })}
+                />
+              </TabPanel>}
             />
             <Route path="/config/subnets" render={() =>
-              <SubnetsConfig
-                config={this.state.subnets}
-                onChange={handleConfigChange("subnets", {
-                  config: this.state,
-                  onChange: this.onConfigChange
-                })}
-              />}
+              <TabPanel>
+                <SubnetsConfig
+                  config={this.state.subnets}
+                  onChange={handleConfigChange("subnets", {
+                    config: this.state,
+                    onChange: this.onConfigChange
+                  })}
+                />
+              </TabPanel>}
             />
           </Switch>
         </div>

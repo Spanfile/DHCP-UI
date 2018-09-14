@@ -13,23 +13,21 @@ export default class SubnetsConfig extends React.Component<IConfigProps<IDHCPSub
 
   public render(): JSX.Element {
     return (
-      <div className="tab-pane fade show active settings-tab" role="tabpanel">
-        <div className="row">
-          <div className="col-sm-2">
-            <div className="mb-3">
-              <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
-                Add subnet
+      <div className="row">
+        <div className="col-sm-2">
+          <div className="mb-3">
+            <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
+              Add subnet
               </Button>
-            </div>
-            <SubnetNav subnets={this.props.config} />
           </div>
-          <div className="col-sm-10">
-            <SubnetView
-              config={this.props.config}
-              onChange={this.props.onChange}
-              onSubnetDelete={this.deleteSubnet}
-            />
-          </div>
+          <SubnetNav subnets={this.props.config} />
+        </div>
+        <div className="col-sm-10">
+          <SubnetView
+            config={this.props.config}
+            onChange={this.props.onChange}
+            onSubnetDelete={this.deleteSubnet}
+          />
         </div>
       </div>
     );

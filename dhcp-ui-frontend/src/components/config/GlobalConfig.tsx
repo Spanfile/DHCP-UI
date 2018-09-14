@@ -14,24 +14,22 @@ export default class GlobalConfig extends React.Component<IConfigProps<IGlobalCo
 
   public render(): JSX.Element {
     return (
-      <div className="tab-pane fade show active settings-tab" role="tabpanel">
+      <>
         <Card title="Common">
-          <div className="pb-3">
-            <InputGroup<ICommonGlobalConfig>
-              config={this.props.config.common}
-              onChange={handleConfigChange("common", this.props)}>
-              <ToggledInput label="Authoritative" name="authoritative" />
-              <TimeSpanInput label="Default lease time" name="defaultLeaseTime" />
-              <TimeSpanInput label="Max. lease time" name="maxLeaseTime" />
-            </InputGroup>
-          </div>
+          <InputGroup<ICommonGlobalConfig>
+            config={this.props.config.common}
+            onChange={handleConfigChange("common", this.props)}>
+            <ToggledInput label="Authoritative" name="authoritative" />
+            <TimeSpanInput label="Default lease time" name="defaultLeaseTime" />
+            <TimeSpanInput label="Max. lease time" name="maxLeaseTime" />
+          </InputGroup>
         </Card>
         <Card title="Options">
           <OptionsConfig
             config={this.props.config.options}
             onChange={handleConfigChange("options", this.props)} />
         </Card>
-      </div>
+      </>
     );
   }
 }

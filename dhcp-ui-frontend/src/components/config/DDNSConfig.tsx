@@ -16,7 +16,7 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
 
   public render(): JSX.Element {
     return (
-      <div className="tab-pane fade show active settings-tab" role="tabpanel">
+      <>
         <Card title="Common">
           <InputGroup<ICommonDDNSConfig>
             config={this.props.config.common}
@@ -41,7 +41,7 @@ export default class DDNSConfig extends React.Component<IConfigProps<IDDNSConfig
             dnssecKeys={Object.values(this.props.config.keys).map(key => key.name)}
             onChange={handleConfigChange("zones", this.props)} />
         </Card>
-      </div>
+      </>
     );
   }
 }
