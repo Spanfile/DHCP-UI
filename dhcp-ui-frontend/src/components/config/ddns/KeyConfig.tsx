@@ -59,7 +59,7 @@ export function KeyConfig(keygenAvailable: boolean) {
               </TextInput>
             </InputGroup>
             <div className="form-group row">
-              <div className="col-sm-8 offset-sm-2 mb-3">
+              <div className="col-sm-8 offset-sm-2">
                 <div className="d-flex flex-row">
                   <div className="mr-3">
                     <Button style={ButtonStyle.Danger} onClick={this.props.openDeleteModal}>
