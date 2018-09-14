@@ -9,7 +9,8 @@ export default class InputGroup<T> extends React.Component<IConfigProps<T>> {
   public render(): JSX.Element {
     const transformedChildren = React.Children.map(
       this.props.children,
-      (child: any) => React.cloneElement(child, {
+
+      (child: React.ReactElement<any>) => React.cloneElement(child, {
         onChange: this.onInputChange,
         value: this.props.config[child.props.name]
       }));
@@ -24,9 +25,9 @@ export default class InputGroup<T> extends React.Component<IConfigProps<T>> {
   private readonly onInputChange = (event: any) => {
     const name = event.target.name;
 
-    let value = event.target.value;
+    let value: any = event.target.value;
     if (event.target.type === "checkbox") {
-      value = event.target.checked;
+      value = (event.target.checked!) as any;
     }
 
     this.props.onChange(name, value);

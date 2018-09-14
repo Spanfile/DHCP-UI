@@ -60,7 +60,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
   }
 
   private buildRows() {
-    const rowObjects: ITableRow[] = [];
+    const rowObjects: Array<ITableRow<string>> = [];
     const filter = this.state.filter;
 
     if (this.props.dataSource.length === 0) {
@@ -70,7 +70,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
     }
 
     for (const row of this.props.dataSource) {
-      const values: any[] = [];
+      const values: string[] = [];
       let filterMatches = !filter;
 
       for (const column of this.props.columns) {

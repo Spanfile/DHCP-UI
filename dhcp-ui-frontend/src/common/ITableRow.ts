@@ -1,4 +1,4 @@
-export default interface ITableRow {
+export default interface ITableRow<T> {
   key: string;
-  values: any[];
+  values: T[];
 }

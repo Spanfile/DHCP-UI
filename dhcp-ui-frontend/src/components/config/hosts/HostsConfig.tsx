@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import IConfigProps, { ValueOf } from "common/config/IConfigProps";
 import IHostConfig, { IHostsConfig } from "common/config/IHostsConfig";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { HostConfig } from "components/config/hosts/HostConfig";
@@ -21,7 +21,7 @@ export default class HostsConfig extends React.Component<IConfigProps<IHostsConf
     );
   }
 
-  private readonly onHostChange = (id: number, name: keyof IHostConfig, value: any) => {
+  private readonly onHostChange = (id: number, name: keyof IHostConfig, value: ValueOf<IHostConfig>) => {
     const host = this.props.config[id];
     host[name] = value;
     this.props.onChange(id, host);

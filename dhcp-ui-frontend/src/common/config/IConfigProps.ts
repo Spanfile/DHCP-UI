@@ -12,7 +12,7 @@ export interface ICollectionConfigProps<T> extends IConfigProps<T> {
 export type ConfigKey = string | number;
 
 export function handleConfigChange<T>(config: keyof T, props: IConfigProps<T>) {
-  return (name: ConfigKey, value: any) => {
+  return (name: ConfigKey, value: {} | null | undefined) => {
     const conf = props.config[config];
     if (value == null) {
       delete conf[name];

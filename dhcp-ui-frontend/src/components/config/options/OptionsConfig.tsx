@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import IConfigProps, { ValueOf } from "common/config/IConfigProps";
 import { IOptionConfig, IOptionsConfig } from "common/config/IOptionsConfig";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import * as React from "react";
@@ -21,7 +21,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
     );
   }
 
-  private readonly onOptionChange = (id: number, name: keyof IOptionConfig, value: any) => {
+  private readonly onOptionChange = (id: number, name: keyof IOptionConfig, value: ValueOf<IOptionConfig>) => {
     const option = this.props.config[id];
     option[name] = value;
     this.props.onChange(id, option);

@@ -8,13 +8,14 @@ export interface IAddressRangeInputState {
   to: string;
 }
 
-export default class AddressRangeInput extends React.Component<IInputProps<AddressRange>, IAddressRangeInputState> {
-  constructor(props: IInputProps<AddressRange>) {
+export default class AddressRangeInput extends React.Component<IInputProps<string>, IAddressRangeInputState> {
+  constructor(props: IInputProps<string>) {
     super(props);
 
+    const range = AddressRange.fromRangeString(props.value!);
     this.state = {
-      from: this.props.value!.from.toString(),
-      to: this.props.value!.to.toString()
+      from: range.from.toString(),
+      to: range.to.toString()
     };
   }
 
@@ -26,7 +27,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
             type="text"
             className="form-control rounded-0 float-left text-right"
             style={{ maxWidth: "12em" }}
-            onChange={this.onFromChange}
+            onChange={this.onRangeChange("from")}
             value={this.state.from} />
         </div>
         <div className="col-auto">
@@ -40,56 +41,35 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
             type="text"
             className="form-control rounded-0 float-left"
             style={{ maxWidth: "12em" }}
-            onChange={this.onToChange}
+            onChange={this.onRangeChange("to")}
             value={this.state.to} />
         </div>
       </FormInputRow>
     );
   }
 
-  private readonly onFromChange = (event: any) => {
-    const value = event.target.value;
-    this.setState({
-      from: value
-    });
+  private readonly onRangeChange = (property: keyof IAddressRangeInputState) =>
+    (event: any) => {
+      const value = event.target.value;
 
-    try {
-      const from = IPAddress.parseString(value);
+      const state = {};
+      state[property] = value;
 
-      if (this.props.onChange) {
-        this.props.onChange({
-          target: {
-            name: this.props.name,
-            value: AddressRange.fromAddressPair(from, this.props.value!.to)
-          }
-        });
-      }
+      this.setState(state, () => {
+        try {
+          const from = IPAddress.parseString(this.state.from);
+          const to = IPAddress.parseString(this.state.to);
+
+          this.props.onChange!({
+            target: {
+              name: this.props.name,
+              value: AddressRange.fromAddressPair(from, to).toString()
+            }
+          });
+        }
+        catch (e) {
+          return;
+        }
+      });
     }
-    catch (e) {
-      return;
-    }
-  }
-
-  private readonly onToChange = (event: any) => {
-    const value = event.target.value;
-    this.setState({
-      to: value
-    });
-
-    try {
-      const to = IPAddress.parseString(value);
-
-      if (this.props.onChange) {
-        this.props.onChange({
-          target: {
-            name: this.props.name,
-            value: AddressRange.fromAddressPair(this.props.value!.from, to)
-          }
-        });
-      }
-    }
-    catch (e) {
-      return;
-    }
-  }
 }

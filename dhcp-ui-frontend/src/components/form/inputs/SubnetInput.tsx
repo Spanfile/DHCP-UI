@@ -8,13 +8,14 @@ export interface ISubnetInputState {
   cidr: number;
 }
 
-export default class SubnetInput extends React.Component<IInputProps<Subnet>, ISubnetInputState> {
-  constructor(props: IInputProps<Subnet>) {
+export default class SubnetInput extends React.Component<IInputProps<string>, ISubnetInputState> {
+  constructor(props: IInputProps<string>) {
     super(props);
 
+    const subnet = Subnet.parseCidr(this.props.value!);
     this.state = {
-      identifier: this.props.value!.identifier.toString(),
-      cidr: this.props.value!.cidr
+      identifier: subnet.identifier.toString(),
+      cidr: subnet.cidr
     };
   }
 
@@ -25,7 +26,7 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
           <input
             type="text"
             className="form-control rounded-0 float-left text-right"
-            onChange={this.onIdentifierChange}
+            onChange={this.onSubnetChange("identifier")}
             value={this.state.identifier.toString()} />
         </div>
         <div className="col-auto">
@@ -40,7 +41,7 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
             className="form-control rounded-0"
             min="1"
             max="31"
-            onChange={this.onCidrChange}
+            onChange={this.onSubnetChange("cidr")}
             value={this.state.cidr}
           />
         </div>
@@ -48,42 +49,25 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
     );
   }
 
-  private readonly onIdentifierChange = (event: any) => {
-    const value = event.target.value;
-    this.setState({
-      identifier: value
-    });
+  private readonly onSubnetChange = (property: keyof ISubnetInputState) =>
+    (event: any) => {
+      const value = event.target.value;
+      const state = {};
+      state[property] = value;
+      this.setState(state, () => {
+        try {
+          const identifier = IPAddress.parseString(this.state.identifier);
 
-    try {
-      const identifier = IPAddress.parseString(value);
-
-      if (this.props.onChange) {
-        this.props.onChange({
-          target: {
-            name: this.props.name,
-            value: Subnet.fromIdentifierAndCidr(identifier, this.state.cidr)
-          }
-        });
-      }
-    }
-    catch (e) {
-      return;
-    }
-  }
-
-  private readonly onCidrChange = (event: any) => {
-    const value = event.target.value;
-    this.setState({
-      cidr: value
-    });
-
-    if (this.props.onChange) {
-      this.props.onChange({
-        target: {
-          name: this.props.name,
-          value: Subnet.fromIdentifierAndCidr(IPAddress.parseString(this.state.identifier), value)
+          this.props.onChange!({
+            target: {
+              name: this.props.name,
+              value: Subnet.fromIdentifierAndCidr(identifier, this.state.cidr).toString()
+            }
+          });
+        }
+        catch (e) {
+          return;
         }
       });
     }
-  }
 }

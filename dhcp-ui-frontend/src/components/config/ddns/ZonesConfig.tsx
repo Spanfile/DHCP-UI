@@ -1,6 +1,6 @@
 import { IDDNSZone, IDDNSZones } from "common/config/ddns/IDDNSZone";
 import { IConfigCollection } from "common/config/ICommonConfig";
-import IConfigProps from "common/config/IConfigProps";
+import IConfigProps, { ValueOf } from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { ZoneConfig } from "components/config/ddns/ZoneConfig";
 import * as React from "react";
@@ -30,7 +30,7 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps> {
     );
   }
 
-  private readonly onZoneChange = (id: number, name: keyof IDDNSZone, value: any) => {
+  private readonly onZoneChange = (id: number, name: keyof IDDNSZone, value: ValueOf<IDDNSZone>) => {
     const key = this.props.config[id];
     key[name] = value;
     this.props.onChange(id, key);

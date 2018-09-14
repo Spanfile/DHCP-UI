@@ -1,9 +1,9 @@
 export class IPAddress {
   public static parseString(addressString: string) {
-    const octets = addressString.split(".").map(octet => Number(octet));
+    const octets = addressString.split(".").map(Number);
 
     if (octets.length !== 4 || octets.some(octet => octet < 0 || octet > 255)) {
-      throw TypeError("not a valid IPv4 address");
+      throw TypeError(addressString + " is not a valid IPv4 address");
     }
 
     return new IPAddress(octets);
@@ -65,11 +65,20 @@ export class AddressRange {
     return new AddressRange(IPAddress.parseString(from), IPAddress.parseString(to));
   }
 
+  public static fromRangeString(rangeString: string) {
+    const rangeArgs = rangeString.split("-");
+    return new AddressRange(IPAddress.parseString(rangeArgs[0]), IPAddress.parseString(rangeArgs[1]));
+  }
+
   public from: IPAddress;
   public to: IPAddress;
 
   private constructor(from: IPAddress, to: IPAddress) {
     this.from = from;
     this.to = to;
+  }
+
+  public toString(): string {
+    return this.from.toString() + "-" + this.to.toString();
   }
 }

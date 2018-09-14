@@ -7,12 +7,13 @@ export interface IAddressInputInputState {
   address: string;
 }
 
-export default class AddressInput extends React.Component<IInputProps<IPAddress>, IAddressInputInputState> {
-  constructor(props: IInputProps<IPAddress>) {
+export default class AddressInput extends React.Component<IInputProps<string>, IAddressInputInputState> {
+  constructor(props: IInputProps<string>) {
     super(props);
 
+    const address = IPAddress.parseString(this.props.value!);
     this.state = {
-      address: this.props.value!.toString(),
+      address: address.toString(),
     };
   }
 
@@ -23,13 +24,12 @@ export default class AddressInput extends React.Component<IInputProps<IPAddress>
         label={this.props.label}
         name={this.props.name}
         value={this.state.address}
-        onChange={this.onAddressChange}
-      />
+        onChange={this.onAddressChange} />
     );
   }
 
   private readonly onAddressChange = (event: any) => {
-    const value: string = event.target.value;
+    const value = event.target.value;
     this.setState({
       address: value
     });
@@ -41,7 +41,7 @@ export default class AddressInput extends React.Component<IInputProps<IPAddress>
         this.props.onChange({
           target: {
             name: this.props.name,
-            value: address
+            value: address.toString(),
           }
         });
       }

@@ -1,6 +1,6 @@
 import API from "API";
 import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
-import IConfigProps from "common/config/IConfigProps";
+import IConfigProps, { ValueOf } from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
@@ -35,7 +35,7 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
     );
   }
 
-  private readonly onKeyChange = (id: number, name: keyof IDNSSECKey, value: any) => {
+  private readonly onKeyChange = (id: number, name: keyof IDNSSECKey, value: ValueOf<IDNSSECKey>) => {
     const key = this.props.config[id];
     key[name] = value;
     this.props.onChange(id, key);

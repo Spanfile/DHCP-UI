@@ -1,4 +1,4 @@
-import IConfigProps from "common/config/IConfigProps";
+import IConfigProps, { ValueOf } from "common/config/IConfigProps";
 import IDHCPSubnet, { IDHCPSubnetsConfig } from "common/config/subnet/IDHCPSubnet";
 import { SubnetConfig } from "components/config/subnet/SubnetConfig";
 import * as React from "react";
@@ -14,11 +14,11 @@ export default class SubnetView extends React.Component<ISubnetViewProps> {
   }
 
   public render(): JSX.Element {
-    let firstSubnetId: any = null;
+    let firstSubnetId: number | null = null;
     const subnetRoutes: JSX.Element[] = [];
     Object.entries(this.props.config).forEach(([id, subnet]) => {
       if (!firstSubnetId) {
-        firstSubnetId = id;
+        firstSubnetId = Number(id);
       }
 
       subnetRoutes.push(<Route key={id} path={"/config/subnets/" + id} render={
@@ -39,9 +39,9 @@ export default class SubnetView extends React.Component<ISubnetViewProps> {
     );
   }
 
-  private readonly onSubnetChange = (id: number, name: keyof IDHCPSubnet, value: any) => {
+  private readonly onSubnetChange = (id: number, name: keyof IDHCPSubnet, value?: ValueOf<IDHCPSubnet>) => {
     const subnet = this.props.config[id];
-    subnet[name] = value;
+    subnet[name] = value!;
     this.props.onChange(id, subnet);
   }
 }
