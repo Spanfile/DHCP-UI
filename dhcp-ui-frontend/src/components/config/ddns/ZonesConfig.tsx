@@ -10,7 +10,7 @@ export interface IZonesConfigProps extends IConfigProps<IDDNSZones> {
 }
 
 export default class ZonesConfig extends React.Component<IZonesConfigProps> {
-  private zoneConfig: any;
+  private readonly zoneConfig: any;
 
   constructor(props: IZonesConfigProps) {
     super(props);
@@ -30,13 +30,13 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps> {
     );
   }
 
-  private onZoneChange = (id: number, name: keyof IDDNSZone, value: any) => {
+  private readonly onZoneChange = (id: number, name: keyof IDDNSZone, value: any) => {
     const key = this.props.config[id];
     key[name] = value;
     this.props.onChange(id, key);
   }
 
-  private addZone = () => {
+  private readonly addZone = () => {
     const ids = Object.keys(this.props.config);
     const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
     const newZone = {
@@ -47,7 +47,7 @@ export default class ZonesConfig extends React.Component<IZonesConfigProps> {
     this.props.onChange(newId, newZone);
   }
 
-  private deleteZone = (id: number) => {
+  private readonly deleteZone = (id: number) => {
     this.props.onChange(id, undefined);
   }
 }

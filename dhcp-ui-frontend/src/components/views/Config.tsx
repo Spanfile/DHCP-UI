@@ -2,7 +2,6 @@ import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
 import { handleConfigChange } from "common/config/IConfigProps";
 import IDHCPConfig from "common/config/IDHCPConfig";
-import { AddressRange, IPAddress, Subnet } from "common/ip/IP";
 import Button, { ButtonStyle } from "components/Button";
 import DDNSConfig from "components/config/DDNSConfig";
 import GlobalConfig from "components/config/GlobalConfig";
@@ -67,8 +66,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
       subnets: {
         1: {
           common: {
-            subnet: Subnet.parseCidr("10.0.10.0/24"),
-            range: AddressRange.fromAddressStringPair("10.0.10.1", "10.0.10.254")
+            subnet: "10.0.10.0/24",
+            range: "10.0.10.1-10.0.10.254"
           },
           options: {
             1: {
@@ -85,7 +84,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
               common: {
                 hostname: "asd",
                 hardware: "11:22:33:44:55:66",
-                fixedAddress: IPAddress.parseString("10.0.10.2"),
+                fixedAddress: "10.0.10.2",
                 ddnsHostname: "asd",
               },
               options: {
@@ -99,8 +98,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         },
         2: {
           common: {
-            subnet: Subnet.parseCidr("10.0.20.0/24"),
-            range: AddressRange.fromAddressStringPair("10.0.20.1", "10.0.20.254")
+            subnet: "10.0.20.0/24",
+            range: "10.0.20.1-10.0.20.254"
           },
           options: {
             1: {
@@ -116,8 +115,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         },
         3: {
           common: {
-            subnet: Subnet.parseCidr("10.0.30.0/24"),
-            range: AddressRange.fromAddressStringPair("10.0.30.1", "10.0.30.254")
+            subnet: "10.0.30.0/24",
+            range: "10.0.30.1-10.0.30.254"
           },
           options: {
             1: {
@@ -190,7 +189,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     );
   }
 
-  private onConfigChange = (name: string, value: any) => {
+  private readonly onConfigChange = (name: string, value: any) => {
     this.setState({
       ...this.state,
       [name]: value

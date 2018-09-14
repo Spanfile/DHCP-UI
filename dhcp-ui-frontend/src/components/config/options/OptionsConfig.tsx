@@ -21,13 +21,13 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
     );
   }
 
-  private onOptionChange = (id: number, name: keyof IOptionConfig, value: any) => {
+  private readonly onOptionChange = (id: number, name: keyof IOptionConfig, value: any) => {
     const option = this.props.config[id];
     option[name] = value;
     this.props.onChange(id, option);
   }
 
-  private addOption = () => {
+  private readonly addOption = () => {
     const ids = Object.keys(this.props.config);
     const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
     const newOption = {
@@ -37,7 +37,7 @@ export default class OptionsConfig extends React.Component<IConfigProps<IOptions
     this.props.onChange(newId, newOption);
   }
 
-  private deleteOption = (id: number) => {
+  private readonly deleteOption = (id: number) => {
     this.props.onChange(id, undefined);
   }
 }

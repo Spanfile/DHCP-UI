@@ -47,7 +47,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
     );
   }
 
-  private onFromChange = (event: any) => {
+  private readonly onFromChange = (event: any) => {
     const value = event.target.value;
     this.setState({
       from: value
@@ -70,7 +70,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<Addre
     }
   }
 
-  private onToChange = (event: any) => {
+  private readonly onToChange = (event: any) => {
     const value = event.target.value;
     this.setState({
       to: value

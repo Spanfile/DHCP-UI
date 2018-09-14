@@ -37,7 +37,7 @@ export default class Card extends React.Component<ICardProps, ICardState> {
     );
   }
 
-  private toggleOpen = () => {
+  private readonly toggleOpen = () => {
     this.setState({
       open: !this.state.open
     });

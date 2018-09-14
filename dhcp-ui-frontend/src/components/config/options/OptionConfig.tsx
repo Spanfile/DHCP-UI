@@ -12,7 +12,7 @@ export const OptionConfig = DeletableConfig<IOptionConfig>("option", props =>
       <input
         type="text"
         className="form-control rounded-0"
-        onChange={(event) => props.onChange("name", event.target.value)}
+        onChange={event => props.onChange("name", event.target.value)}
         value={props.config.name} />
     </div>
     <div className="col-sm-5">
@@ -22,7 +22,7 @@ export const OptionConfig = DeletableConfig<IOptionConfig>("option", props =>
       <input
         type="text"
         className="form-control rounded-0"
-        onChange={(event) => props.onChange("expression", event.target.value)}
+        onChange={event => props.onChange("expression", event.target.value)}
         value={props.config.expression} />
     </div>
     <div className="col-sm-2" style={{ paddingTop: "38px" }}>

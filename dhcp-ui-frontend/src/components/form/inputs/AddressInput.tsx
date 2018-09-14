@@ -28,7 +28,7 @@ export default class AddressInput extends React.Component<IInputProps<IPAddress>
     );
   }
 
-  private onAddressChange = (event: any) => {
+  private readonly onAddressChange = (event: any) => {
     const value: string = event.target.value;
     this.setState({
       address: value

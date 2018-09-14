@@ -10,8 +10,8 @@ export interface ILeasesState {
 }
 
 export default class Leases extends React.Component<{}, ILeasesState> {
-  private static NO_LEASES = "No leases";
-  private static NETWORK_ERROR = "Network error";
+  private static readonly NO_LEASES = "No leases";
+  private static readonly NETWORK_ERROR = "Network error";
 
   private socket: SocketIOClient.Socket;
 
@@ -92,13 +92,12 @@ export default class Leases extends React.Component<{}, ILeasesState> {
   }
 
   private buildLeasesFromResponse(responseData: any[]): ITransmittedLease[] {
-    return responseData.map(data => {
-      return {
+    return responseData.map(data =>
+      ({
         address: data.address,
         hardware: data.hardware,
         ends: data.ends,
         hostname: data["client-hostname"]
-      };
-    });
+      }));
   }
 }

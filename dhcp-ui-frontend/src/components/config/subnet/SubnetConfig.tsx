@@ -10,8 +10,8 @@ import AddressRangeInput from "components/form/inputs/AddressRangeInput";
 import SubnetInput from "components/form/inputs/SubnetInput";
 import * as React from "react";
 
-export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
-  return (
+export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props =>
+  (
     <>
       <Card title="Common">
         <InputGroup<ICommonDHCPSubnetConfig>
@@ -39,5 +39,4 @@ export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props => {
         </Button>
       </div>
     </>
-  );
-});
+  ));

@@ -120,7 +120,7 @@ export default class Table<T extends IData> extends React.Component<ITableProps<
     return rowObjects.map(row => <TableRow key={row.key} values={row.values} />);
   }
 
-  private inputChanged = (event: any) => {
+  private readonly inputChanged = (event: any) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;

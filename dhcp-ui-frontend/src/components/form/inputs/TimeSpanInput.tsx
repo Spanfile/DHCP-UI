@@ -26,7 +26,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
             type="number"
             min="0"
             className="form-control rounded-0"
-            onChange={(event) => this.onInputChange("hours", event.target.value)}
+            onChange={event => this.onInputChange("hours", event.target.value)}
             value={hours} />
         </div>
         <div className="col-sm-4">
@@ -38,7 +38,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
             min="0"
             max="59"
             className="form-control rounded-0"
-            onChange={(event) => this.onInputChange("minutes", event.target.value)}
+            onChange={event => this.onInputChange("minutes", event.target.value)}
             value={minutes} />
         </div>
         <div className="col-sm-4">
@@ -50,7 +50,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
             min="0"
             max="59"
             className="form-control rounded-0"
-            onChange={(event) => this.onInputChange("seconds", event.target.value)}
+            onChange={event => this.onInputChange("seconds", event.target.value)}
             value={seconds} />
         </div>
       </FormInputRow>

@@ -35,13 +35,13 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
     );
   }
 
-  private onKeyChange = (id: number, name: keyof IDNSSECKey, value: any) => {
+  private readonly onKeyChange = (id: number, name: keyof IDNSSECKey, value: any) => {
     const key = this.props.config[id];
     key[name] = value;
     this.props.onChange(id, key);
   }
 
-  private addKey = () => {
+  private readonly addKey = () => {
     const ids = Object.keys(this.props.config);
     const newId = ids.length > 0 ? Number(ids[ids.length - 1]) + 1 : 1;
     const newKey = {
@@ -52,7 +52,7 @@ export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys
     this.props.onChange(newId, newKey);
   }
 
-  private deleteKey = (id: number) => {
+  private readonly deleteKey = (id: number) => {
     this.props.onChange(id, undefined);
   }
 }

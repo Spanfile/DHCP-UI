@@ -21,7 +21,7 @@ export default class InputGroup<T> extends React.Component<IConfigProps<T>> {
     );
   }
 
-  private onInputChange = (event: any) => {
+  private readonly onInputChange = (event: any) => {
     const name = event.target.name;
 
     let value = event.target.value;

@@ -9,10 +9,10 @@ export class IPAddress {
     return new IPAddress(octets);
   }
 
-  private octet1: number;
-  private octet2: number;
-  private octet3: number;
-  private octet4: number;
+  private readonly octet1: number;
+  private readonly octet2: number;
+  private readonly octet3: number;
+  private readonly octet4: number;
 
   private constructor(octets: number[]) {
     this.octet1 = octets[0];

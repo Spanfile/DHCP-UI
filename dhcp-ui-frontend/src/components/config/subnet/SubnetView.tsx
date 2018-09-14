@@ -39,7 +39,7 @@ export default class SubnetView extends React.Component<ISubnetViewProps> {
     );
   }
 
-  private onSubnetChange = (id: number, name: keyof IDHCPSubnet, value: any) => {
+  private readonly onSubnetChange = (id: number, name: keyof IDHCPSubnet, value: any) => {
     const subnet = this.props.config[id];
     subnet[name] = value;
     this.props.onChange(id, subnet);

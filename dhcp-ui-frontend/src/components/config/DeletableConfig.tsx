@@ -37,13 +37,13 @@ export function DeletableConfig<T>(
       );
     }
 
-    private openModal = () => {
+    private readonly openModal = () => {
       this.setState({
         isModalOpen: true
       });
     }
 
-    private closeModal = () => {
+    private readonly closeModal = () => {
       this.setState({
         isModalOpen: false
       });

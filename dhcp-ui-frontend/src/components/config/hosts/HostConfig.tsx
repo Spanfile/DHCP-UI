@@ -10,8 +10,8 @@ import AddressInput from "components/form/inputs/AddressInput";
 import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
-export const HostConfig = DeletableConfig<IHostConfig>("host", props => {
-  return (
+export const HostConfig = DeletableConfig<IHostConfig>("host", props =>
+  (
     <Card title={props.config.common.hostname}>
       <InputGroup<ICommonHostConfig>
         config={props.config.common}
@@ -30,5 +30,4 @@ export const HostConfig = DeletableConfig<IHostConfig>("host", props => {
       </FormButton>
       </div>
     </Card>
-  );
-});
+  ));

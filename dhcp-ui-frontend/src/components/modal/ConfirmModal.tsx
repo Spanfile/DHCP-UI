@@ -25,7 +25,11 @@ export default class ConfirmModal extends React.Component<IConfirmModalProps> {
         <div className="modal-content rounded-0">
           <div className="modal-header">
             <h5 className="modal-title">{this.props.header}</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.onClose}>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              onClick={this.props.onClose} >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

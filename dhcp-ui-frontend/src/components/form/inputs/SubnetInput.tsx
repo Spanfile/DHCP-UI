@@ -48,7 +48,7 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
     );
   }
 
-  private onIdentifierChange = (event: any) => {
+  private readonly onIdentifierChange = (event: any) => {
     const value = event.target.value;
     this.setState({
       identifier: value
@@ -71,7 +71,7 @@ export default class SubnetInput extends React.Component<IInputProps<Subnet>, IS
     }
   }
 
-  private onCidrChange = (event: any) => {
+  private readonly onCidrChange = (event: any) => {
     const value = event.target.value;
     this.setState({
       cidr: value

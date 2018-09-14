@@ -55,7 +55,7 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
     );
   }
 
-  private onCheckChange = (event: any) => {
+  private readonly onCheckChange = (event: any) => {
     this.setState({
       textEnabled: !event.target.checked
     });

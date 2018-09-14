@@ -36,7 +36,11 @@ export default class SaveFileModal extends React.Component<ISaveFileModalProps, 
           <form>
             <div className="modal-header">
               <h5 className="modal-title">{this.props.filename}</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.onClose}>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                onClick={this.props.onClose} >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -71,14 +75,14 @@ export default class SaveFileModal extends React.Component<ISaveFileModalProps, 
     );
   }
 
-  private onSaveAs = () => {
+  private readonly onSaveAs = () => {
     saveAs(new Blob([this.props.contents], {
       type: "text/plain;charset=utf-8"
     }), this.props.filename + ".key");
     this.props.onConfirm();
   }
 
-  private copyToClipboard = () => {
+  private readonly copyToClipboard = () => {
     copy(this.props.contents);
   }
 }
