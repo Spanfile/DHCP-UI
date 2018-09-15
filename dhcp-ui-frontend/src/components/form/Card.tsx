@@ -31,7 +31,9 @@ export default class Card extends React.Component<ICardProps, ICardState> {
               <h5 className="card-title m-0">{this.props.title}</h5>
             </div>
           </div>
-          {this.state.open ? this.props.children : []}
+          <div className={this.state.open ? "" : "d-none"}>
+            {this.props.children}
+          </div>
         </div>
       </div >
     );
