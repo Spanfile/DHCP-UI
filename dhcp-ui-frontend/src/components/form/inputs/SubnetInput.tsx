@@ -22,7 +22,7 @@ export default class SubnetInput extends React.Component<IInputProps<string>, IS
   public render(): JSX.Element {
     return (
       <FormInputRow {...this.props} innerRow={true}>
-        <div className="col-auto">
+        <div className="col">
           <input
             type="text"
             className="form-control rounded-0 text-right"
@@ -32,10 +32,9 @@ export default class SubnetInput extends React.Component<IInputProps<string>, IS
         <div className="col-auto">
           <label
             className="col-sm-1 col-form-label"
-            style={{ maxWidth: "1em" }}
           >/</label>
         </div>
-        <div className="col-sm-1">
+        <div className="col">
           <input
             type="number"
             className="form-control rounded-0"

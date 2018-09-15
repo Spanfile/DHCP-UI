@@ -18,14 +18,18 @@ export default class Navbar extends React.Component<INavbarProps, object> {
     }
 
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
-        <a href="/" className="navbar-brand">DHCP UI</a>
-        <div>
-          <button className="btn btn-secondary rounded-0">
-            {buttonText}
-          </button>
+      <div className="row">
+        <div className="col-sm-12">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+            <a href="/" className="navbar-brand">DHCP UI</a>
+            <div>
+              <button className="btn btn-secondary rounded-0">
+                {buttonText}
+              </button>
+            </div>
+          </nav>
         </div>
-      </nav>
+      </div>
     );
   }
 }

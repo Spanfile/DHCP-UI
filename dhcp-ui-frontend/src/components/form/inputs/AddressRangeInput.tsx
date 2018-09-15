@@ -22,24 +22,21 @@ export default class AddressRangeInput extends React.Component<IInputProps<strin
   public render(): JSX.Element {
     return (
       <FormInputRow {...this.props} innerRow={true}>
-        <div className="col-auto">
+        <div className="col">
           <input
             type="text"
             className="form-control rounded-0 text-right"
-            style={{ maxWidth: "12em" }}
             onChange={this.onRangeChange("from")}
             value={this.state.from} />
         </div>
         <div className="col-auto">
           <label
-            className="col-sm-1 col-form-label"
-            style={{ maxWidth: "1em" }}>-</label>
+            className="col-sm-1 col-form-label">-</label>
         </div>
-        <div className="col-auto">
+        <div className="col">
           <input
             type="text"
             className="form-control rounded-0"
-            style={{ maxWidth: "12em" }}
             onChange={this.onRangeChange("to")}
             value={this.state.to} />
         </div>

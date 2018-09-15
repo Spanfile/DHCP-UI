@@ -23,7 +23,7 @@ export default class ConfigCollectionView<T> extends React.Component<IConfigColl
     let skippedFirst = false;
 
     Object.entries(this.props.config).forEach(([id, key]) => {
-      let colClass = "col-sm-8";
+      let colClass = "col-sm-10";
       if (!skippedFirst) {
         skippedFirst = true;
       } else {

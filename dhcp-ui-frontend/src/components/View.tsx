@@ -9,7 +9,7 @@ import Settings from "./views/Settings";
 export default class View extends React.Component {
   public render(): JSX.Element {
     return (
-      <div className="col-sm-11 p-3">
+      <div className="col-sm-10 pt-3 pl-0">
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route path="/leases" component={Leases} />
