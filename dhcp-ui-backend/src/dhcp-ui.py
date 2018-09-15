@@ -74,6 +74,13 @@ def generate_dnssec():
             })
 
 
+@app.route('/generateconfig', methods=['POST'])
+def generate_config():
+    config = request.get_json()
+    print(config)
+    return "Hello!"
+
+
 @leases_changed.connect_via(watcher)
 def handle_leases_changed(sender):
     print('leases changed')
