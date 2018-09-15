@@ -9,7 +9,8 @@ export interface IDeletableConfigProps<T> extends ICollectionConfigProps<T> {
 
 export function DeletableConfig<T>(
   name: string,
-  inner: React.ComponentClass<IDeletableConfigProps<T>> | React.StatelessComponent<IDeletableConfigProps<T>>) {
+  inner: React.ComponentClass<IDeletableConfigProps<T>> | React.StatelessComponent<IDeletableConfigProps<T>>):
+  React.ComponentClass<ICollectionConfigProps<T>> {
   return class extends React.Component<ICollectionConfigProps<T>, IModalState> {
     constructor(props: ICollectionConfigProps<T>) {
       super(props);

@@ -10,7 +10,7 @@ import TextInput from "components/form/inputs/TextInput";
 import * as React from "react";
 
 export function ZoneConfig(dnssecKeys: IConfigCollection<string>) {
-  return DeletableConfig<IDDNSZone>("zone",props =>
+  return DeletableConfig<IDDNSZone>("zone", props =>
     <Card title={props.config.domain}>
       <InputGroup<IDDNSZone>
         onChange={props.onChange}

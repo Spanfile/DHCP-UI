@@ -1,6 +1,6 @@
 import { DDNSUpdateStyle } from "common/config/ddns/IDDNSConfig";
 import { DNSSECAlgorithm } from "common/config/ddns/IDNSSECKey";
-import { handleConfigChange } from "common/config/IConfigProps";
+import { handleConfigChange, ValueOf } from "common/config/IConfigProps";
 import IDHCPConfig from "common/config/IDHCPConfig";
 import Button, { ButtonStyle } from "components/Button";
 import DDNSConfig from "components/config/DDNSConfig";
@@ -12,6 +12,7 @@ import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 
 export default class Config extends React.Component<{}, IDHCPConfig> {
+  // tslint:disable-next-line:no-any
   constructor(props: any) {
     super(props);
 
@@ -136,7 +137,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
 
   public render(): JSX.Element {
     return (
-      <form onSubmit={this.onSave}>
+      <form>
         <TabNav>
           <NavLink to="/config/global" className="nav-link rounded-0" activeClassName="active">Global</NavLink>
           <NavLink to="/config/ddns" className="nav-link rounded-0" activeClassName="active">DDNS</NavLink>
@@ -152,10 +153,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
                   onChange={handleConfigChange("global", {
                     config: this.state,
                     onChange: this.onConfigChange
-                  })}
-                />
-              </TabPanel>}
-            />
+                  })} />
+              </TabPanel>} />
             <Route path="/config/ddns" render={() =>
               <TabPanel>
                 <DDNSConfig
@@ -163,10 +162,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
                   onChange={handleConfigChange("ddns", {
                     config: this.state,
                     onChange: this.onConfigChange
-                  })}
-                />
-              </TabPanel>}
-            />
+                  })} />
+              </TabPanel>} />
             <Route path="/config/subnets" render={() =>
               <TabPanel>
                 <SubnetsConfig
@@ -174,10 +171,8 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
                   onChange={handleConfigChange("subnets", {
                     config: this.state,
                     onChange: this.onConfigChange
-                  })}
-                />
-              </TabPanel>}
-            />
+                  })} />
+              </TabPanel>} />
           </Switch>
         </div>
         <Button
@@ -189,7 +184,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
     );
   }
 
-  private readonly onConfigChange = (name: string, value: any) => {
+  private readonly onConfigChange = (name: keyof IDHCPConfig, value: ValueOf<IDHCPConfig>) => {
     this.setState({
       ...this.state,
       [name]: value

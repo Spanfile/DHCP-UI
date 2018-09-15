@@ -1,6 +1,6 @@
 import { IDDNSZone, IDDNSZones } from "common/config/ddns/IDDNSZone";
 import { IConfigCollection } from "common/config/ICommonConfig";
-import IConfigProps, { ValueOf } from "common/config/IConfigProps";
+import IConfigProps, { ICollectionConfigProps, ValueOf } from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { ZoneConfig } from "components/config/ddns/ZoneConfig";
 import * as React from "react";
@@ -10,7 +10,7 @@ export interface IZonesConfigProps extends IConfigProps<IDDNSZones> {
 }
 
 export default class ZonesConfig extends React.Component<IZonesConfigProps> {
-  private readonly zoneConfig: any;
+  private readonly zoneConfig: React.ComponentClass<ICollectionConfigProps<IDDNSZone>>;
 
   constructor(props: IZonesConfigProps) {
     super(props);
