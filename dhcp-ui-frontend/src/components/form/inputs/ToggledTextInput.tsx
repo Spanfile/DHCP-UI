@@ -7,6 +7,7 @@ export interface IToggledTextInputProps {
   checkName: string;
   value?: string;
   checkValue?: boolean;
+  // tslint:disable-next-line:no-any
   onChange: (event: any) => void;
 }
 
@@ -55,6 +56,7 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
     );
   }
 
+  // tslint:disable-next-line:no-any
   private readonly onCheckChange = (event: any) => {
     this.setState({
       textEnabled: !event.target.checked

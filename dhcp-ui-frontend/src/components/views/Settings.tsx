@@ -1,7 +1,7 @@
+import Button, { ButtonStyle } from "components/Button";
 import DHCPUISettings from "components/settings/DHCPUISettings";
 import * as React from "react";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import "./Settings.css";
 
 export default class Settings extends React.Component {
   public render(): JSX.Element {
@@ -18,13 +18,12 @@ export default class Settings extends React.Component {
             <Route path="/settings/dhcp-ui" component={DHCPUISettings} />
           </Switch>
         </div>
-        <button type="submit" className="btn btn-primary rounded-0">Save</button>
+        <Button style={ButtonStyle.Primary} onClick={this.save}>Save</Button>
       </form>
     );
   }
 
-  private save(event: any) {
+  private save() {
     console.log("gonna save");
-    event.preventDefault();
   }
 }

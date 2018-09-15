@@ -28,6 +28,7 @@ export default class AddressInput extends React.Component<IInputProps<string>, I
     );
   }
 
+  // tslint:disable-next-line:no-any
   private readonly onAddressChange = (event: any) => {
     const value = event.target.value;
     this.setState({

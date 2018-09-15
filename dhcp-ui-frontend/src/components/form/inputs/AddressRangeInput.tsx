@@ -49,6 +49,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<strin
   }
 
   private readonly onRangeChange = (property: keyof IAddressRangeInputState) =>
+    // tslint:disable-next-line:no-any
     (event: any) => {
       const value = event.target.value;
 

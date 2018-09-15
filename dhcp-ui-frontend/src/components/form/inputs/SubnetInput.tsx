@@ -50,6 +50,7 @@ export default class SubnetInput extends React.Component<IInputProps<string>, IS
   }
 
   private readonly onSubnetChange = (property: keyof ISubnetInputState) =>
+    // tslint:disable-next-line:no-any
     (event: any) => {
       const value = event.target.value;
       const state = {};

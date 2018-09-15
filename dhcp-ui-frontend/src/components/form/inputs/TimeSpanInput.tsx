@@ -57,6 +57,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
     );
   }
 
+  // tslint:disable-next-line:no-any
   private onInputChange(name: string, value: any) {
     const timeSpan = this.secondsToTimeSpan(this.props.value!);
     timeSpan[name] = Number(value);

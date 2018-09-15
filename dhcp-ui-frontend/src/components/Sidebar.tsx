@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 export default class Sidebar extends React.Component {
+  // tslint:disable-next-line:no-any
   constructor(props: any) {
     super(props);
   }

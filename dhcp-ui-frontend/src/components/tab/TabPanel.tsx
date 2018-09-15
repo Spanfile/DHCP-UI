@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export default class TabPanel extends React.Component {
+  // tslint:disable-next-line:no-any
   constructor(props: any) {
     super(props);
   }

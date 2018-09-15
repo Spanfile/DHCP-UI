@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export interface ITableRowProps {
-  values: any[];
+  values: string[];
 }
 
 export interface ITableRowState {
@@ -18,7 +18,7 @@ export default class TableRow extends React.Component<ITableRowProps, ITableRowS
   }
 
   public render() {
-    const rowCells: any[] = this.props.values.map(value => <td key={value}>{value}</td>);
+    const rowCells: JSX.Element[] = this.props.values.map(value => <td key={value}>{value}</td>);
 
     return (
       <tr>

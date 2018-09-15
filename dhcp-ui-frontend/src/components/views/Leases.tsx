@@ -15,6 +15,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
 
   private socket: SocketIOClient.Socket;
 
+  // tslint:disable-next-line:no-any
   constructor(props: any) {
     super(props);
 
@@ -91,6 +92,7 @@ export default class Leases extends React.Component<{}, ILeasesState> {
     });
   }
 
+  // tslint:disable-next-line:no-any
   private buildLeasesFromResponse(responseData: any[]): ITransmittedLease[] {
     return responseData.map(data =>
       ({

@@ -1,12 +1,12 @@
 import API from "API";
 import { DNSSECAlgorithm, IDNSSECKey, IDNSSECKeys } from "common/config/ddns/IDNSSECKey";
-import IConfigProps, { ValueOf } from "common/config/IConfigProps";
+import IConfigProps, { ICollectionConfigProps, ValueOf } from "common/config/IConfigProps";
 import ConfigCollectionView from "components/config/ConfigCollectionView";
 import { KeyConfig } from "components/config/ddns/KeyConfig";
 import * as React from "react";
 
 export default class KeysConfig extends React.Component<IConfigProps<IDNSSECKeys>> {
-  private keyConfig: any;
+  private keyConfig: React.ComponentClass<ICollectionConfigProps<IDNSSECKey>>;
 
   constructor(props: IConfigProps<IDNSSECKeys>) {
     super(props);

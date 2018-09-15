@@ -47,6 +47,7 @@ export default class DHCPUISettings extends React.Component<IDHCPUISettings, IDH
     );
   }
 
+  // tslint:disable-next-line:no-any
   private readonly inputChanged = (name: string, value: any) => {
     const state = {};
     state[name] = value;
