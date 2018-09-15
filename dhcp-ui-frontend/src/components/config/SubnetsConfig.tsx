@@ -13,11 +13,11 @@ export default class SubnetsConfig extends React.Component<IConfigProps<IDHCPSub
   public render(): JSX.Element {
     return (
       <div className="row">
-        <div className="col-sm-2">
+        <div className="col-sm-2 pr-0">
           <div className="mb-3">
             <Button style={ButtonStyle.Success} onClick={this.addSubnet}>
               Add subnet
-              </Button>
+            </Button>
           </div>
           <SubnetNav subnets={this.props.config} />
         </div>
@@ -25,8 +25,7 @@ export default class SubnetsConfig extends React.Component<IConfigProps<IDHCPSub
           <SubnetView
             config={this.props.config}
             onChange={this.props.onChange}
-            onSubnetDelete={this.deleteSubnet}
-          />
+            onSubnetDelete={this.deleteSubnet} />
         </div>
       </div>
     );

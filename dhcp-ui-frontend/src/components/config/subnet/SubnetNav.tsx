@@ -24,9 +24,7 @@ export default class SubnetNav extends React.Component<ISubnetNavProps> {
     });
 
     return (
-      <div>
-        {subnetLinks}
-      </div>
+      <>{subnetLinks}</>
     );
   }
 }

@@ -25,21 +25,20 @@ export default class AddressRangeInput extends React.Component<IInputProps<strin
         <div className="col-auto">
           <input
             type="text"
-            className="form-control rounded-0 float-left text-right"
+            className="form-control rounded-0 text-right"
             style={{ maxWidth: "12em" }}
             onChange={this.onRangeChange("from")}
             value={this.state.from} />
         </div>
         <div className="col-auto">
           <label
-            className="col-sm-1 col-form-label float-left"
-            style={{ maxWidth: "1em" }}
-          >-</label>
+            className="col-sm-1 col-form-label"
+            style={{ maxWidth: "1em" }}>-</label>
         </div>
         <div className="col-auto">
           <input
             type="text"
-            className="form-control rounded-0 float-left"
+            className="form-control rounded-0"
             style={{ maxWidth: "12em" }}
             onChange={this.onRangeChange("to")}
             value={this.state.to} />

@@ -12,8 +12,8 @@ export default class FormInputRow extends React.Component<IFormInputRowProps> {
 
   public render(): JSX.Element {
     return (
-      <div className="form-group row">
-        <label className="col-sm-2 col-form-label text-right pr-0">{this.props.label}</label>
+      <div className="form-group row align-items-center">
+        <label className="col-sm-2 col-form-label text-right p-0">{this.props.label}</label>
         <div className={"col-sm-8" + (this.props.innerRow ? " form-row" : "")}>
           {this.props.children}
         </div>

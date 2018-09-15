@@ -25,13 +25,13 @@ export default class SubnetInput extends React.Component<IInputProps<string>, IS
         <div className="col-auto">
           <input
             type="text"
-            className="form-control rounded-0 float-left text-right"
+            className="form-control rounded-0 text-right"
             onChange={this.onSubnetChange("identifier")}
             value={this.state.identifier.toString()} />
         </div>
         <div className="col-auto">
           <label
-            className="col-sm-1 col-form-label float-left"
+            className="col-sm-1 col-form-label"
             style={{ maxWidth: "1em" }}
           >/</label>
         </div>
