@@ -34,9 +34,7 @@ export const SubnetConfig = DeletableConfig<IDHCPSubnet>("subnet", props =>
         />
       </Card>
       <div className="mb-3">
-        <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
-          Delete subnet
-        </Button>
+        <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>Delete subnet</Button>
       </div>
     </>
   ));

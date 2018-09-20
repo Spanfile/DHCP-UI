@@ -44,9 +44,7 @@ export default class ConfigCollectionView<T> extends React.Component<IConfigColl
       <div className="row">
         <div className="col-sm-2 mb-3 pr-0">
           <div className="float-right">
-            <Button style={ButtonStyle.Success} onClick={this.props.onAdd}>
-              {this.props.addButtonText}
-            </Button>
+            <Button style={ButtonStyle.Success} onClick={this.props.onAdd}>{this.props.addButtonText}</Button>
           </div>
         </div>
         {configs}

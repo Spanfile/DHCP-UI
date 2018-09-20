@@ -59,15 +59,9 @@ export default class SaveFileModal extends React.Component<ISaveFileModalProps, 
               </div>
             </div>
             <div className="modal-footer">
-              <Button style={ButtonStyle.Primary} onClick={this.onSaveAs}>
-                Save as
-              </Button>
-              <Button style={ButtonStyle.Info} onClick={this.copyToClipboard}>
-                Copy to clipboard
-              </Button>
-              <Button style={ButtonStyle.Secondary} onClick={this.props.onClose}>
-                Cancel
-              </Button>
+              <Button style={ButtonStyle.Primary} onClick={this.onSaveAs}>Save as</Button>
+              <Button style={ButtonStyle.Info} onClick={this.copyToClipboard}>Copy to clipboard</Button>
+              <Button style={ButtonStyle.Secondary} onClick={this.props.onClose}>Cancel</Button>
             </div>
           </form>
         </div>

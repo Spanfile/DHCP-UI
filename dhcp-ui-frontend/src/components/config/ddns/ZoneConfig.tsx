@@ -19,8 +19,6 @@ export function ZoneConfig(dnssecKeys: IConfigCollection<string>) {
         <TextInput label="Primary NS" name="primary" />
         <SelectInput<string> label="DNSSEC key" name="key" options={dnssecKeys} />
       </InputGroup>
-      <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
-        Delete zone
-      </FormButton>
+      <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>Delete zone</FormButton>
     </Card>);
 }

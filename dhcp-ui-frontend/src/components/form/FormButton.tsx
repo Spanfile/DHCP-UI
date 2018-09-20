@@ -10,9 +10,7 @@ export default class FormButton extends React.Component<IButtonProps> {
     return (
       <div className="form-group row" >
         <div className="col-sm-8 offset-sm-2">
-          <Button {...this.props}>
-            {this.props.children}
-          </Button>
+          <Button {...this.props}>{this.props.children}</Button>
         </div>
       </div>
     );

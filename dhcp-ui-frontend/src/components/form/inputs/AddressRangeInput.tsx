@@ -30,8 +30,7 @@ export default class AddressRangeInput extends React.Component<IInputProps<strin
             value={this.state.from} />
         </div>
         <div className="col-auto">
-          <label
-            className="col-sm-1 col-form-label">-</label>
+          <label className="col-sm-1 col-form-label">-</label>
         </div>
         <div className="col">
           <input

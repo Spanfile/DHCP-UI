@@ -19,9 +19,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
     return (
       <FormInputRow {...this.props} innerRow={true}>
         <div className="col-sm-4">
-          <label className="col-form-label">
-            Hours
-            </label>
+          <label className="col-form-label">Hours</label>
           <input
             type="number"
             min="0"
@@ -30,9 +28,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
             value={hours} />
         </div>
         <div className="col-sm-4">
-          <label className="col-form-label">
-            Minutes
-            </label>
+          <label className="col-form-label">Minutes</label>
           <input
             type="number"
             min="0"
@@ -42,9 +38,7 @@ export default class TimeSpanInput extends React.Component<IInputProps<number>> 
             value={minutes} />
         </div>
         <div className="col-sm-4">
-          <label className="col-form-label">
-            Seconds
-            </label>
+          <label className="col-form-label">Seconds</label>
           <input
             type="number"
             min="0"

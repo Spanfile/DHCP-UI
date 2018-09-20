@@ -30,9 +30,7 @@ export default class SubnetInput extends React.Component<IInputProps<string>, IS
             value={this.state.identifier.toString()} />
         </div>
         <div className="col-auto">
-          <label
-            className="col-sm-1 col-form-label"
-          >/</label>
+          <label className="col-sm-1 col-form-label">/</label>
         </div>
         <div className="col">
           <input

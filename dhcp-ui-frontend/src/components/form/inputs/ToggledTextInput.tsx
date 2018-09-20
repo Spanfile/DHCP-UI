@@ -37,9 +37,7 @@ export default class ToggledTextInput extends React.Component<IToggledTextInputP
               defaultChecked={this.props.checkValue}
               onChange={this.onCheckChange}
             />
-            <label className="form-check-label">
-              {this.props.checkLabel}
-            </label>
+            <label className="form-check-label">{this.props.checkLabel}</label>
           </div>
         </div>
         <div className="col-sm-7">

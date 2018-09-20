@@ -177,9 +177,7 @@ export default class Config extends React.Component<{}, IDHCPConfig> {
         </div>
         <Button
           style={ButtonStyle.Primary}
-          onClick={this.onSave}>
-          Build configuration and save
-        </Button>
+          onClick={this.onSave}>Build configuration and save</Button>
       </form>
     );
   }

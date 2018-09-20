@@ -26,9 +26,7 @@ export default class SelectInput<T extends string | number> extends React.Compon
           className="custom-select rounded-0"
           name={this.props.name}
           value={this.props.value!}
-          onChange={this.props.onChange}>
-          {options}
-        </select>
+          onChange={this.props.onChange}>{options}</select>
       </FormInputRow>
     );
   }

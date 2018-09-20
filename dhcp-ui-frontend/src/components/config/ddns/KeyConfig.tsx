@@ -53,9 +53,7 @@ export function KeyConfig(keygenAvailable: boolean) {
                     <Button
                       style={ButtonStyle.Info}
                       onClick={this.generateKey}
-                      disabled={!keygenAvailable}>
-                      Generate
-                    </Button>
+                      disabled={!keygenAvailable}>Generate</Button>
                   </div>
                 </TextInput>
               </InputGroup>
@@ -63,13 +61,9 @@ export function KeyConfig(keygenAvailable: boolean) {
                 <div className="col-sm-8 offset-sm-2">
                   <div className="d-flex flex-row">
                     <div className="mr-3">
-                      <Button style={ButtonStyle.Danger} onClick={this.props.openDeleteModal}>
-                        Delete key
-                    </Button>
+                      <Button style={ButtonStyle.Danger} onClick={this.props.openDeleteModal}>Delete key</Button>
                     </div>
-                    <Button style={ButtonStyle.Primary} onClick={this.openExportModal}>
-                      Export key
-                    </Button>
+                    <Button style={ButtonStyle.Primary} onClick={this.openExportModal}>Export key</Button>
                   </div>
                 </div>
               </div>

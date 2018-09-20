@@ -19,8 +19,7 @@ export default class SubnetNav extends React.Component<ISubnetNavProps> {
       subnetLinks.push(<NavLink
         key={id} to={"/config/subnets/" + id}
         activeClassName="bg-dark text-white"
-        className="nav-link">{subnet.common.subnet.toString()}
-      </NavLink>);
+        className="nav-link">{subnet.common.subnet.toString()}</NavLink>);
     });
 
     return (

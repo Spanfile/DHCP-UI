@@ -37,12 +37,8 @@ export default class ConfirmModal extends React.Component<IConfirmModalProps> {
             {this.props.children}
           </div>
           <div className="modal-footer">
-            <Button style={ButtonStyle.Danger} onClick={this.props.onConfirm}>
-              {this.props.confirm}
-            </Button>
-            <Button style={ButtonStyle.Secondary} onClick={this.props.onClose}>
-              Cancel
-            </Button>
+            <Button style={ButtonStyle.Danger} onClick={this.props.onConfirm}>{this.props.confirm}</Button>
+            <Button style={ButtonStyle.Secondary} onClick={this.props.onClose}>Cancel</Button>
           </div>
         </div>
       </Modal>

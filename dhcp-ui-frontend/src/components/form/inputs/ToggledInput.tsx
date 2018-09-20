@@ -19,9 +19,7 @@ export default class ToggledInput extends React.Component<IInputProps<boolean>> 
               checked={this.props.value!}
               id={this.props.name}
             />
-            <label className="form-check-label" htmlFor={this.props.name}>
-              {this.props.label}
-            </label>
+            <label className="form-check-label" htmlFor={this.props.name}>{this.props.label}</label>
           </div>
         </div>
       </div>

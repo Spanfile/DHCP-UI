@@ -25,9 +25,7 @@ export const HostConfig = DeletableConfig<IHostConfig>("host", props =>
         config={props.config.options}
         onChange={handleConfigChange("options", props)} />
       <div className="mt-3">
-        <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>
-          Delete host
-      </FormButton>
+        <FormButton style={ButtonStyle.Danger} onClick={props.openDeleteModal}>Delete host</FormButton>
       </div>
     </Card>
   ));
