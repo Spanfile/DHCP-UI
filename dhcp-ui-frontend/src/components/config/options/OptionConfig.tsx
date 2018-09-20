@@ -21,7 +21,7 @@ export const OptionConfig = DeletableConfig<IOptionConfig>("option", props =>
         onChange={event => props.onChange("expression", event.target.value)}
         value={props.config.expression} />
     </div>
-    <div className="col-sm-auto" style={{ paddingTop: "38px" }}>
+    <div className="col-sm-auto" style={{ paddingTop: "38px", paddingRight: "0" }}>
       <div className="float-right">
         <Button style={ButtonStyle.Danger} onClick={props.openDeleteModal}>Delete</Button>
       </div>
