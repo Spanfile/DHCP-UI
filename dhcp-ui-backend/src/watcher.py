@@ -4,7 +4,7 @@ from watchdog.events import FileSystemEventHandler
 from blinker import NamedSignal
 
 
-class Watcher():
+class Watcher:
     def __init__(self, filename: str, signal: NamedSignal) -> None:
         self._filename = filename
         self._changed_signal: NamedSignal = signal
@@ -30,6 +30,6 @@ class WatcherEventHandler(FileSystemEventHandler):
         self._callback = callback
 
     def on_modified(self, event):
-        if (event.src_path == self._filename):
+        if event.src_path == self._filename:
             self._callback()
         return super().on_modified(event)
